@@ -1,0 +1,39 @@
+<div class="row" style="margin: 0px">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+        <img src="{{thumb}}" align="left" style="width: 75px; margin-right: 25px; margin-bottom: 25px;">
+        {% if seller['title'] != "" %}
+        {{seller['title']}}<br/>
+        {% endif %}
+        {% if seller['business_email'] != "" %}
+        {{seller['business_email']}}<br/>
+        {% endif %}
+        {% if seller['phone_number'] != "" %}
+        {{seller['phone_number']}}<br/>
+        {% endif %}
+        {% if seller['address'] != "" %}
+        {{seller['address']}}<br/>
+        {% endif %}
+        {{seller['zone_name']}}, {{seller['country_name']}}
+    </div>
+
+    <div class="col-sm-12">
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                    {% for field in fields %} 
+                        <tr>
+                            <td>{{field['label']}}</td>
+                            <td>
+                                {% if field['type'] == "file" %}
+                                    <a href="index.php?route=kbmp_marketplace/sellers_list/downloadfile&file_id={{field['id_mapping']}}&user_token={{ token }}" target="_blank">{{field['seller_value']}}</a>
+                                {% else %}
+                                    {{field['seller_value']}}
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

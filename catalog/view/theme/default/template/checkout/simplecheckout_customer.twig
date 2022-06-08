@@ -1,0 +1,12 @@
+<div class="simplecheckout-block" id="simplecheckout_customer" {{ hide ? 'data-hide="true"' : '' }} {{ display_error and has_error ? 'data-error="true"' : '' }}>
+  <div class="simplecheckout-block-content">
+{#
+    {% if display_registered %}
+      <div class="alert alert-success">{{ text_account_created }}</div>
+    {% endif %}
+#}
+    {% for row in rows %}
+      {{ row }}
+    {% endfor %}
+  </div>
+</div>

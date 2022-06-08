@@ -1,0 +1,145 @@
+{{ header }}{{ column_left }} 
+<div id="content" class="bootstrap">
+    <div class="page-header">
+        <div class="container-fluid">
+            <h1>{{ heading_title }}</h1>          
+        </div>
+    </div>
+    <div class="container-fluid">		
+        <div class="row">            
+            <div class="col-lg-12 col-md-12">
+
+                {% if (error) %} 
+                    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error }} 
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    </div>
+                {% endif %} 
+                {% if (success) %} 
+                    <div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }} 
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    </div>
+                {% endif %} 
+                <div class="panel panel-default" id="fieldset_form">					
+
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{heading_subtitle}}</h3>
+                    </div>
+
+                    <form class="form-horizontal" action="" method="post" enctype="multipart/form-data">
+                        <div class="panel-body"> 
+                            {{tab_common}}
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_send_email_to_seller }}">
+                                        {{ label_send_email_to_seller }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    <span class="switch opencart-switch fixed-width-lg">
+                                        <input class="custom_radio" type="radio" name="kbmp_email_on_new_order" id="kbmp_email_on_new_order_on" value="1" {% if kbmp_email_on_new_order == '1' %}checked {% endif %}/>
+                                        <label class="custom_radio_label" for="kbmp_email_on_new_order_on">{{ text_yes }}</label>
+                                        <input class="custom_radio" type="radio" name="kbmp_email_on_new_order" id="kbmp_email_on_new_order_off" value="0" {% if kbmp_email_on_new_order == '0' %}checked {% endif %}/>
+                                        <label class="custom_radio_label" for="kbmp_email_on_new_order_off">{{ text_no }}</label>
+                                        <a class="slide-button btn"></a>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ help_text_allow_order_handling }}">
+                                        {{ label_allow_order_handling }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    <span class="switch opencart-switch fixed-width-lg">
+                                        <input class="custom_radio" type="radio" name="kbmp_enable_seller_order_handling" id="kbmp_enable_seller_order_handling_on" value="1" checked="checked" {% if kbmp_enable_seller_order_handling == '1' %}checked{% endif %}/>
+                                        <label class="custom_radio_label" for="kbmp_enable_seller_order_handling_on">{{ text_yes }}</label>
+                                        <input class="custom_radio" type="radio" name="kbmp_enable_seller_order_handling" id="kbmp_enable_seller_order_handling_off" value="0" {% if kbmp_enable_seller_order_handling == '0' %}checked{% endif %}/>
+                                        <label class="custom_radio_label" for="kbmp_enable_seller_order_handling_off">{{ text_no }}</label>
+                                        <a class="slide-button btn"></a>
+                                    </span>
+                                    <p class="help-block">
+                                        {{ help_block_allow_order_handling }} 
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="form-group">                                
+                                <label class="control-label col-lg-3">
+                                    <span data-toggle="tooltip" title="{{ text_allowed_order_status_hint }}">
+                                        {{ text_allowed_order_status }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    <select name="allowed_order_status_value[]" id="order_status_value" class="form-control" multiple>
+                                        {% for order_status_list in order_status %} 
+                                            <option name="{{ order_status_list['order_status_id'] }}" value="{{ order_status_list['order_status_id'] }}" {% if ( order_status_list['order_status_id'] in allowed_order_status_value ) %} {{ "selected" }}{% endif %}>{{ order_status_list['name'] }}</option>
+                                        {% endfor %} 
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">                                
+                                <label class="control-label col-lg-3">
+                                    <span data-toggle="tooltip" title="{{ text_order_status_commission_calculate_hint }}">
+                                        {{ text_order_status_commission_calculate }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    <select name="order_status_commission_calculate[]" id="order_status_value" class="form-control" multiple>
+                                        {% for order_status_list in order_status %} 
+                                            <option name="{{ order_status_list['order_status_id'] }}" value="{{ order_status_list['order_status_id'] }}" {% if ( order_status_list['order_status_id'] in order_status_commission_calculate ) %} {{ "selected" }}{% endif %}>{{ order_status_list['name'] }}</option>
+                                        {% endfor %} 
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ hint_admin_info_on_invoice }}">
+                                        {{ text_admin_info_on_invoice }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    <span class="switch opencart-switch fixed-width-lg">
+                                        <input class="custom_radio" type="radio" name="admin_info_on_invoice" id="admin_info_on_invoice_on" value="1" {% if admin_info_on_invoice == '1' %}checked{% endif %}/>
+                                        <label class="custom_radio_label" for="admin_info_on_invoice_on">{{ text_yes }}</label>
+                                        <input class="custom_radio" type="radio" name="admin_info_on_invoice" id="admin_info_on_invoice_off" value="0" {% if admin_info_on_invoice == '0' %}checked{% endif %}/>
+                                        <label class="custom_radio_label" for="admin_info_on_invoice_off">{{ text_no }}</label>
+                                        <a class="slide-button btn"></a>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-lg-3">
+                                    <span class="label-tooltip" data-toggle="tooltip" data-html="true" title="" data-original-title="{{ hint_seller_info_on_invoice }}">
+                                        {{ text_seller_info_on_invoice }} 
+                                    </span>
+                                </label>
+                                <div class="col-lg-9">
+                                    <span class="switch opencart-switch fixed-width-lg">
+                                        <input class="custom_radio" type="radio" name="seller_info_on_invoice" id="seller_info_on_invoice_on" value="1" {% if seller_info_on_invoice == '1' %}checked{% endif %}/>
+                                        <label class="custom_radio_label" for="seller_info_on_invoice_on">{{ text_yes }}</label>
+                                        <input class="custom_radio" type="radio" name="seller_info_on_invoice" id="seller_info_on_invoice_off" value="0" {% if seller_info_on_invoice == '0' %}checked{% endif %}/>
+                                        <label class="custom_radio_label" for="seller_info_on_invoice_off">{{ text_no }}</label>
+                                        <a class="slide-button btn"></a>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="panel-footer">
+                                <button type="submit" value="1" id="marketplace_setting" class="marketplace_setting_btn btn btn-default">
+                                    <i class="fa fa-save"></i> {{ button_save }} 
+                                </button>
+                            </div>
+                        </div>
+                    </form>                           
+                </div>
+            </div>
+        </div>
+        <!--container fluid ends-->
+    </div>
+</div>
+{{ footer }} 

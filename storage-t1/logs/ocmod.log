@@ -1,0 +1,640 @@
+2022-06-07 17:41:28 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: if (is_file($file)) {
+LINE: 13
+----------------------------------------------------------------
+MOD: MEGAMENU PRO
+
+FILE: catalog/view/theme/default/template/common/header.twig
+CODE: {{ menu }}
+LINE: 151
+
+FILE: catalog/view/theme/default/template/common/home.twig
+CODE: <div id="content" class="{{ class }}">{{ content_top }}{{ content_bottom }}</div>
+LINE: 11
+CODE: <div id="content" class="{{ class }}">{{ content_top }}{{ content_bottom }}</div>
+LINE: 12
+CODE: {{ content_top }}
+LINE: 11
+CODE: {{ column_left }}
+LINE: 2
+
+FILE: catalog/controller/common/home.php
+CODE: $data['column_left'] = $this->load->controller('common/column_left');
+LINE: 19
+
+FILE: catalog/controller/common/header.php
+CODE: public function index() {
+LINE: 23
+----------------------------------------------------------------
+MOD: OCFilter Modification
+
+FILE: admin/controller/catalog/product.php
+CODE: $this->load->model('design/layout')
+LINE: 1636
+
+FILE: admin/controller/common/column_left.php
+CODE: if ($this->user->hasPermission('access', 'catalog/filter'))
+LINE: 86
+
+FILE: admin/controller/design/layout.php
+CODE: 'module/' . $code
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/catalog/category.php
+CODE: $results = $this->model_catalog_category->getCategories($filter_data);
+LINE: 713
+
+FILE: admin/model/catalog/product.php
+CODE: if (isset($data['product_layout']))
+LINE: 153
+LINE: 346
+CODE: $this->getProductAttributes($product_id);
+LINE: 391
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "product WHERE product_id
+LINE: 417
+CODE: editProduct($product_id, $data) {
+LINE: 176
+
+FILE: catalog/controller/startup/seo_url.php
+CODE: $this->url->addRewrite($this);
+LINE: 25
+CODE: if ($url[0] == 'information_id')
+LINE: 75
+
+FILE: catalog/controller/product/category.php
+CODE: $data['sorts'] = array
+LINE: 290
+CODE: $data['limits'] = array
+LINE: 396
+CODE: $pagination = new Pagination
+LINE: 439
+CODE: $data['limit'] = $limit;
+LINE: 500
+
+FILE: catalog/controller/product/special.php
+CODE: $data['sorts'] = array
+LINE: 174
+CODE: $data['limits'] = array
+LINE: 253
+CODE: $pagination = new Pagination
+LINE: 292
+CODE: $data['limit'] = $limit;
+LINE: 353
+
+FILE: catalog/controller/product/search.php
+CODE: $data['sorts'] = array
+LINE: 295
+CODE: $data['limits'] = array
+LINE: 419
+CODE: $pagination = new Pagination
+LINE: 478
+CODE: $data['limit'] = $limit;
+LINE: 535
+
+FILE: catalog/controller/product/manufacturer.php
+CODE: $data['sorts'] = array
+LINE: 263
+CODE: $data['limits'] = array
+LINE: 342
+CODE: $pagination = new Pagination
+LINE: 381
+CODE: $data['limit'] = $limit;
+LINE: 441
+CODE: $product_total =
+LINE: 210
+
+FILE: catalog/controller/product/product.php
+CODE: $data['column_left']
+LINE: 558
+LINE: 658
+
+FILE: catalog/controller/common/column_left.php
+CODE: $this->load->model('extension/module');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/common/column_right.php
+CODE: $this->load->model('extension/module');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/common/content_bottom.php
+CODE: $this->load->model('extension/module');
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/controller/common/content_top.php
+CODE: $this->load->model('extension/module');
+NOT FOUND - OPERATION SKIPPED!
+CODE: $this->load->model('setting/module');
+LINE: 59
+CODE: $this->load->model('setting/module');
+LINE: 59
+CODE: $this->load->model('setting/module');
+LINE: 59
+CODE: $this->load->model('setting/module');
+LINE: 59
+CODE: $data['modules'][] = $this->load->controller('module/' . $part[0]);
+NOT FOUND - OPERATION SKIPPED!
+CODE: $data['modules'][] = $this->load->controller('module/' . $part[0]);
+NOT FOUND - OPERATION SKIPPED!
+CODE: $data['modules'][] = $this->load->controller('module/' . $part[0]);
+NOT FOUND - OPERATION SKIPPED!
+CODE: $data['modules'][] = $this->load->controller('module/' . $part[0]);
+NOT FOUND - OPERATION SKIPPED!
+CODE: $module_data = $this->load->controller('module/' . $part[0]);
+NOT FOUND - OPERATION SKIPPED!
+CODE: $module_data = $this->load->controller('module/' . $part[0]);
+NOT FOUND - OPERATION SKIPPED!
+CODE: $module_data = $this->load->controller('module/' . $part[0]);
+NOT FOUND - OPERATION SKIPPED!
+CODE: $module_data = $this->load->controller('module/' . $part[0]);
+NOT FOUND - OPERATION SKIPPED!
+
+FILE: catalog/model/catalog/product.php
+CODE: $query = $this->db->query($
+LINE: 213
+LINE: 271
+LINE: 541
+CODE: if (!empty($data['filter_manufacturer_id']))
+LINE: 165
+LINE: 544
+CODE: getTotalProductSpecials() {
+LINE: 589
+
+FILE: catalog/view/theme/default/template/product/category.twig
+REGEX: ~(\{% if \(?products\)? %\})~
+LINE: 10
+REGEX: ~(\{\{\s?content_bottom\s?\}\})~
+LINE: 139
+REGEX: ~(\{% if \(?products\)? %\})~
+LINE: 36
+
+FILE: catalog/view/theme/default/template/product/search.twig
+REGEX: ~(\{% if \(?products\)? %\})~
+LINE: 8
+
+FILE: catalog/view/theme/default/template/product/special.twig
+REGEX: ~(\{% if \(?products\)? %\})~
+LINE: 18
+
+FILE: system/engine/router.php
+CODE: public function __construct($registry) {
+LINE: 33
+
+FILE: system/library/document.php
+CODE: public function getLinks
+LINE: 116
+
+FILE: system/library/seopro.php
+CODE: validate() {
+LINE: 480
+CODE: $loader = new \Twig\Loader\ArrayLoader(array($filename . '.twig' => $code));
+LINE: 34
+----------------------------------------------------------------
+MOD: Fix for twig
+CODE: $loader = new \Twig_Loader_Array(array($filename . '.twig' => $code));
+NOT FOUND - OPERATION SKIPPED!
+CODE: $loader = new \Twig\Loader\ArrayLoader(array($filename . '.twig' => $code));
+NOT FOUND - OPERATION SKIPPED!
+----------------------------------------------------------------
+MOD: 2 simple url rewrite
+
+FILE: catalog/controller/startup/startup.php
+CODE: $this->registry->set('url'
+LINE: 47
+----------------------------------------------------------------
+MOD: <font color="#15C403">Knowband Multivendor Marketplace</font>
+CODE: $this->load->model('sale/order');
+LINE: 959
+CODE: $data['telephone'] = $this->config->get('config_telephone');
+LINE: 175
+CODE: public function index() {
+LINE: 9
+CODE: $data['keywords'] = $this->document->getKeywords();
+LINE: 55
+CODE: $data['description'] = $this->document->getDescription();
+LINE: 54
+
+FILE: catalog/controller/common/search.php
+CODE: return $this->load->view('common/search', $data);
+LINE: 28
+CODE: <ul class="list-inline">
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/account/register.php
+CODE: $this->load->language('account/register');
+LINE: 20
+CODE: $data['action'] = $this->url->link('account/register', '', true);
+LINE: 116
+CODE: $this->document->addStyle('catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css');
+LINE: 31
+CODE: $data['header'] = $this->load->controller('common/header');
+LINE: 370
+CODE: $data['customer_groups'] = array();
+LINE: 133
+CODE: if ($this->config->get('captcha_' . $this->config->get('config_captcha') . '_status') && in_array('register', (array)$this->config->get('config_captcha_page'))) {
+LINE: 229
+LINE: 467
+CODE: $customer_id = $this->model_account_customer->addCustomer($this->request->post);
+LINE: 137
+
+FILE: catalog/view/theme/default/template/account/register.twig
+CODE: {{ footer }}
+LINE: 421
+CODE: {{ footer }}
+LINE: 527
+CODE: </script>
+LINE: 354
+LINE: 414
+LINE: 438
+LINE: 553
+CODE: <legend>{{ text_newsletter }}</legend>
+LINE: 331
+
+FILE: catalog/controller/account/account.php
+CODE: $data['column_left'] = $this->load->controller('common/column_left');
+LINE: 144
+
+FILE: catalog/view/theme/default/template/account/account.twig
+CODE: <h2>{{ text_my_newsletter }}</h2>
+LINE: 101
+
+FILE: catalog/controller/extension/module/account.php
+CODE: $data['recurring'] = $this->url->link('account/recurring', '', true);
+LINE: 59
+
+FILE: catalog/view/theme/default/template/extension/module/account.twig
+CODE: </div>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/controller/customer/customer.php
+CODE: $this->response->setOutput($this->load->view('customer/customer_form', $data));
+LINE: 1120
+CODE: $this->response->setOutput($this->load->view('customer/customer_form', $data));
+LINE: 1130
+CODE: $this->model_customer_customer->addCustomer($this->request->post);
+LINE: 33
+CODE: $data['header'] = $this->load->controller('common/header');
+LINE: 673
+LINE: 1143
+LINE: 1499
+CODE: $this->model_customer_customer->editCustomer($this->request->get['customer_id'], $this->request->post);
+LINE: 107
+CODE: $data['action']
+LINE: 855
+LINE: 862
+CODE: $this->response->redirect($this->url->link('customer/customer', 'user_token=' . $this->session->data['user_token'] . $url, true));
+LINE: 82
+LINE: 163
+LINE: 228
+LINE: 291
+LINE: 356
+LINE: 421
+CODE: protected function getForm() {
+LINE: 914
+CODE: if ($this->error && !isset($this->error['warning'])) {
+LINE: 1644
+CODE: if (isset($this->error['address'])) {
+LINE: 1010
+CODE: $this->model_customer_customer->editCustomer($this->request->get['customer_id'], $this->request->post);
+LINE: 105
+
+FILE: admin/view/template/customer/customer_form.twig
+CODE: <li><a href="#tab-affiliate" data-toggle="tab">{{ tab_affiliate }}</a></li>
+LINE: 33
+CODE: <div class="tab-pane" id="tab-affiliate">
+LINE: 602
+CODE: <li><a href="#tab-ip" data-toggle="tab">{{ tab_ip }}</a></li>
+LINE: 43
+CODE: <div class="tab-pane" id="tab-ip">
+LINE: 1041
+CODE: {{ footer }}
+LINE: 1702
+
+FILE: admin/view/template/catalog/product_form.twig
+CODE: <li><a href="#tab-data" data-toggle="tab">{{ tab_data }}</a></li>
+LINE: 33
+CODE: <div class="tab-pane" id="tab-data">
+LINE: 123
+CODE: $this->response->setOutput($this->load->view('catalog/product_form', $data));
+LINE: 1654
+CODE: $this->model_catalog_product->addProduct($this->request->post);
+LINE: 39
+CODE: $this->model_catalog_product->editProduct($this->request->get['product_id'], $this->request->post);
+LINE: 136
+CODE: $data['header'] = $this->load->controller('common/header');
+LINE: 897
+LINE: 1724
+CODE: $this->model_catalog_product->editProduct($this->request->get['product_id'], $this->request->post);
+LINE: 145
+CODE: $data['action']
+LINE: 1053
+LINE: 1060
+CODE: $this->response->redirect($this->url->link('catalog/product', 'user_token=' . $this->session->data['user_token'] . $url, true));
+LINE: 115
+LINE: 250
+LINE: 342
+LINE: 434
+LINE: 1882
+LINE: 1912
+
+FILE: admin/controller/catalog/review.php
+CODE: $data['action']
+LINE: 470
+LINE: 477
+CODE: $this->response->redirect($this->url->link('catalog/review', 'user_token=' . $this->session->data['user_token'] . $url, true));
+LINE: 64
+LINE: 117
+LINE: 172
+LINE: 622
+LINE: 656
+CODE: public function model($route) {
+LINE: 84
+CODE: $this->model_catalog_product->updateViewed($this->request->get['product_id']);
+LINE: 587
+CODE: $this->model_catalog_review->addReview($this->request->get['product_id'], $this->request->post);
+LINE: 783
+
+FILE: catalog/view/theme/default/template/product/product.twig
+CODE: <div id="product">
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/checkout/shipping_method.php
+CODE: foreach ($method_data as $key => $value) {
+LINE: 62
+
+FILE: catalog/model/checkout/order.php
+CODE: return $order_id;
+LINE: 59
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "order_total WHERE order_id = '" . (int)$order_id . "'");
+LINE: 110
+CODE: $this->db->query("DELETE FROM `" . DB_PREFIX . "customer_transaction` WHERE order_id = '" . (int)$order_id . "'");
+LINE: 135
+
+FILE: catalog/controller/mail/order.php
+CODE: if (!$order_info['order_status_id'] && $order_status_id) {
+LINE: 37
+CODE: 'name'     => $order_product['name'],
+LINE: 228
+LINE: 425
+CODE: $mail->send();
+LINE: 386
+
+FILE: admin/model/customer/customer.php
+CODE: $this->db->query("UPDATE " . DB_PREFIX . "customer SET customer_group_id = '" . (int)$data['customer_group_id'] . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', custom_field = '" . $this->db->escape(isset($data['custom_field']) ? json_encode($data['custom_field']) : json_encode(array())) . "', newsletter = '" . (int)$data['newsletter'] . "', status = '" . (int)$data['status'] . "', safe = '" . (int)$data['safe'] . "' WHERE customer_id = '" . (int)$customer_id . "'");
+LINE: 204
+
+FILE: catalog/model/account/return.php
+CODE: return $this->db->getLastId();
+LINE: 5
+
+FILE: catalog/controller/common/footer.php
+CODE: $this->load->language('common/footer');
+LINE: 18
+
+FILE: catalog/view/theme/default/template/common/footer.twig
+CODE: <li><a href="{{ manufacturer }}">{{ text_manufacturer }}</a></li>
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/account/order.php
+CODE: $data['products'][] = array(
+LINE: 312
+
+FILE: catalog/view/theme/default/template/account/order_info.twig
+CODE: <td class="text-right">{{ column_quantity }}</td>
+LINE: 74
+CODE: <td class="text-right">{{ product.quantity }}</td>
+LINE: 97
+CODE: <td colspan="3"></td>
+LINE: 120
+
+FILE: admin/controller/sale/order.php
+CODE: $data['products'][] = array(
+LINE: 973
+
+FILE: admin/view/template/sale/order_info.twig
+CODE: <td class="text-right">{{ column_quantity }}</td>
+LINE: 155
+CODE: <td class="text-right">{{ product.quantity }}</td>
+LINE: 180
+CODE: $this->model_checkout_order->addOrderHistory($order_id, $this->request->post['order_status_id'], $this->request->post['comment'], $this->request->post['notify'], $this->request->post['override']);
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/controller/account/login.php
+CODE: $this->response->setOutput($this->load->view('account/login', $data));
+LINE: 151
+
+FILE: catalog/view/theme/default/template/account/login.twig
+CODE: <a href="{{ register }}" class="btn btn-primary">{{ button_continue }}</a></div>
+NOT FOUND - OPERATIONS ABORTED!
+----------------------------------------------------------------
+MOD: Advanced News System
+CODE: if ($this->user->hasPermission('access', 'marketplace/event')) {
+LINE: 283
+CODE: $data['contact'] = $this->url->link('information/contact');
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: catalog/language/en-gb/common/footer.php
+CODE: $_
+LINE: 8
+
+FILE: catalog/language/ru-ru/common/footer.php
+CODE: $_
+LINE: 8
+CODE: {{ voucher }}
+NOT FOUND - OPERATIONS ABORTED!
+CODE: if ($url[0] == 'information_id') {
+LINE: 80
+CODE: } elseif (isset($this->request->get['information_id'])) {
+LINE: 107
+CODE: if (($data['route'] == 'product/product' && $key == 'product_id') || (($data['route'] == 'product/manufacturer/info' || $data['route'] == 'product/product') && $key == 'manufacturer_id') || ($data['route'] == 'information/information' && $key == 'information_id')) {
+LINE: 146
+CODE: if ($query->row['query'] && $url[0] != 'information_id' && $url[0] != 'manufacturer_id' && $url[0] != 'category_id' && $url[0] != 'product_id') {
+LINE: 84
+----------------------------------------------------------------
+MOD: SEO URL Generator FREE by Serge Tkach
+CODE: $parts = explode('/', $this->request->get['_route_']);
+LINE: 37
+CODE: $this->request->get['route'] = 'error/not_found';
+LINE: 187
+CODE: public function prepareRoute($parts) {
+LINE: 59
+CODE: $this->request->get['route'] = 'error/not_found';
+LINE: 200
+CODE: if (isset($this->request->post['category_seo_url'])) {
+LINE: 556
+CODE: if (isset($this->error['keyword'])) {
+LINE: 287
+CODE: if ($this->request->post['category_seo_url']) {
+LINE: 648
+
+FILE: admin/model/catalog/category.php
+CODE: if (isset($data['category_seo_url'])) {
+LINE: 114
+CODE: $this->db->query("DELETE FROM `" . DB_PREFIX . "seo_url` WHERE query = 'category_id=
+LINE: 450
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "category WHERE category_id = '" . (int)$category_id . "'");
+LINE: 522
+
+FILE: admin/view/template/catalog/category_form.twig
+CODE: <input type="text" name="category_seo_url[{{ store.store_id }}][{{ language.language_id }}]" value="{% if category_seo_url[store.store_id][language.language_id] %}{{ category_seo_url[store.store_id][language.language_id] }}{% endif %}" placeholder="{{ entry_keyword }}" class="form-control" />
+LINE: 194
+CODE: {{ footer }}
+LINE: 698
+CODE: if (isset($this->request->post['product_seo_url'])) {
+LINE: 1777
+CODE: if (isset($this->error['keyword'])) {
+LINE: 996
+CODE: if ($this->request->post['product_seo_url']) {
+LINE: 1893
+CODE: $data['keyword'] = '';
+LINE: 388
+CODE: if (isset($data['product_seo_url'])) {
+LINE: 211
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "seo_url WHERE query =
+LINE: 629
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "product WHERE product_id = '" . (int)$product_id . "'");
+LINE: 725
+CODE: <input type="text" name="product_seo_url[{{ store.store_id }}][{{ language.language_id }}]" value="{% if product_seo_url[store.store_id][language.language_id] %}{{ product_seo_url[store.store_id][language.language_id] }}{% endif %}" placeholder="{{ entry_keyword }}" class="form-control"/>
+LINE: 1156
+CODE: {{ footer }}
+LINE: 2065
+
+FILE: admin/controller/catalog/manufacturer.php
+CODE: if (isset($this->request->post['manufacturer_seo_url'])) {
+LINE: 518
+CODE: if (isset($this->error['keyword'])) {
+LINE: 288
+CODE: if ($this->request->post['manufacturer_seo_url']) {
+LINE: 574
+
+FILE: admin/model/catalog/manufacturer.php
+CODE: if (isset($data['manufacturer_seo_url'])) {
+LINE: 114
+CODE: $this->db->query("DELETE FROM `" . DB_PREFIX . "seo_url` WHERE query = 'manufacturer_id=
+LINE: 398
+
+FILE: admin/view/template/catalog/manufacturer_form.twig
+CODE: <input type="text" name="manufacturer_seo_url[{{ store.store_id }}][{{ language.language_id }}]" value="{% if manufacturer_seo_url[store.store_id][language.language_id] %}{{ manufacturer_seo_url[store.store_id][language.language_id] }}{% endif %}" placeholder="{{ entry_keyword }}" class="form-control" />
+LINE: 131
+CODE: {{ footer }}
+LINE: 572
+
+FILE: admin/controller/catalog/information.php
+CODE: if (isset($this->request->post['information_seo_url'])) {
+LINE: 479
+CODE: if (isset($this->error['keyword'])) {
+LINE: 297
+CODE: if ($this->request->post['information_seo_url']) {
+LINE: 551
+
+FILE: admin/model/catalog/information.php
+CODE: if (isset($data['information_seo_url'])) {
+LINE: 92
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "seo_url WHERE query = 'information_id=
+LINE: 346
+
+FILE: admin/view/template/catalog/information_form.twig
+CODE: <input type="text" name="information_seo_url[{{ store.store_id }}][{{ language.language_id }}]" value="{% if information_seo_url[store.store_id][language.language_id] %}{{ information_seo_url[store.store_id][language.language_id] }}{% endif %}" placeholder="{{ entry_keyword }}" class="form-control" />
+LINE: 183
+CODE: {{ footer }}
+LINE: 546
+
+FILE: admin/controller/blog/category.php
+CODE: if (isset($this->request->post['category_seo_url'])) {
+LINE: 429
+CODE: if (isset($this->error['keyword'])) {
+LINE: 241
+CODE: if ($this->request->post['category_seo_url']) {
+LINE: 513
+
+FILE: admin/model/blog/category.php
+CODE: if (isset($data['category_seo_url'])) {
+LINE: 98
+CODE: $this->db->query("DELETE FROM `" . DB_PREFIX . "seo_url` WHERE query = 'blog_category_id=
+LINE: 390
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "category WHERE blog_category_id = '" . (int)$blog_category_id . "'");
+NOT FOUND - OPERATIONS ABORTED!
+
+FILE: admin/view/template/blog/category_form.twig
+CODE: <input type="text" name="category_seo_url[{{ store.store_id }}][{{ language.language_id }}]" value="{% if category_seo_url[store.store_id][language.language_id] %}{{ category_seo_url[store.store_id][language.language_id] }}{% endif %}" placeholder="{{ entry_keyword }}" class="form-control" />
+LINE: 174
+CODE: {{ footer }}
+LINE: 566
+
+FILE: admin/controller/blog/article.php
+CODE: if (isset($this->request->post['article_seo_url'])) {
+LINE: 760
+CODE: if (isset($this->error['keyword'])) {
+LINE: 446
+CODE: if ($this->request->post['article_seo_url']) {
+LINE: 828
+
+FILE: admin/model/blog/article.php
+CODE: if (isset($data['article_seo_url'])) {
+LINE: 137
+CODE: $this->db->query("DELETE FROM " . DB_PREFIX . "seo_url WHERE query = 'article_id=
+LINE: 453
+
+FILE: admin/view/template/blog/article_form.twig
+CODE: <input type="text" name="article_seo_url[{{ store.store_id }}][{{ language.language_id }}]" value="{% if article_seo_url[store.store_id][language.language_id] %}{{ article_seo_url[store.store_id][language.language_id] }}{% endif %}" placeholder="{{ entry_keyword }}" class="form-control" />
+LINE: 239
+CODE: {{ footer }}
+LINE: 747
+----------------------------------------------------------------
+MOD: DEV-OPENCART.COM - Отправка пароля и логина на email после регистрации
+
+FILE: catalog/controller/mail/register.php
+CODE: $data['login'] = $this->url->link('account/login', '', true);
+LINE: 31
+
+FILE: catalog/view/theme/default/template/mail/register.twig
+CODE: {{ login }}
+LINE: 11
+LINE: 26
+
+FILE: catalog/language/ru-ru/mail/register.php
+CODE: <?php
+LINE: 4
+
+FILE: catalog/language/en-gb/mail/register.php
+CODE: <?php
+LINE: 4
+CODE: </body>
+LINE: 102
+----------------------------------------------------------------
+MOD: Очиcтка кэша
+
+FILE: admin/controller/common/header.php
+CODE: $data['logged'] = true;
+LINE: 57
+
+FILE: admin/view/template/common/header.twig
+CODE: <ul class="nav navbar-nav navbar-right">
+NOT FOUND - OPERATION SKIPPED!
+CODE: <ul class="nav navbar-nav navbar-right">
+NOT FOUND - OPERATION SKIPPED!
+----------------------------------------------------------------

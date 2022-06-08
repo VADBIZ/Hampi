@@ -1,0 +1,156 @@
+{{ header }}
+<div id="product-compare" class="container">
+	<ul class="breadcrumb">
+		{% for breadcrumb in breadcrumbs %}
+		<li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+		{% endfor %}
+	</ul>
+	{% if success %}
+		<div class="alert alert-success alert-dismissible">
+			<i class="fa fa-check-circle"></i> {{ success }}
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+		</div>
+	{% endif %}
+	<div class="comparePage">
+		<h1 class="page__title">{{ heading_title }}</h1>
+		{% if products %}
+			<div class="comparePage__swipe">
+				<div class="comparePage__swipe-icon">
+					<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<g opacity="0.4" clip-path="url(#clip0)">
+					<path d="M17.5863 6.91657H17.5558C17.1332 6.91807 16.727 7.08061 16.42 7.37083C16.1804 6.67075 15.5448 6.16923 14.7982 6.16923C14.3357 6.17526 13.8962 6.37148 13.5833 6.71197C13.3007 6.11544 12.7169 5.71546 12.0439 5.71546H12.0114C11.6242 5.71546 11.2472 5.83075 10.9898 6.05998V1.81841C10.9898 0.815705 10.2123 0 9.26335 0C8.31544 0 7.54096 0.815034 7.54029 1.81707L7.53291 10.2057L7.02402 9.58704C6.61449 9.07714 6.01143 8.76045 5.35926 8.71252C4.72017 8.66879 4.09147 8.89131 3.62212 9.32732L3.21209 9.66747C3.08759 9.77069 3.05207 9.9468 3.12663 10.0901L7.11417 17.7458C7.83956 19.1394 9.21945 20 10.7153 20H15.1878C17.4558 20 19.3028 18.0397 19.3052 15.6236C19.3062 14.5441 19.3073 13.7411 19.308 13.0871C19.3104 11.3262 19.3112 10.6678 19.3067 8.72945C19.3043 7.72942 18.5327 6.91657 17.5863 6.91657ZM18.6217 13.0888C18.621 13.7428 18.6198 14.5434 18.6188 15.6229C18.6168 17.6608 17.0777 19.3137 15.1878 19.3137H10.7153C9.47616 19.3137 8.32951 18.5946 7.72276 17.4291L3.86308 10.0165L4.0665 9.84928C4.07086 9.8456 4.07538 9.84241 4.07957 9.83839C4.41085 9.52672 4.8569 9.3667 5.31084 9.39703C5.77449 9.43255 6.20278 9.65926 6.49284 10.0229L7.60865 11.3813C7.70064 11.4933 7.85296 11.5353 7.98936 11.4866C8.12576 11.4378 8.21691 11.3086 8.21708 11.1637L8.22361 1.81774C8.22395 1.19407 8.69363 0.686512 9.26369 0.686512C9.83358 0.686512 10.3034 1.19423 10.3034 1.81841V7.45428C10.3034 7.47372 10.3026 7.49316 10.3026 7.51276C10.3026 7.52131 10.3034 7.52935 10.3034 7.53756V9.94764C10.3034 10.1372 10.4571 10.2908 10.6466 10.2908C10.8361 10.2908 10.9898 10.1372 10.9898 9.94764V7.46584C10.9898 6.86362 11.4558 6.40181 12.0114 6.40181H12.0439C12.614 6.40181 13.0917 6.88892 13.0917 7.51326V9.71774C13.0917 9.90726 13.2454 10.0609 13.4349 10.0609C13.6244 10.0609 13.778 9.90726 13.778 9.71774V7.98797C13.778 7.3638 14.2358 6.85591 14.8092 6.85591C15.3795 6.85591 15.8371 7.3638 15.8371 7.98797V9.61989C15.8371 9.8094 15.9907 9.96306 16.1803 9.96306C16.3698 9.96306 16.5234 9.8094 16.5234 9.61989V8.73632C16.5234 8.11197 16.9856 7.60291 17.5558 7.60291H17.5863C18.155 7.60291 18.619 8.10996 18.6203 8.7323C18.6249 10.6695 18.624 11.3287 18.6217 13.0888Z" fill="black"/>
+					<path d="M12.1908 3.39926H16.6385L15.8411 4.1967C15.7522 4.28299 15.7167 4.41034 15.7482 4.52998C15.7797 4.64979 15.8732 4.74329 15.993 4.77479C16.1127 4.80613 16.24 4.7706 16.3263 4.68179L17.7045 3.30374C17.8386 3.16969 17.8386 2.95236 17.7045 2.81848L16.3263 1.44042C16.1921 1.30771 15.9759 1.30838 15.8426 1.44177C15.709 1.57531 15.7083 1.79147 15.8411 1.92569L16.6283 2.71291H12.1908C12.0013 2.71291 11.8477 2.86657 11.8477 3.05608C11.8477 3.2456 12.0013 3.39926 12.1908 3.39926Z" fill="black"/>
+					<path d="M1.86372 3.39926H6.27185C6.46136 3.39926 6.61502 3.2456 6.61502 3.05608C6.61502 2.86657 6.46136 2.71291 6.27185 2.71291H1.87395L2.66116 1.92569C2.79388 1.79147 2.79321 1.57531 2.65966 1.44177C2.52628 1.30838 2.31012 1.30771 2.1759 1.44042L0.797679 2.81848C0.663795 2.95253 0.663795 3.16986 0.797679 3.30374L2.1759 4.6818C2.26236 4.76943 2.38921 4.80395 2.50818 4.77228C2.62715 4.74078 2.71998 4.64778 2.75165 4.52881C2.78332 4.40984 2.7488 4.28316 2.66116 4.19653L1.86372 3.39926Z" fill="black"/>
+					</g>
+					<defs>
+					<clipPath id="clip0">
+					<rect width="20" height="20" fill="white"/>
+					</clipPath>
+					</defs>
+					</svg>
+				</div>
+				<div class="comparePage__swipe-text">{{ text_swipe }}</div>
+			</div>
+			{% if categories %}
+				<div class="comparePage__menu">
+					{% for category in categories %}
+						<a href="#tab-kat{{ category.category_id }}" class="comparePage__menu-item">{{ category.name }}</a>
+              		{% endfor %}
+				</div>
+			{% endif %}
+			<div class="comparePage__wrap">
+				{% for key,new_product in products %}
+					<div class="comparePage__section" id="tab-kat{{ key }}">
+						<div class="comparePage__head">
+							<div class="comparePage__head-title">{{ text_tovar }}</div>
+							<div class="comparePage__head-wrap{% if new_product|length < 4 %} fixWidth{% endif %}">
+								{% for product in new_product %}
+									<div class="comparePage__head-product">
+										<div class="comparePage__head_product-top">
+											<a href="{{ product.remove }}" class="comparePage__head_tools-remove">
+												<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+													<circle cx="10" cy="10" r="9.5" stroke="#272727"/>
+													<path d="M7.17188 7.17188L12.8287 12.8287" stroke="#272727"/>
+													<path d="M12.8281 7.17188L7.17127 12.8287" stroke="#272727"/>
+												</svg>
+											</a>
+											<a href="{{ product.href }}" class="comparePage__head_product-thumb{% if product.quantity == 0 %} disabled{% endif %}">
+												{% if product.thumb %} <img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" /> {% endif %}
+											</a>
+											<a href="{{ product.href }}" class="comparePage__head_product-title">{{ product.name }}</a>
+										</div>
+										<div class="comparePage__head-tools">
+											<button class="comparePage__head_tools-cart{% if product.quantity == 0 %} disabled{% endif %}" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');">{{ product.button_cart }}</button>
+										</div>
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+						
+						<div class="comparePage__body">
+							<div class="compagePage__body-side">
+								<div class="comparePage__side-row" data-fix="price">{{ text_price }}</div>
+								<div class="comparePage__side-row">{{ text_model }}</div>
+								<div class="comparePage__side-row">{{ text_manufacturer }}</div>
+								<div class="comparePage__side-row">{{ text_availability }}</div>
+								{% if review_status %}
+									<div class="comparePage__side-row" data-fix="rating">{{ text_rating }}</div>
+								{% endif %}
+								<div class="comparePage__side-row" data-fix="desc">{{ text_shortdesc }}</div>
+								<div class="comparePage__side-row">{{ text_weight }}</div>
+								<div class="comparePage__side-row">{{ text_dimension }}</div>
+								{% for attribute_group in attribute_groups %}
+									{% for key, attribute in attribute_group.attribute %}
+										<div class="comparePage__side-row" data-fix="char">{{ attribute.name }}</div>
+									{% endfor %}
+								{% endfor %}
+								<div class="comparePage__side-row" data-fix="last"></div>
+							</div>
+							<div class="compagePage__body-wrap{% if new_product|length < 4 %} fixWidth{% endif %}">
+								{% for product in new_product %}
+									<a href="{{ product.href }}" class="comparePage__body-col">
+										<div class="comparePage__body-item">{{ product.price }} {{ text_edprice }}</div>
+										<div class="comparePage__body-item">{{ product.model }}</div>
+										<div class="comparePage__body-item">
+											{% if product.manufacturer != "" %}
+												{{ product.manufacturer }}
+											{% else %}
+												{{ empty_value }}
+											{% endif %}
+										</div>
+										<div class="comparePage__body-item">{{ product.availability }}</div>
+										{% if review_status %}
+										<div class="comparePage__body-item" data-fix="rating">
+											<div class="productPage__rating">
+												<div class="productPage__rating-wrap">
+													{% for i in 1..5 %}
+														<div class="productPage__rating-item">
+															{% if rating > i %}
+																<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M9.62261 6.66774L9.84563 6.45718C10.6487 5.69893 11.0503 5.31981 10.995 4.9577C10.9835 4.8827 10.96 4.81023 10.9255 4.74329C10.7587 4.42009 10.2125 4.36932 9.12005 4.26779C8.47472 4.20782 8.15206 4.17783 7.89359 4.01616C7.82109 3.97081 7.753 3.91827 7.69027 3.85929C7.46664 3.64898 7.34713 3.33978 7.1081 2.72137C6.68778 1.63394 6.47762 1.09022 6.13617 1.01486C6.0464 0.995046 5.9536 0.995046 5.86382 1.01486C5.52238 1.09022 5.31222 1.63393 4.8919 2.72137L4.8919 2.72137L4.8919 2.72138C4.65287 3.33978 4.53336 3.64898 4.30973 3.85929C4.247 3.91827 4.17891 3.97081 4.10641 4.01616C3.84794 4.17783 3.52528 4.20782 2.87995 4.26779C1.78753 4.36932 1.24132 4.42009 1.07452 4.74329C1.03997 4.81023 1.01649 4.8827 1.00503 4.9577C0.949734 5.31981 1.35128 5.69893 2.15437 6.45718L2.37739 6.66774C2.75285 7.02223 2.94058 7.19948 3.04917 7.42068C3.1143 7.55337 3.15798 7.69627 3.17844 7.84366C3.21255 8.08938 3.15758 8.34651 3.04763 8.86077L3.00835 9.04451C2.81118 9.96676 2.71259 10.4279 2.83566 10.6545C2.9462 10.8581 3.14982 10.9885 3.37475 10.9996C3.62516 11.012 3.978 10.7137 4.68368 10.1169C5.1486 9.72377 5.38107 9.52719 5.63913 9.4504C5.87496 9.38023 6.12504 9.38023 6.36087 9.4504C6.61893 9.52719 6.8514 9.72377 7.31632 10.1169C8.022 10.7137 8.37484 11.012 8.62525 10.9996C8.85018 10.9885 9.0538 10.8581 9.16434 10.6545C9.28741 10.4279 9.18882 9.96676 8.99165 9.04451L8.95237 8.86077L8.9324 8.76729C8.83589 8.31441 8.78958 8.07402 8.82156 7.84366C8.84202 7.69627 8.8857 7.55337 8.95083 7.42068C9.05942 7.19948 9.24715 7.02223 9.62261 6.66774Z" fill="#F4AA25"/>
+																<path d="M8.95237 8.86077L8.99165 9.04451C9.18882 9.96676 9.28741 10.4279 9.16434 10.6545C9.0538 10.8581 8.85018 10.9885 8.62525 10.9996C8.37484 11.012 8.022 10.7137 7.31632 10.1169C6.8514 9.72377 6.61893 9.52719 6.36087 9.4504C6.12504 9.38023 5.87496 9.38023 5.63913 9.4504C5.38107 9.52719 5.1486 9.72377 4.68368 10.1169C3.978 10.7137 3.62516 11.012 3.37475 10.9996C3.14982 10.9885 2.9462 10.8581 2.83566 10.6545C2.71259 10.4279 2.81118 9.96676 3.00835 9.04451L3.04763 8.86077C3.15758 8.34651 3.21255 8.08938 3.17844 7.84366C3.15798 7.69627 3.1143 7.55337 3.04917 7.42068C2.94058 7.19948 2.75285 7.02223 2.37739 6.66774L2.15437 6.45718C1.35128 5.69893 0.949734 5.31981 1.00503 4.9577C1.01649 4.8827 1.03997 4.81023 1.07452 4.74329C1.24132 4.42009 1.78753 4.36932 2.87995 4.26779C3.52528 4.20782 3.84794 4.17783 4.10641 4.01616C4.17891 3.97081 4.247 3.91827 4.30973 3.85929C4.53336 3.64898 4.65287 3.33978 4.8919 2.72137C5.31222 1.63394 5.52238 1.09022 5.86382 1.01486C5.9536 0.995046 6.0464 0.995046 6.13617 1.01486C6.47762 1.09022 6.68778 1.63394 7.1081 2.72137C7.34713 3.33978 7.46664 3.64898 7.69027 3.85929C7.753 3.91827 7.82109 3.97081 7.89359 4.01616C8.15206 4.17783 8.47472 4.20782 9.12005 4.26779C10.2125 4.36932 10.7587 4.42009 10.9255 4.74329C10.96 4.81023 10.9835 4.8827 10.995 4.9577C11.0503 5.31981 10.6487 5.69893 9.84563 6.45718L9.62261 6.66774C9.24715 7.02223 9.05942 7.19948 8.95083 7.42068C8.8857 7.55337 8.84202 7.69627 8.82156 7.84366C8.78958 8.07402 8.83589 8.31441 8.9324 8.76729M8.95237 8.86077C8.94549 8.82863 8.93884 8.79748 8.9324 8.76729M8.95237 8.86077L8.9324 8.76729" stroke="#F4AA25"/>
+																</svg>
+															{% else %}
+																<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+																<path d="M8.95237 8.86077L8.99165 9.04451C9.18882 9.96676 9.28741 10.4279 9.16434 10.6545C9.0538 10.8581 8.85018 10.9885 8.62525 10.9996C8.37484 11.012 8.022 10.7137 7.31632 10.1169C6.8514 9.72377 6.61893 9.52719 6.36087 9.4504C6.12504 9.38023 5.87496 9.38023 5.63913 9.4504C5.38107 9.52719 5.1486 9.72377 4.68368 10.1169C3.978 10.7137 3.62516 11.012 3.37475 10.9996C3.14982 10.9885 2.9462 10.8581 2.83566 10.6545C2.71259 10.4279 2.81118 9.96676 3.00835 9.04451L3.04763 8.86077C3.15758 8.34651 3.21255 8.08938 3.17844 7.84366C3.15798 7.69627 3.1143 7.55337 3.04917 7.42068C2.94058 7.19948 2.75285 7.02223 2.37739 6.66774L2.15437 6.45718C1.35128 5.69893 0.949734 5.31981 1.00503 4.9577C1.01649 4.8827 1.03997 4.81023 1.07452 4.74329C1.24132 4.42009 1.78753 4.36932 2.87995 4.26779C3.52528 4.20782 3.84794 4.17783 4.10641 4.01616C4.17891 3.97081 4.247 3.91827 4.30973 3.85929C4.53336 3.64898 4.65287 3.33978 4.8919 2.72137C5.31222 1.63394 5.52238 1.09022 5.86382 1.01486C5.9536 0.995046 6.0464 0.995046 6.13617 1.01486C6.47762 1.09022 6.68778 1.63394 7.1081 2.72137C7.34713 3.33978 7.46664 3.64898 7.69027 3.85929C7.753 3.91827 7.82109 3.97081 7.89359 4.01616C8.15206 4.17783 8.47472 4.20782 9.12005 4.26779C10.2125 4.36932 10.7587 4.42009 10.9255 4.74329C10.96 4.81023 10.9835 4.8827 10.995 4.9577C11.0503 5.31981 10.6487 5.69893 9.84563 6.45718L9.62261 6.66774C9.24715 7.02223 9.05942 7.19948 8.95083 7.42068C8.8857 7.55337 8.84202 7.69627 8.82156 7.84366C8.78958 8.07402 8.83589 8.31441 8.9324 8.76729M8.95237 8.86077C8.94549 8.82863 8.93884 8.79748 8.9324 8.76729M8.95237 8.86077L8.9324 8.76729" stroke="#F4AA25"/>
+																</svg>
+															{% endif %}
+														</div>
+													{% endfor %}
+												</div>
+												<div class="productPage__rating-text">{{ rating_text }}</div>
+											</div>
+										</div>
+										{% endif %}
+										<div class="comparePage__body-item" data-fix="desc"><p>{{ product.description }}</p></div>
+										<div class="comparePage__body-item">{{ product.weight }}</div>
+										<div class="comparePage__body-item">{{ product.length }} x {{ product.width }} x {{ product.height }} </div>
+										{% for attribute_group in attribute_groups %}
+											{% for key, attribute in attribute_group.attribute %}
+												<div class="comparePage__body-item">
+													{% if product.attribute[key] %}
+														{{ product.attribute[key] }}
+													{% else %}
+														{{ empty_value }}
+													{% endif %}
+												</div>
+											{% endfor %}
+										{% endfor %}
+										<div class="comparePage__body-item" data-fix="last">
+											<div class="comparePage__head-tools">
+												<button class="comparePage__head_tools-cart{% if product.quantity == 0 %} disabled{% endif %}" onclick="cart.add('{{ product.product_id }}', '{{ product.minimum }}');">{{ product.button_cart }}</button>
+											</div>
+										</div>
+									</a>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% else %}
+			<p>{{ text_empty }}</p>
+		{% endif %}
+	</div>
+</div>
+{{ footer }} 

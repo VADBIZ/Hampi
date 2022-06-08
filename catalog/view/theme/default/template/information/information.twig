@@ -1,0 +1,30 @@
+{{ header }}
+<div id="information-information" class="container">
+	<ul class="breadcrumb">
+		{% for breadcrumb in breadcrumbs %}
+			<li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+		{% endfor %}
+	</ul>
+	<div class="page__static">
+		<h1 class="page__title">{{ heading_title }}</h1>
+		{% if menu %}
+			<div id="toc" itemscope itemtype='https://www.schema.org/SiteNavigationElement'></div>
+			<div itemprop="articleBody" class="text_read page__static-content">
+				{{ description }}
+			</div>
+		{% else %}
+			<div class="page__static-content">
+				{{ description }}
+			</div>
+		{% endif %}
+		{% if linksList|length > 0 %}
+			<ul class="page__static-links">
+				{% for linkList in linksList %}
+					<li class="page__links-item"><a href="{{ linkList.link }}">{{ linkList.title }}</a></li>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
+	<a href="#" class="siteUp"></a>
+</div>
+{{ footer }}

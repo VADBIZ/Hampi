@@ -1,0 +1,43 @@
+{{ header }}
+<div id="common-home" class="container">
+  <div class="row">
+			{% if megamenu_setting.menu_open_hpage is defined and megamenu_setting.menu_open_hpage == '1' and megamenu_setting.main_menu_selection == '1' %} 
+				<div class="col-md-3"><div id="menu-header-open"></div></div>
+				<script>
+				if(window.matchMedia("(min-width: 992px)").matches){
+					$('#menu-vertical-list').addClass("nsmenu-block");
+					$('#menu-vertical').addClass("openm");
+				}
+				$(window).resize(function() {
+					if ($(window).width() > 992) {
+						$('#menu-vertical-list').addClass("nsmenu-block");
+						$('#menu-vertical').addClass("openm");
+					} else {
+						$('#menu-vertical').removeClass("openm");
+						$('#menu-vertical-list').removeClass("nsmenu-block");
+					}
+				});
+				$(function(){$('#menu-header-open').css({'min-height': $('#menu-vertical-list').outerHeight() - 20});});</script>
+				<div class="col-md-9">{{ content_top }}</div>
+			{% else %} 
+				<div class="col-md-12">{{ content_top }}</div>
+			{% endif %}
+			</div>
+			<div class="row">
+			{{ column_left }}
+			
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+{% if content_bottom %}
+    <div id="content" class="{{ class }}">{{ content_bottom }}</div>
+ {% endif %}
+    {{ column_right }}
+	<div class="col-sm-12">{{ bottom2 }}</div>
+	</div>
+</div>
+{{ footer }}

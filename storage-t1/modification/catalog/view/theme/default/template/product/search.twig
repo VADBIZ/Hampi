@@ -1,0 +1,171 @@
+{{ header }}
+<div id="product-search" class="container">
+	<ul class="breadcrumb">
+		{% for breadcrumb in breadcrumbs %}
+			<li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+		{% endfor %}
+	</ul>
+	{% if products %}
+      <!-- OCFilter Start -->      
+      {% if ocfilter_mobile_button %}
+      <div class="ocf-btn-mobile-static ocf-mobile">
+        <button type="button" class="ocf-btn ocf-btn-default" data-ocf="mobile"><span class="ocf-btn-name">{{ button_ocfilter_mobile }}</span> <i class="ocf-icon ocf-icon-16 ocf-brand ocf-sliders"></i></button>
+      </div>
+      {% endif %}   
+      <!-- /OCFilter End -->
+		<h1 class="category__title">{{ heading_title_search }}</h1>
+	{% endif %}
+	{% if not categories or not products %}
+      	<h1 class="page__title">{{ heading_title_search }}</h1>
+	{% endif %}
+	<div class="category__wrap">
+		<div class="category__side">{{ column_left }}</div>
+		<div class="category__main">
+			{{ content_top }}
+			
+			{% if products %}
+				<div class="category__sort">
+					<button class="category__filter">
+						<span class="category__filter-icon">				
+							<svg width="16" height="13" viewBox="0 0 16 13" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path fill-rule="evenodd" clip-rule="evenodd" d="M7.41699 2.35433C7.41699 1.60636 6.81064 1 6.06266 1C5.32004 1 4.71702 1.5977 4.70842 2.33828L4.70867 2.35436L4.70842 2.37042C4.71703 3.11099 5.32005 3.70867 6.06266 3.70867C6.81064 3.70867 7.41699 3.10231 7.41699 2.35433ZM6.06266 0C4.93396 0 3.99077 0.794263 3.76152 1.85436L0.5 1.85436C0.223858 1.85436 0 2.07822 0 2.35436C0 2.6305 0.223858 2.85436 0.5 2.85436L3.76153 2.85436C3.9908 3.91443 4.93397 4.70867 6.06266 4.70867C7.19134 4.70867 8.13451 3.91444 8.36378 2.85437L15.3343 2.85437C15.6105 2.85437 15.8343 2.63051 15.8343 2.35437C15.8343 2.07823 15.6105 1.85437 15.3343 1.85437L8.3638 1.85437C8.13455 0.794269 7.19136 0 6.06266 0ZM13.0005 9.91356C12.7713 8.85348 11.8281 8.05924 10.6994 8.05924C9.47959 8.05924 8.47646 8.98689 8.35698 10.1752C8.2723 10.0194 8.10717 9.91356 7.91734 9.91356L0.5 9.91356C0.223858 9.91356 0 10.1374 0 10.4136C0 10.6897 0.223858 10.9136 0.5 10.9136L7.91734 10.9136C8.10717 10.9136 8.2723 10.8078 8.35697 10.6519C8.47645 11.8402 9.47958 12.7679 10.6994 12.7679C11.8281 12.7679 12.7713 11.9737 13.0005 10.9136H15.3352C15.6114 10.9136 15.8352 10.6897 15.8352 10.4136C15.8352 10.1374 15.6114 9.91356 15.3352 9.91356H13.0005ZM10.6994 9.05924C11.4474 9.05924 12.0537 9.6656 12.0537 10.4136C12.0537 11.1616 11.4474 11.7679 10.6994 11.7679C9.95141 11.7679 9.34505 11.1616 9.34505 10.4136C9.34505 9.6656 9.95141 9.05924 10.6994 9.05924Z" fill="white"/>
+							</svg>
+						</span>
+						<span class="category__filter-title">{{ heading_title_desktop }}</span>
+					</button>
+					<div class="category__sort-wrapper">
+						<p class="category__sort-title">
+							<span class="category__sort-desktop">{{ text_sort }}</span>
+							<span class="category__sort-mobile">{{ text_sort_mobile }}</span>
+						</p>
+						<div class="category__sort-group">
+							{% for sorts in sorts %}
+								{% if activeSort == sorts.sort %}
+									{% set active = 'true' %}
+								{% else %}
+									{% set active = 'false' %}
+								{% endif %}
+								{% if sorts.value == '%s-%s'|format(sort, order) %}
+									<a href="{{ sorts.href }}" class="category__sort-link __{{ sorts.icon }}" data-state="{{ active }}">{{ sorts.text }}</a>
+								{% else %}
+									<a href="{{ sorts.href }}" class="category__sort-link __{{ sorts.icon }}" data-state="{{ active }}">{{ sorts.text }}</a>
+								{% endif %}
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				<div class="category__products">
+					{% for product in products %}
+						<div class="category__product{% if product.quantity == 0 %} notExist{% endif %}">
+							<div class="category__product-top">
+								<a href="{{ product.href }}" class="category__product-image">
+									<img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" />
+								</a>
+								<a href="{{ product.href }}" class="category__product-title">{{ product.name }}</a>
+								{% if product.ean %}
+									<a href="{{ product.href }}" class="category__product-sku">{{ text_ean }} {{ product.ean }}</a>
+								{% endif %}
+								{% if product.stock %}
+									<a href="{{ product.href }}" class="category__product-stock">{{ product.stock }}</a>
+								{% endif %}
+								<div class="category__product-compare">
+									<input type="checkbox" class="category__product-compare-input" data-id="{{ product.product_id }}" id="compare{{ product.product_id }}" {% if product.compare %}checked{% endif %}>
+									<label onclick="compare.add('{{ product.product_id }}');" for="compare{{ product.product_id }}" class="lblCountry">{{ button_compare }}</label>
+								</div>
+							</div>
+							<div class="category__product-meta">
+								<a href="{{ product.href }}" class="category__product-prices">
+									{% if product.price %}
+									    {% if not product.special %}
+                                            {{ product.price }} / шт. 
+                                        {% else %} 
+										    {{ product.special }} / шт. 
+											<div class="category__product-prices-old">{{ product.price }} / шт. </div> 
+										{% endif %}
+									{% endif %}
+								</a>
+								<div class="category__product-btns">
+									<button type="button" data-toggle="tooltip" class="category__product-like" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');">
+										<svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M2.35885 9.16686L8.52213 14.5803L8.52216 14.5803C8.66156 14.7027 8.73126 14.764 8.80638 14.7955C8.93022 14.8475 9.06978 14.8475 9.19362 14.7955C9.26874 14.764 9.33845 14.7027 9.47785 14.5803L9.47787 14.5803L15.6411 9.16686C17.5112 7.52429 17.7347 4.6918 16.1452 2.77635L16.0303 2.63787C14.2096 0.443719 10.7381 0.828319 9.44182 3.36779C9.2577 3.72849 8.7423 3.72849 8.55818 3.36779C7.2619 0.828319 3.79038 0.443721 1.96969 2.63787L1.85477 2.77635C0.26533 4.6918 0.488753 7.52429 2.35885 9.16686Z" fill="url(#paint0_linear_226_3519)" stroke="url(#paint1_linear_226_3519)"/>
+											<defs>
+												<linearGradient id="paint0_linear_226_3519" x1="-0.800995" y1="-2" x2="21.1839" y2="0.852551" gradientUnits="userSpaceOnUse">
+													<stop stop-color="#FF9B3C"/>
+													<stop offset="0.471875" stop-color="#FFAF38"/>
+													<stop offset="1" stop-color="#FFC837"/>
+													</linearGradient>
+													<linearGradient id="paint1_linear_226_3519" x1="-0.800995" y1="-2" x2="21.1839" y2="0.852551" gradientUnits="userSpaceOnUse">
+													<stop stop-color="#FF9B3C"/>
+													<stop offset="0.471875" stop-color="#FFAF38"/>
+													<stop offset="1" stop-color="#FFC837"/>
+												</linearGradient>
+											</defs>
+										</svg>
+									</button>
+									<button type="button"  class="category__product-cart" data-toggle="tooltip" title="{{ button_cart }}" onclick="cart.add('{{ product.product_id }}');">
+										<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M11.0527 11.0526C11.4436 11.0526 11.8184 11.2079 12.0948 11.4843C12.3712 11.7606 12.5264 12.1355 12.5264 12.5263C12.5264 12.9172 12.3712 13.292 12.0948 13.5684C11.8184 13.8447 11.4436 14 11.0527 14C10.6619 14 10.2871 13.8447 10.0107 13.5684C9.73431 13.292 9.57904 12.9172 9.57904 12.5263C9.57904 12.1355 9.73431 11.7606 10.0107 11.4843C10.2871 11.2079 10.6619 11.0526 11.0527 11.0526ZM11.0527 11.7895C10.8573 11.7895 10.6699 11.8671 10.5317 12.0053C10.3935 12.1435 10.3159 12.3309 10.3159 12.5263C10.3159 12.7217 10.3935 12.9092 10.5317 13.0473C10.6699 13.1855 10.8573 13.2632 11.0527 13.2632C11.2482 13.2632 11.4356 13.1855 11.5738 13.0473C11.712 12.9092 11.7896 12.7217 11.7896 12.5263C11.7896 12.3309 11.712 12.1435 11.5738 12.0053C11.4356 11.8671 11.2482 11.7895 11.0527 11.7895ZM4.4211 11.0526C4.81195 11.0526 5.18679 11.2079 5.46316 11.4843C5.73953 11.7606 5.8948 12.1355 5.8948 12.5263C5.8948 12.9172 5.73953 13.292 5.46316 13.5684C5.18679 13.8447 4.81195 14 4.4211 14C4.03025 14 3.65541 13.8447 3.37903 13.5684C3.10266 13.292 2.9474 12.9172 2.9474 12.5263C2.9474 12.1355 3.10266 11.7606 3.37903 11.4843C3.65541 11.2079 4.03025 11.0526 4.4211 11.0526ZM4.4211 11.7895C4.22567 11.7895 4.03825 11.8671 3.90007 12.0053C3.76188 12.1435 3.68425 12.3309 3.68425 12.5263C3.68425 12.7217 3.76188 12.9092 3.90007 13.0473C4.03825 13.1855 4.22567 13.2632 4.4211 13.2632C4.61652 13.2632 4.80394 13.1855 4.94213 13.0473C5.08031 12.9092 5.15795 12.7217 5.15795 12.5263C5.15795 12.3309 5.08031 12.1435 4.94213 12.0053C4.80394 11.8671 4.61652 11.7895 4.4211 11.7895ZM12.5264 2.21053H2.41171L4.28846 6.63158H10.3159C10.4305 6.63175 10.5435 6.60505 10.6459 6.5536C10.7483 6.50216 10.8371 6.42741 10.9054 6.33537L13.1159 3.388H13.1167C13.1984 3.27847 13.248 3.14838 13.2601 3.01226C13.2721 2.87614 13.246 2.73935 13.1848 2.61718C13.1236 2.49502 13.0296 2.39229 12.9133 2.32048C12.797 2.24866 12.6631 2.21059 12.5264 2.21053ZM10.3159 7.36842H4.32236L3.75793 8.51789L3.68425 8.8421C3.68425 9.03753 3.76188 9.22495 3.90007 9.36313C4.03825 9.50132 4.22567 9.57895 4.4211 9.57895H12.5264V10.3158H4.4211C4.1645 10.3159 3.91232 10.249 3.6895 10.1218C3.46669 9.99453 3.28096 9.8113 3.1507 9.59023C3.02044 9.36916 2.95016 9.1179 2.94681 8.86133C2.94346 8.60476 3.00716 8.35176 3.13161 8.12737L3.66214 7.04126L0.985905 0.736842H0V0H1.4737L2.09928 1.47368H12.5264C12.8049 1.47371 13.0776 1.55262 13.313 1.70126C13.5485 1.84991 13.737 2.06221 13.8567 2.31358C13.9765 2.56494 14.0226 2.84509 13.9897 3.12158C13.9568 3.39806 13.8462 3.65956 13.6708 3.87579L11.5236 6.73916C11.3878 6.93354 11.2071 7.09226 10.9969 7.20182C10.7866 7.31138 10.553 7.36853 10.3159 7.36842Z" fill="white"/>
+										</svg>
+									</button>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+				{{ pagination }}
+			{% endif %}
+		</div>
+	</div>
+	{% if not categories or not products %}
+      	<p class="category__empty">{{ text_empty }}</p>
+	{% endif %}
+	{{ content_bottom }}
+</div>
+<script type="text/javascript"><!--
+$('#button-search').bind('click', function() {
+	url = 'index.php?route=product/search';
+
+	var search = $('#content input[name=\'search\']').prop('value');
+
+	if (search) {
+		url += '&search=' + encodeURIComponent(search);
+	}
+
+	var category_id = $('#content select[name=\'category_id\']').prop('value');
+
+	if (category_id > 0) {
+		url += '&category_id=' + encodeURIComponent(category_id);
+	}
+
+	var sub_category = $('#content input[name=\'sub_category\']:checked').prop('value');
+
+	if (sub_category) {
+		url += '&sub_category=true';
+	}
+
+	var filter_description = $('#content input[name=\'description\']:checked').prop('value');
+
+	if (filter_description) {
+		url += '&description=true';
+	}
+
+	location = url;
+});
+
+$('#content input[name=\'search\']').bind('keydown', function(e) {
+	if (e.keyCode == 13) {
+		$('#button-search').trigger('click');
+	}
+});
+
+$('select[name=\'category_id\']').on('change', function() {
+	if (this.value == '0') {
+		$('input[name=\'sub_category\']').prop('disabled', true);
+	} else {
+		$('input[name=\'sub_category\']').prop('disabled', false);
+	}
+});
+
+$('select[name=\'category_id\']').trigger('change');
+--></script>
+{{ footer }}

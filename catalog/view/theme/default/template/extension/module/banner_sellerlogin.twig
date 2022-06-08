@@ -1,0 +1,12 @@
+<div class="sellerlogin__banner-wrap">
+	<div class="sellerlogin__banner">
+		{% for banner in banners %}
+			<div class="sellerlogin__banner-item">
+				<div class="sellerlogin__banner-icon">
+					<img src="{{ banner.image }}" alt="">
+				</div>
+				<div class="sellerlogin__banner-text">{{ banner.title }}</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>

@@ -1,0 +1,83 @@
+<!--/* Starts Changes done by Mahima on 22nd April 2020 for adding commission new page */-->
+{{ header }} 
+        <div id="content-wrapper" class="col-lg-9" style="border: 1px solid #eaeef8;padding: 0px;width: 80%;">
+            <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="toggleMenu">
+                            <i class="fa fa-bars"></i>
+                    </div>
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <a href="{{ account_link }}">
+                                    <i class="fa fa-user"></i> <span>{{ text_my_account1 }}</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ logout_link }}">
+                                    <span>{{ text_logout }}</span> <i class="fa fa-sign-out"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+            {% if (seller_details['approved'] is defined and seller_details['approved'] != '1') %} 
+            <div class="alert alert-warning">
+                <h4><i class="fa fa-warning"></i> {{ text_account_warning }}</h4> {{ error_account_warning }} 
+            </div>
+            {% endif %} 
+            <div id="content" class="" style="background-color: #ecf0f5;padding: 10px">
+                <h2 class="marketplaceHeading">
+                    {{ text_commission }} 
+                </h2>
+
+                <div class="well">
+                    <div class="kbmp-filter-header">
+                        {{ text_general_commission }} 
+                        <div class="kb-accordian-symbol kbexpand" style="display: none;"></div>
+                    </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-6">
+                                <div class="form-group">
+                                    <label class="control-label" for="date_available_from"> {{default_commission_txt}}</label>
+                                    <input type="text" name="general_commission" value="{{ sellers_default_commission }}{{default_commission_per}}" placeholder="{{ default_commission_txt }}" id="general_commission" class="form-control" readonly="true">
+                                    
+                                </div>
+                            </div>
+                        </div>
+                </div>
+                <div class="table-responsive" style="background-color: white">
+                    <table class="table table-bordered table-kbmpCustom">
+                        <thead>
+                            <tr>
+                                <td class="text-left">{{ column_category }} </td>
+                                <td class="text-right">{{ column_commission }}</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                             {% if (commissions is defined and commissions is not empty) %}
+ {% for commission in commissions %} 
+ 
+                            <tr>
+                                <td class="text-left">{{ commission['category'] }}</td>
+                                <td class="text-right">{{ commission['commission'] }}</td>
+                            </tr>
+                                     {% endfor %}
+ {% else %} 
+ 
+                            <tr>
+                                <td colspan="5">{{ text_no_record }}</td>
+                            </tr>
+                             {% endif %}
+ 
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 text-left">{{ pagination }}</div>
+                    <div class="col-sm-6 text-right">{{ results }}</div>
+                </div>
+            </div>
+        </div>
+<!--/* Ends Changes done by Mahima on 22nd April 2020 for adding commission new page */-->

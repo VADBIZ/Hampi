@@ -1,0 +1,600 @@
+{{ header }}
+<div id="product-product" class="container">
+	<ul class="breadcrumb">
+		{% for breadcrumb in breadcrumbs %}
+			<li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+		{% endfor %}
+	</ul>
+	<div class="productPage page">
+		<div class="productPage__wrap">
+			<div class="productPage__top">
+				<h1 class="productPage__title">{{ heading_title }}</h1>
+				<div class="productPage__subtitle">{{ mpn }}</div>
+				<div class="productPage__meta">
+					<div class="productPage__sku">
+						{{ text_sku }}
+						{{ model }}
+					</div>
+					{% if review_status %}
+						<div class="productPage__rating">
+							<div class="productPage__rating-wrap">
+								{% for i in 1..5 %}
+									<div class="productPage__rating-item">
+										{% if rating > i %}
+											<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M9.62261 6.66774L9.84563 6.45718C10.6487 5.69893 11.0503 5.31981 10.995 4.9577C10.9835 4.8827 10.96 4.81023 10.9255 4.74329C10.7587 4.42009 10.2125 4.36932 9.12005 4.26779C8.47472 4.20782 8.15206 4.17783 7.89359 4.01616C7.82109 3.97081 7.753 3.91827 7.69027 3.85929C7.46664 3.64898 7.34713 3.33978 7.1081 2.72137C6.68778 1.63394 6.47762 1.09022 6.13617 1.01486C6.0464 0.995046 5.9536 0.995046 5.86382 1.01486C5.52238 1.09022 5.31222 1.63393 4.8919 2.72137L4.8919 2.72137L4.8919 2.72138C4.65287 3.33978 4.53336 3.64898 4.30973 3.85929C4.247 3.91827 4.17891 3.97081 4.10641 4.01616C3.84794 4.17783 3.52528 4.20782 2.87995 4.26779C1.78753 4.36932 1.24132 4.42009 1.07452 4.74329C1.03997 4.81023 1.01649 4.8827 1.00503 4.9577C0.949734 5.31981 1.35128 5.69893 2.15437 6.45718L2.37739 6.66774C2.75285 7.02223 2.94058 7.19948 3.04917 7.42068C3.1143 7.55337 3.15798 7.69627 3.17844 7.84366C3.21255 8.08938 3.15758 8.34651 3.04763 8.86077L3.00835 9.04451C2.81118 9.96676 2.71259 10.4279 2.83566 10.6545C2.9462 10.8581 3.14982 10.9885 3.37475 10.9996C3.62516 11.012 3.978 10.7137 4.68368 10.1169C5.1486 9.72377 5.38107 9.52719 5.63913 9.4504C5.87496 9.38023 6.12504 9.38023 6.36087 9.4504C6.61893 9.52719 6.8514 9.72377 7.31632 10.1169C8.022 10.7137 8.37484 11.012 8.62525 10.9996C8.85018 10.9885 9.0538 10.8581 9.16434 10.6545C9.28741 10.4279 9.18882 9.96676 8.99165 9.04451L8.95237 8.86077L8.9324 8.76729C8.83589 8.31441 8.78958 8.07402 8.82156 7.84366C8.84202 7.69627 8.8857 7.55337 8.95083 7.42068C9.05942 7.19948 9.24715 7.02223 9.62261 6.66774Z" fill="#F4AA25"/>
+											<path d="M8.95237 8.86077L8.99165 9.04451C9.18882 9.96676 9.28741 10.4279 9.16434 10.6545C9.0538 10.8581 8.85018 10.9885 8.62525 10.9996C8.37484 11.012 8.022 10.7137 7.31632 10.1169C6.8514 9.72377 6.61893 9.52719 6.36087 9.4504C6.12504 9.38023 5.87496 9.38023 5.63913 9.4504C5.38107 9.52719 5.1486 9.72377 4.68368 10.1169C3.978 10.7137 3.62516 11.012 3.37475 10.9996C3.14982 10.9885 2.9462 10.8581 2.83566 10.6545C2.71259 10.4279 2.81118 9.96676 3.00835 9.04451L3.04763 8.86077C3.15758 8.34651 3.21255 8.08938 3.17844 7.84366C3.15798 7.69627 3.1143 7.55337 3.04917 7.42068C2.94058 7.19948 2.75285 7.02223 2.37739 6.66774L2.15437 6.45718C1.35128 5.69893 0.949734 5.31981 1.00503 4.9577C1.01649 4.8827 1.03997 4.81023 1.07452 4.74329C1.24132 4.42009 1.78753 4.36932 2.87995 4.26779C3.52528 4.20782 3.84794 4.17783 4.10641 4.01616C4.17891 3.97081 4.247 3.91827 4.30973 3.85929C4.53336 3.64898 4.65287 3.33978 4.8919 2.72137C5.31222 1.63394 5.52238 1.09022 5.86382 1.01486C5.9536 0.995046 6.0464 0.995046 6.13617 1.01486C6.47762 1.09022 6.68778 1.63394 7.1081 2.72137C7.34713 3.33978 7.46664 3.64898 7.69027 3.85929C7.753 3.91827 7.82109 3.97081 7.89359 4.01616C8.15206 4.17783 8.47472 4.20782 9.12005 4.26779C10.2125 4.36932 10.7587 4.42009 10.9255 4.74329C10.96 4.81023 10.9835 4.8827 10.995 4.9577C11.0503 5.31981 10.6487 5.69893 9.84563 6.45718L9.62261 6.66774C9.24715 7.02223 9.05942 7.19948 8.95083 7.42068C8.8857 7.55337 8.84202 7.69627 8.82156 7.84366C8.78958 8.07402 8.83589 8.31441 8.9324 8.76729M8.95237 8.86077C8.94549 8.82863 8.93884 8.79748 8.9324 8.76729M8.95237 8.86077L8.9324 8.76729" stroke="#F4AA25"/>
+											</svg>
+										{% else %}
+											<svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M8.95237 8.86077L8.99165 9.04451C9.18882 9.96676 9.28741 10.4279 9.16434 10.6545C9.0538 10.8581 8.85018 10.9885 8.62525 10.9996C8.37484 11.012 8.022 10.7137 7.31632 10.1169C6.8514 9.72377 6.61893 9.52719 6.36087 9.4504C6.12504 9.38023 5.87496 9.38023 5.63913 9.4504C5.38107 9.52719 5.1486 9.72377 4.68368 10.1169C3.978 10.7137 3.62516 11.012 3.37475 10.9996C3.14982 10.9885 2.9462 10.8581 2.83566 10.6545C2.71259 10.4279 2.81118 9.96676 3.00835 9.04451L3.04763 8.86077C3.15758 8.34651 3.21255 8.08938 3.17844 7.84366C3.15798 7.69627 3.1143 7.55337 3.04917 7.42068C2.94058 7.19948 2.75285 7.02223 2.37739 6.66774L2.15437 6.45718C1.35128 5.69893 0.949734 5.31981 1.00503 4.9577C1.01649 4.8827 1.03997 4.81023 1.07452 4.74329C1.24132 4.42009 1.78753 4.36932 2.87995 4.26779C3.52528 4.20782 3.84794 4.17783 4.10641 4.01616C4.17891 3.97081 4.247 3.91827 4.30973 3.85929C4.53336 3.64898 4.65287 3.33978 4.8919 2.72137C5.31222 1.63394 5.52238 1.09022 5.86382 1.01486C5.9536 0.995046 6.0464 0.995046 6.13617 1.01486C6.47762 1.09022 6.68778 1.63394 7.1081 2.72137C7.34713 3.33978 7.46664 3.64898 7.69027 3.85929C7.753 3.91827 7.82109 3.97081 7.89359 4.01616C8.15206 4.17783 8.47472 4.20782 9.12005 4.26779C10.2125 4.36932 10.7587 4.42009 10.9255 4.74329C10.96 4.81023 10.9835 4.8827 10.995 4.9577C11.0503 5.31981 10.6487 5.69893 9.84563 6.45718L9.62261 6.66774C9.24715 7.02223 9.05942 7.19948 8.95083 7.42068C8.8857 7.55337 8.84202 7.69627 8.82156 7.84366C8.78958 8.07402 8.83589 8.31441 8.9324 8.76729M8.95237 8.86077C8.94549 8.82863 8.93884 8.79748 8.9324 8.76729M8.95237 8.86077L8.9324 8.76729" stroke="#F4AA25"/>
+											</svg>
+										{% endif %}
+									</div>
+								{% endfor %}
+							</div>
+							<div class="productPage__rating-text">{{ rating_text }}</div>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+			{% if thumb or images %}
+				<div class="productPage__media">
+					<div class="productPage__media-thumb">
+						{% if thumb %}
+							<div class="productPage__media_thumb-image"><img src="{{ additional }}" title="{{ heading_title }}" alt="{{ heading_title }}" /></div>
+						{% endif %}
+						{% if images %}
+							{% for image in images %}
+								<div class="productPage__media_thumb-image"><img src="{{ image.additional }}" title="{{ heading_title }}" alt="{{ heading_title }}" /></div>
+							{% endfor %}
+						{% endif %}
+					</div>
+					<div class="productPage__media-slider">
+						{% if thumb %}
+							<div class="productPage__media_slider-image thumbnails"><a class="thumbnail" href="{{ popup }}" title="{{ heading_title }}"><img src="{{ thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" /></a></div>
+						{% endif %}
+						{% if images %}
+							{% for image in images %}
+								<div class="productPage__media_slider-image thumbnails"><a class="thumbnail" href="{{ image.popup }}" title="{{ heading_title }}"> <img src="{{ image.thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" /></a></div>
+							{% endfor %}
+						{% endif %}
+					</div>
+					<script>	  
+						$('.productPage__media-slider').slick({
+							slidesToShow: 1,
+							slidesToScroll: 1,
+							arrows: false,
+							fade: true,
+							asNavFor: '.productPage__media-thumb'
+						});
+						$('.productPage__media-thumb').slick({
+							slidesToShow: 5,
+							slidesToScroll: 1,
+							vertical: true,
+							asNavFor: '.productPage__media-slider',
+							dots: false,
+							centerMode: true,
+							focusOnSelect: true,
+							useCSS: true,
+							centerPadding: '100px 0 100px 0',
+							swipe: true,
+							touchThreshold: 4
+						});
+					</script>
+				</div>
+			{% endif %}
+			<div class="productPage__content">
+				<div class="productPage__price">
+					{% if not special %}{{ price }}{% else %}{{ special }}{% endif %}{{ text_ed }}
+				</div>
+				<div class="productPage__aviable">
+					{{ text_stock }}
+					{% if quantity > 0 %}
+						<span class="productPage__aviable-green">{{ text_aviable_yes }}</span>
+					{% else %}
+						<span class="productPage__aviable-red">{{ text_aviable_no }}</span>
+					{% endif %}
+				</div>
+				<div class="productPage__weight productPage__detail">
+					<div class="productPage__param">{{ text_weight }}</div>
+					<div class="productPage__value">{{ weight }}</div>
+				</div>
+				<div class="productPage__sizes productPage__detail">
+					<div class="productPage__param">{{ text_sizes }}</div>
+					<div class="productPage__value">{{ length }} X {{ width }} X {{ height }}</div>
+				</div>
+				{% if seller_name %}
+					<div class="productPage__shop productPage__detail">
+						<div class="productPage__param">{{ text_shop }}</div>
+						<div class="productPage__value">{{ seller_name }}</div>
+					</div>
+				{% endif %}
+				{% if seller_address %}
+					<div class="productPage__address productPage__detail">
+						<div class="productPage__param">{{ text_address }}</div>
+						<div class="productPage__value">{{ seller_address }}</div>
+					</div>
+				{% endif %}
+{#
+				<div class="productPage__goToSeller">
+					<a href="#">{{ text_gotoseller }}</a>
+				</div>
+#}
+				<div class="productPage__diff">
+					<div class="category__product-compare{% if compare %} stop{% endif %}">
+						<input type="checkbox" class="category__product-compare-input" data-id="{{ productID }}" id="compare{{ productID }}" {% if compare %}checked{% endif %}>
+						<label data-productID="{{ productID }}" for="compare{{ productID }}" class="lblCountry compareSwitch">{{ button_compare }}</label>
+					</div>
+				</div>
+				{% if price %}
+					<div class="productPage__blockPrice">
+						<div class="productPage__blockPrice-values">
+							<div class="productPage__blockPrice-main">
+								{% if not special %}{{ price }}{% else %}<span style="text-decoration: line-through;">{{ price }}</span><br>{{ special }}{% endif %}
+							</div>
+							{% if tax %}<div class="productPage__blockPrice-tax">{{ text_tax }} {{ tax }}</div>{% endif %}
+						</div>
+						<div class="productPage__blockPrice-counter number-spinner">
+							<button class="productPage__blockPrice_counter-btn" data-dir="dwn">-</button>
+							<input type="text" name="quantity" value="{{ minimum }}" id="input-quantity" readonly>
+							<button class="productPage__blockPrice_counter-btn" data-dir="up">+</button>
+						</div>
+					</div>
+				{% endif %}
+				<div class="productPage__tools">
+					<div class="productPage__buttons">
+						<button type="button" id="button-cart" data-reset-text="{{ text_reset }}" data-loading-text="{{ text_loading }}" class="productPage__buttons-add"{% if quantity == 0 %} disabled{% endif %}>{{ button_cart }}</button>
+                  		<input type="hidden" name="product_id" value="{{ product_id }}" />
+						<a href="{{ pdf }}" class="productPage__buttons-commerc">{{ button_commerc }}</a>
+					</div>
+					<div class="productPage__icons">
+						<button type="button" data-toggle="tooltip" class="productPage__icons-like" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product_id }}');">	
+							<svg width="24" height="21" viewBox="0 0 24 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<path d="M3.19502 11.9513L11.3301 19.3877C11.6458 19.6762 11.8037 19.8205 11.9947 19.8226H12.0053C12.1963 19.8205 12.3542 19.6762 12.6699 19.3877L20.805 11.9513C23.1662 9.79295 23.4511 6.17407 21.4567 3.67276L21.1784 3.32369C18.8352 0.384851 14.23 0.886739 12.5748 4.26134C12.3405 4.73909 11.6595 4.73909 11.4252 4.26134C9.77 0.886739 5.1648 0.384853 2.82157 3.32369L2.54325 3.67276C0.548887 6.17407 0.8338 9.79295 3.19502 11.9513Z" stroke="black" stroke-opacity="0.8"/>
+							</svg>
+						</button>
+						<button class="productPage__icons-copy toCopy" data-clipboard-text="{{ hrr }}">				
+							<svg width="26" height="19" viewBox="0 0 26 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M19.5 6.5V12.2581L26 6.17255L19.5 0V5C9.555 5.06129 9.75 12.2581 9.75 12.2581C9.75 12.2581 13.2925 5.58677 19.5 6.5ZM14.3 0.612903H1.95C0.351 0.612903 0 1.04194 0 2.45161V17.1613C0 18.6874 0.39 19 1.95 19H20.8C22.3665 19 22.75 18.7236 22.75 17.1613V12.2581L21.5147 13.9742V17.8355H1.03975V1.74682H11.2772L14.3 0.612903Z" fill="black" fill-opacity="0.8"/>
+							</svg>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div> 
+      <div class="productPage__tabs row">
+        <div class="col-sm-12">
+           <ul class="nav nav-tabs">
+            <li class="active"><a href="#tab-description" data-toggle="tab">{{ tab_description }}</a></li>
+            {% if attribute_groups %}
+			<li><a href="#tab-attribute" data-toggle="tab">{{ tab_attribute }}</a></li>
+			{% endif %}
+            {% if review_status %}
+            <li><a href="#tab-review" data-toggle="tab">{{ tab_review }}</a></li>
+            {% endif %}
+			{% if video %}
+            <li><a href="#tab-video" data-toggle="tab">{{ tab_video }}</a></li>
+            {% endif %}
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="tab-description">{{ description }}</div>
+            
+            {% if review_status %}
+            <div class="tab-pane" id="tab-review">
+              <form class="form-horizontal" id="form-review">
+                <div id="review"></div>
+                <h2>{{ text_write }}</h2>
+                {% if review_guest %}
+                <div class="form-group required">
+                  <div class="col-sm-12">
+                    <label class="control-label" for="input-name">{{ entry_name }}</label>
+                    <input type="text" name="name" value="{{ customer_name }}" id="input-name" class="form-control" />
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <div class="col-sm-12">
+                    <label class="control-label" for="input-review">{{ entry_review }}</label>
+                    <textarea name="text" rows="5" id="input-review" class="form-control"></textarea>
+                    <div class="help-block">{{ text_note }}</div>
+                  </div>
+                </div>
+                <div class="form-group required">
+                  <div class="col-sm-12">
+                    <label class="control-label">{{ entry_rating }}</label>
+                    &nbsp;&nbsp;&nbsp; {{ entry_bad }}&nbsp;
+                    <input type="radio" name="rating" value="1" />
+                    &nbsp;
+                    <input type="radio" name="rating" value="2" />
+                    &nbsp;
+                    <input type="radio" name="rating" value="3" />
+                    &nbsp;
+                    <input type="radio" name="rating" value="4" />
+                    &nbsp;
+                    <input type="radio" name="rating" value="5" />
+                    &nbsp;{{ entry_good }}</div>
+                </div>
+                {{ captcha }}
+                <div class="buttons clearfix">
+                  <div class="pull-right">
+                    <button type="button" id="button-review" data-loading-text="{{ text_loading }}" class="btn btn-primary">{{ button_continue }}</button>
+                  </div>
+                </div>
+                {% else %}
+                {{ text_login }}
+                {% endif %}
+              </form>
+            </div>
+            {% endif %}
+			{% if video %}
+			<div class="tab-pane" id="tab-video">
+			<iframe width="100%" height="400" src="{{ video }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+			</div>
+			{% endif %}
+			{% if attribute_groups %}
+				<div class="tab-pane" id="tab-attribute">
+					<table class="table table-bordered">
+						{% for attribute_group in attribute_groups %}
+						<tbody>
+						{% for attribute in attribute_group.attribute %}
+						<tr>
+						  <td>{{ attribute.name }}</td>
+						  <td>{{ attribute.text }}</td>
+						</tr>
+						{% endfor %}
+						  </tbody>
+						{% endfor %}
+					  </table>
+				</div>
+			{% endif %}
+			</div>
+         </div>   
+      </div>
+	
+	{% if products %}
+		<div class="productPage__related">
+			<h3 class="category__title">{{ text_related }}</h3>
+			{% set i = 0 %}
+				<div class="category__products">
+					{% for product in products %}
+						<div class="category__product">
+							<div class="category__product-top">
+								<a href="{{ product.href }}" class="category__product-image">
+									<img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" class="img-responsive" />
+								</a>
+								<a href="{{ product.href }}" class="category__product-title">{{ product.name }}</a>
+								{% if product.ean %}
+									<a href="{{ product.href }}" class="category__product-sku">{{ text_sku }} {{ product.ean }}</a>
+								{% endif %}
+								{% if product.stock %}
+									<a href="{{ product.href }}" class="category__product-stock">{{ product.stock }}</a>
+								{% endif %}
+								<div class="category__product-compare{% if product.compare %} stop{% endif %}">
+									<input type="checkbox" class="category__product-compare-input" data-id="{{ product.product_id }}" id="compare{{ product.product_id }}" {% if product.compare %}checked{% endif %}>
+									<label onclick="compare.add('{{ product.product_id }}');" for="compare{{ product.product_id }}" class="lblCountry">{{ button_compare }}</label>
+								</div>
+							</div>
+							<div class="category__product-meta">
+								<a href="{{ product.href }}" class="category__product-prices">
+									{% if product.price %}
+									    {% if not product.special %}
+                                            {{ product.price }} / шт. 
+                                        {% else %} 
+										    {{ product.special }} / шт. 
+											<div class="category__product-prices-old">{{ product.price }} / шт. </div> 
+										{% endif %}
+									{% endif %}
+								</a>
+								<div class="category__product-btns">
+									<button type="button" data-toggle="tooltip" class="category__product-like{% if likeExist %} likeExist{% endif %}" title="{{ button_wishlist }}" onclick="wishlist.add('{{ product.product_id }}');">
+										<svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M2.35885 9.16686L8.52213 14.5803L8.52216 14.5803C8.66156 14.7027 8.73126 14.764 8.80638 14.7955C8.93022 14.8475 9.06978 14.8475 9.19362 14.7955C9.26874 14.764 9.33845 14.7027 9.47785 14.5803L9.47787 14.5803L15.6411 9.16686C17.5112 7.52429 17.7347 4.6918 16.1452 2.77635L16.0303 2.63787C14.2096 0.443719 10.7381 0.828319 9.44182 3.36779C9.2577 3.72849 8.7423 3.72849 8.55818 3.36779C7.2619 0.828319 3.79038 0.443721 1.96969 2.63787L1.85477 2.77635C0.26533 4.6918 0.488753 7.52429 2.35885 9.16686Z" fill="url(#paint0_linear_226_3519)" stroke="url(#paint1_linear_226_3519)"/>
+											<defs>
+												<linearGradient id="paint0_linear_226_3519" x1="-0.800995" y1="-2" x2="21.1839" y2="0.852551" gradientUnits="userSpaceOnUse">
+													<stop stop-color="#FF9B3C"/>
+													<stop offset="0.471875" stop-color="#FFAF38"/>
+													<stop offset="1" stop-color="#FFC837"/>
+													</linearGradient>
+													<linearGradient id="paint1_linear_226_3519" x1="-0.800995" y1="-2" x2="21.1839" y2="0.852551" gradientUnits="userSpaceOnUse">
+													<stop stop-color="#FF9B3C"/>
+													<stop offset="0.471875" stop-color="#FFAF38"/>
+													<stop offset="1" stop-color="#FFC837"/>
+												</linearGradient>
+											</defs>
+										</svg>
+									</button>
+									<button type="button"  class="category__product-cart" data-toggle="tooltip" title="{{ button_cart }}" onclick="cart.add('{{ product.product_id }}');">
+										<svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+											<path d="M11.0527 11.0526C11.4436 11.0526 11.8184 11.2079 12.0948 11.4843C12.3712 11.7606 12.5264 12.1355 12.5264 12.5263C12.5264 12.9172 12.3712 13.292 12.0948 13.5684C11.8184 13.8447 11.4436 14 11.0527 14C10.6619 14 10.2871 13.8447 10.0107 13.5684C9.73431 13.292 9.57904 12.9172 9.57904 12.5263C9.57904 12.1355 9.73431 11.7606 10.0107 11.4843C10.2871 11.2079 10.6619 11.0526 11.0527 11.0526ZM11.0527 11.7895C10.8573 11.7895 10.6699 11.8671 10.5317 12.0053C10.3935 12.1435 10.3159 12.3309 10.3159 12.5263C10.3159 12.7217 10.3935 12.9092 10.5317 13.0473C10.6699 13.1855 10.8573 13.2632 11.0527 13.2632C11.2482 13.2632 11.4356 13.1855 11.5738 13.0473C11.712 12.9092 11.7896 12.7217 11.7896 12.5263C11.7896 12.3309 11.712 12.1435 11.5738 12.0053C11.4356 11.8671 11.2482 11.7895 11.0527 11.7895ZM4.4211 11.0526C4.81195 11.0526 5.18679 11.2079 5.46316 11.4843C5.73953 11.7606 5.8948 12.1355 5.8948 12.5263C5.8948 12.9172 5.73953 13.292 5.46316 13.5684C5.18679 13.8447 4.81195 14 4.4211 14C4.03025 14 3.65541 13.8447 3.37903 13.5684C3.10266 13.292 2.9474 12.9172 2.9474 12.5263C2.9474 12.1355 3.10266 11.7606 3.37903 11.4843C3.65541 11.2079 4.03025 11.0526 4.4211 11.0526ZM4.4211 11.7895C4.22567 11.7895 4.03825 11.8671 3.90007 12.0053C3.76188 12.1435 3.68425 12.3309 3.68425 12.5263C3.68425 12.7217 3.76188 12.9092 3.90007 13.0473C4.03825 13.1855 4.22567 13.2632 4.4211 13.2632C4.61652 13.2632 4.80394 13.1855 4.94213 13.0473C5.08031 12.9092 5.15795 12.7217 5.15795 12.5263C5.15795 12.3309 5.08031 12.1435 4.94213 12.0053C4.80394 11.8671 4.61652 11.7895 4.4211 11.7895ZM12.5264 2.21053H2.41171L4.28846 6.63158H10.3159C10.4305 6.63175 10.5435 6.60505 10.6459 6.5536C10.7483 6.50216 10.8371 6.42741 10.9054 6.33537L13.1159 3.388H13.1167C13.1984 3.27847 13.248 3.14838 13.2601 3.01226C13.2721 2.87614 13.246 2.73935 13.1848 2.61718C13.1236 2.49502 13.0296 2.39229 12.9133 2.32048C12.797 2.24866 12.6631 2.21059 12.5264 2.21053ZM10.3159 7.36842H4.32236L3.75793 8.51789L3.68425 8.8421C3.68425 9.03753 3.76188 9.22495 3.90007 9.36313C4.03825 9.50132 4.22567 9.57895 4.4211 9.57895H12.5264V10.3158H4.4211C4.1645 10.3159 3.91232 10.249 3.6895 10.1218C3.46669 9.99453 3.28096 9.8113 3.1507 9.59023C3.02044 9.36916 2.95016 9.1179 2.94681 8.86133C2.94346 8.60476 3.00716 8.35176 3.13161 8.12737L3.66214 7.04126L0.985905 0.736842H0V0H1.4737L2.09928 1.47368H12.5264C12.8049 1.47371 13.0776 1.55262 13.313 1.70126C13.5485 1.84991 13.737 2.06221 13.8567 2.31358C13.9765 2.56494 14.0226 2.84509 13.9897 3.12158C13.9568 3.39806 13.8462 3.65956 13.6708 3.87579L11.5236 6.73916C11.3878 6.93354 11.2071 7.09226 10.9969 7.20182C10.7866 7.31138 10.553 7.36853 10.3159 7.36842Z" fill="white"/>
+										</svg>
+									</button>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+				</div>
+		</div>
+	{% endif %}
+	
+<script type="text/javascript"><!--
+$('select[name=\'recurring_id\'], input[name="quantity"]').change(function(){
+	$.ajax({
+		url: 'index.php?route=product/product/getRecurringDescription',
+		type: 'post',
+		data: $('input[name=\'product_id\'], input[name=\'quantity\'], select[name=\'recurring_id\']'),
+		dataType: 'json',
+		beforeSend: function() {
+			$('#recurring-description').html('');
+		},
+		success: function(json) {
+			$('.alert-dismissible, .text-danger').remove();
+
+			if (json['success']) {
+				$('#recurring-description').html(json['success']);
+			}
+		}
+	});
+});
+//--></script> 
+<script type="text/javascript"><!--
+$('#button-cart').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=checkout/cart/add',
+		type: 'post',
+		data: $('#product-product input[type=\'text\'], #product-product input[type=\'hidden\'], input#input-quantity'),
+		dataType: 'json',
+		beforeSend: function() {
+			$('#button-cart').button('loading');
+		},
+		complete: function() {
+			$('#button-cart').button('reset');
+		},
+		success: function(json) {
+			$('.alert-dismissible, .text-danger').remove();
+			$('.form-group').removeClass('has-error');
+			
+			//если ошибка
+			if (json['error']) {
+				if (json['error']['option']) {
+					for (i in json['error']['option']) {
+						var element = $('#input-option' + i.replace('_', '-'));
+
+						if (element.parent().hasClass('input-group')) {
+							element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+						} else {
+							element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+						}
+					}
+				}
+
+				if (json['error']['recurring']) {
+					$('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
+				}
+
+				// Highlight any found errors
+				$('.text-danger').parent().addClass('has-error');
+			}
+			
+			var totalProducts = json.total;
+			$(".header").find(".header__icons-cart").each(function(){
+				$(this).find(".cart-total").text(parseInt(totalProducts));
+			});
+			
+			$.toast({
+			  text: "Товар успешно добавлен в корзину!",
+			  showHideTransition: 'plain',
+			  icon: 'info',
+			  position: 'bottom-right',
+			  loaderBg: '#ffffff',
+				bgColor: '#FF9B3C',
+				textColor: 'white'
+			});
+			
+//			//если купили
+//			if (json['success']) {
+//				var inc = 1;
+//				var currentCount = parseInt($(".header__top .cart-total").text());
+//				if ($("#input-quantity").length > 0) inc = parseInt($("#input-quantity").val());
+//				currentCount = currentCount + inc;
+//				console.log(currentCount);
+//				$(".header").find(".header__icons-cart").each(function(){
+//					$(this).find(".cart-total").text(parseInt(currentCount));
+//				});
+//			}
+			
+		},
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+	});
+});
+//--></script> 
+<script type="text/javascript"><!--
+$('.date').datetimepicker({
+	language: '{{ datepicker }}',
+	pickTime: false
+});
+
+$('.datetime').datetimepicker({
+	language: '{{ datepicker }}',
+	pickDate: true,
+	pickTime: true
+});
+
+$('.time').datetimepicker({
+	language: '{{ datepicker }}',
+	pickDate: false
+});
+
+$('button[id^=\'button-upload\']').on('click', function() {
+	var node = this;
+
+	$('#form-upload').remove();
+
+	$('body').prepend('<form enctype="multipart/form-data" id="form-upload" style="display: none;"><input type="file" name="file" /></form>');
+
+	$('#form-upload input[name=\'file\']').trigger('click');
+
+	if (typeof timer != 'undefined') {
+    	clearInterval(timer);
+	}
+
+	timer = setInterval(function() {
+		if ($('#form-upload input[name=\'file\']').val() != '') {
+			clearInterval(timer);
+
+			$.ajax({
+				url: 'index.php?route=tool/upload',
+				type: 'post',
+				dataType: 'json',
+				data: new FormData($('#form-upload')[0]),
+				cache: false,
+				contentType: false,
+				processData: false,
+				beforeSend: function() {
+					$(node).button('loading');
+				},
+				complete: function() {
+					$(node).button('reset');
+				},
+				success: function(json) {
+					$('.text-danger').remove();
+
+					if (json['error']) {
+						$(node).parent().find('input').after('<div class="text-danger">' + json['error'] + '</div>');
+					}
+
+					if (json['success']) {
+						alert(json['success']);
+
+						$(node).parent().find('input').val(json['code']);
+					}
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				}
+			});
+		}
+	}, 500);
+});
+//--></script> 
+<script type="text/javascript"><!--
+$('#review').delegate('.pagination a', 'click', function(e) {
+    e.preventDefault();
+
+    $('#review').fadeOut('slow');
+
+    $('#review').load(this.href);
+
+    $('#review').fadeIn('slow');
+});
+
+$('#review').load('index.php?route=product/product/review&product_id={{ product_id }}');
+
+$('#button-review').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=product/product/write&product_id={{ product_id }}',
+		type: 'post',
+		dataType: 'json',
+		data: $("#form-review").serialize(),
+		beforeSend: function() {
+			$('#button-review').button('loading');
+		},
+		complete: function() {
+			$('#button-review').button('reset');
+		},
+		success: function(json) {
+			$('.alert-dismissible').remove();
+
+			if (json['error']) {
+				$('#review').after('<div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
+			}
+
+			if (json['success']) {
+				$('#review').after('<div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
+
+				$('input[name=\'name\']').val('');
+				$('textarea[name=\'text\']').val('');
+				$('input[name=\'rating\']:checked').prop('checked', false);
+			}
+		}
+	});
+});
+
+$(document).ready(function() {
+	$('.thumbnails').magnificPopup({
+		type:'image',
+		delegate: 'a',
+		gallery: {
+			enabled: true
+		}
+	});
+});
+//--></script> 
+<script type="text/javascript"><!--
+var counter = {{ minimum }};
+var min = {{ minimum }};
+$(document).on('click', '.productPage__blockPrice_counter-btn', function () {    
+	var btn = $(this),
+		oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+		newVal = min;
+			
+	if (btn.attr('data-dir') == 'up') {
+		newVal = parseInt(oldValue) + counter;
+	} else {
+		if (oldValue > min) {
+			newVal = parseInt(oldValue) - counter;
+		} else {
+			newVal = min;
+		}
+	}
+	btn.closest('.number-spinner').find('input').val(newVal);
+    updateprice(newVal);
+});
+function updateprice(q){
+    id = {{ productID }};
+    $.ajax({
+		url: 'index.php?route=product/product/price',
+		type: 'post',
+		dataType: 'json',
+		data: 'product_id=' + id + '&quantity=' + q,
+		success: function(json) {
+			if(!json['special']) {
+                $('.productPage__blockPrice-main').html(json['price']);
+            } else {
+                $('.productPage__blockPrice-main').html('<span style="text-decoration: line-through;">' + json['price'] + '</span> ' + json['special']);
+            }
+            $('.productPage__blockPrice-tax').html(json['tax']);
+		}
+	});
+}
+//--></script>
+<script>
+var clipboard = new ClipboardJS('.toCopy');
+clipboard.on('success', function(e) {
+new_text = ('Text:', e.text);
+$.toast({
+				  text: "Ссылка на товар успешно скопирована!",
+				  showHideTransition: 'plain',
+				  icon: 'info',
+				  position: 'bottom-right',
+				  loaderBg: '#ffffff',
+					bgColor: '#FF9B3C',
+					textColor: 'white'
+				});
+e.clearSelection();
+});
+clipboard.on('error', function(e) {
+$.toast({
+				  text: "Не удалось скопировать ссылку на товар!",
+				  showHideTransition: 'plain',
+				  icon: 'warning',
+				  position: 'bottom-right',
+				  loaderBg: '#ffffff',
+					bgColor: '#FF9B3C',
+					textColor: 'white'
+				});
+});
+</script>
+{{ footer }} 

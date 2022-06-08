@@ -1,0 +1,124 @@
+{{ header }}{{ column_left }} 
+<div id="content" class="bootstrap">
+    <div class="page-header">
+        <div class="container-fluid">          
+            <h1>{{ heading_title }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %} 
+                    <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+                    {% endfor %} 
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid">		
+        <div class="row">            
+            <div class="col-lg-12 col-md-12">
+                {% if (error_warning) %} 
+                    <div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }} 
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    </div>
+                {% endif %} 
+                {% if (success) %} 
+                    <div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }} 
+                        <button type="button" class="close" data-dismiss="alert">&times;</button>
+                    </div>
+                {% endif %} 
+                <div class="panel panel-default" id="fieldset_form">
+
+                    <div class="panel-heading" style="display: inline-block; width: 100%;"> 
+                        {{ heading_subtitle }} <span class="badge">{{ email_templates_total }}</span>
+                    </div>
+                    <div class="panel-body">
+                        {{tab_common}}
+                        <div class="filter-table-responsive table-responsive">
+                            <table class="table filter">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            {% if (sort == 'email_subject') %} 
+                                                <a href="{{ sort_email_subject }}" class="{{ (order) }}">{{ column_email_subject }}</a>
+                                            {% else %} 
+                                                <a href="{{ sort_email_subject }}">{{ column_email_subject }}</a>
+                                            {% endif %} 
+                                        </th>
+                                        <th>
+                                            {% if (sort == 'email_description') %} 
+                                                <a href="{{ sort_email_description }}" class="{{ (order) }}">{{ column_email_description }}</a>
+                                            {% else %} 
+                                                <a href="{{ sort_email_description }}">{{ column_email_description }}</a>
+                                            {% endif %} 
+                                        </th>
+                                        <th></th>
+                                    </tr>
+                                    <tr>  
+                                        <th>
+                                            <input type="text" class="form-control" name="filter_email_subject" value="{% if (filter_data['filter_email_subject'] is defined) %} {{ filter_data['filter_email_subject'] }} {% endif %}"/>
+                                        </th>
+                                        <th></th>
+                                        <th style="width: 200px" class="text-right">
+                                            <button type="button" id="button-reset" name="submitFilter" class="btn btn-warning" onclick="window.location.href = 'index.php?route=kbmp_marketplace/email_templates&user_token={{ token }}'">
+                                                <i class="fa fa-refresh"></i> {{ text_reset }} 
+                                            </button>
+                                            <button type="submit" id="button-filter" name="submitFilter" class="btn btn-primary">
+                                                <i class="fa fa-search"></i> {{ text_filter }} 
+                                            </button>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if (email_templates is defined and email_templates is not empty) %}
+                                        {% for email_templates in email_templates %} 
+
+                                            <tr>
+                                                <td>{{ email_templates['email_subject'] }}</td>
+                                                <td>{{ email_templates['email_description'] }}</td>
+                                                <td class="text-right">  
+                                                    <a href="{{ email_templates['edit'] }}" data-toggle="tooltip" title="{{ text_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+                                                </td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% else %} 
+
+                                        <tr>
+                                            <td colspan="3">{{ text_no_results }}</td>
+                                        </tr>
+                                    {% endif %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 text-left">{{ pagination }}</div>
+                            <div class="col-sm-6 text-right">{{ results }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--container fluid ends-->
+</div>
+<script type="text/javascript">
+
+    //Trigger click event on Enter Keypress
+    $(document).keypress(function (e) {
+        if (e.which == 13) {
+            $('#button-filter').trigger('click');
+        }
+    });
+
+    $('#button-filter').on('click', function () {
+
+        var url = 'index.php?route=kbmp_marketplace/email_templates&user_token={{ token }}';
+
+        var filter_email_subject = $('input[name=\'filter_email_subject\']').val();
+
+        if (filter_email_subject) {
+            url += '&filter_email_subject=' + encodeURIComponent(filter_email_subject);
+        }
+
+        location = url;
+    });
+</script>
+{{ footer }}

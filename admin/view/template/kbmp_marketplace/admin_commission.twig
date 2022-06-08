@@ -1,0 +1,320 @@
+{{ header }}{{ column_left }} 
+<div id="content" class="bootstrap">
+    <div class="page-header">
+        <div class="container-fluid">          
+            <h1>{{ heading_title }}</h1>          
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %} 
+                    <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+                    {% endfor %} 
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid">		
+        <div class="row">            
+            <div class="col-lg-12 col-md-12">
+                <div class="panel panel-default" id="fieldset_form">			
+                    <div class="panel-heading" style="display: inline-block; width: 100%;"> 
+                        {{ heading_title }} <span class="badge">{{ admin_commission_total }}</span>
+                    </div>
+                    <div class="panel-body">
+                        {{tab_common}}
+
+                        <div class="row form-group" style="display: none">													
+                            <label class="control-label col-lg-3" style="text-align:right">
+                                {{ text_select_type }} 
+                            </label>
+                            <div class="col-lg-6">
+                                <select name="commsion_view_type" class="form-control fixed-width-xl" id="commsion_view_type" onchange="changeCommsionView(this.value)">
+                                    <option value="0" {% if (filter_data['type'] is defined and filter_data['type'] != '1') %} {{ 'selected' }} {% endif %}>{{ text_order_wise }}</option>
+                                    <option value="1" {% if (filter_data['type'] is defined and filter_data['type'] == '1') %} {{ 'selected' }} {% endif %}>{{ text_category_wise }}</option>
+                                </select>	
+                            </div>
+                        </div>
+                        {% if (filter_data['type'] is defined and filter_data['type'] == '1') %} 
+                            <div class="row form-group">													
+                                <label class="control-label col-lg-3" style="text-align:right">
+                                    {{ text_select_category }} 
+                                </label>
+                                <div class="col-lg-6">
+                                    <select name="category" class="form-control fixed-width-xl" id="category" onchange="changeCommsionViewByCategory(this.value)">
+                                        <option value="">{{ text_all_category }}</option>
+                                        {% if (filter_data['categories'] is defined and filter_data['categories'] is not empty) %}
+                                            {% for category in filter_data['categories'] %} 
+                                                {% if (filter_data['category_id'] is defined and filter_data['category_id'] == category['category_id']) %}
+                                                    {{ '<option value="'~category['category_id']~'" selected>'~category['name']~'</option>' }}
+                                                {% else %} 
+                                                    {{ '<option value="'~category['category_id']~'">'~category['name']~'</option>' }}
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %} 
+                                    </select>	
+                                </div>
+                            </div>
+                        {% endif %} 
+
+                        <div class="filter-table-responsive table-responsive">
+                            <table class="table filter">
+                                <thead>
+                                    <tr>
+                                        {% if (filter_data['type'] is defined and filter_data['type'] == '1') %} 
+                                            <th>
+                                                {% if (sort == 'cd.name') %} 
+                                                    <a href="{{ sort_order }}" class="{{ (order) }}">{{ column_category }}</a>
+                                                {% else %} 
+                                                    <a href="{{ sort_order }}">{{ column_category }}</a>
+                                                {% endif %} 
+                                            </th>
+                                        {% else %} 
+                                            <th style="width: 75px">
+                                                {% if (sort == 'ksod.order_id') %} 
+                                                    <a href="{{ sort_order }}" class="{{ (order) }}">{{ column_order }}</a>
+                                                {% else %} 
+                                                    <a href="{{ sort_order }}">{{ column_order }}</a>
+                                                {% endif %} 
+                                            </th>
+                                            <th>
+                                                {% if (sort == 'ksd.title') %} 
+                                                    <a href="{{ sort_seller }}" class="{{ (order) }}">{{ column_seller }}</a>
+                                                {% else %} 
+                                                    <a href="{{ sort_seller }}">{{ column_seller }}</a>
+                                                {% endif %} 
+                                            </th>
+                                            <th>
+                                                {% if (sort == 'c.email') %} 
+                                                    <a href="{{ sort_email }}" class="{{ (order) }}">{{ column_email }}</a>
+                                                {% else %} 
+                                                    <a href="{{ sort_email }}">{{ column_email }}</a>
+                                                {% endif %} 
+                                            </th>
+                                        {% endif %} 
+                                        <th>
+                                            {% if (sort == 'ksod.total_earning') %} 
+                                                <a href="{{ sort_total_earning }}" class="{{ (order) }}">{{ column_total_earning }}</a>
+                                            {% else %} 
+                                                <a href="{{ sort_total_earning }}">{{ column_total_earning }}</a>
+                                            {% endif %} 
+                                        </th>
+                                        <th>
+                                            {% if (sort == 'ksod.admin_earning') %} 
+                                                <a href="{{ sort_admin_earning }}" class="{{ (order) }}">{{ column_admin_earning }}</a>
+                                            {% else %} 
+                                                <a href="{{ sort_admin_earning }}">{{ column_admin_earning }}</a>
+                                            {% endif %} 
+                                        </th>
+                                        <th>
+                                            {% if (sort == 'ksod.seller_earning') %} 
+                                                <a href="{{ sort_seller_earning }}" class="{{ (order) }}">{{ column_seller_earning }}</a>
+                                            {% else %} 
+                                                <a href="{{ sort_seller_earning }}">{{ column_seller_earning }}</a>
+                                            {% endif %} 
+                                        </th>
+                                        {% if (filter_data['type'] is defined and filter_data['type'] != '1') %} 
+                                            <th>
+                                                {% if (sort == 'ksod.date_added') %} 
+                                                    <a href="{{ sort_date_added }}" class="{{ (order) }}">{{ column_date_added }}</a>
+                                                {% else %} 
+                                                    <a href="{{ sort_date_added }}">{{ column_date_added }}</a>
+                                                {% endif %} 
+                                            </th>
+                                        {% endif %} 
+                                        <th></th>
+                                    </tr>
+                                    <tr>  
+                                        {% if (filter_data['type'] is defined and filter_data['type'] == '1') %} 
+                                            <th>
+                                                <input type="text" class="form-control" name="filter_category" value="{% if (filter_data['filter_category'] is defined) %}{{ filter_data['filter_category'] }}{% endif %}"/>
+                                            </th>
+                                        {% else %} 
+                                            <th>
+                                                <input type="text" class="form-control" name="filter_order" value="{% if (filter_data['filter_order'] is defined) %}{{ filter_data['filter_order'] }}{% endif %}"/>
+                                            </th>
+                                            <th>
+                                                <input type="text" class="form-control" name="filter_seller" value="{% if (filter_data['filter_seller'] is defined) %}{{ filter_data['filter_seller'] }}{% endif %}"/>
+                                            </th>
+                                            <th>
+                                                <input type="text" class="form-control" name="filter_email" value="{% if (filter_data['filter_email'] is defined) %}{{ filter_data['filter_email'] }}{% endif %}"/>                                    
+                                            </th>
+                                        {% endif %} 
+                                        <th>
+                                            <input type="text" class="form-control" name="filter_total_earning" value="{% if (filter_data['filter_total_earning'] is defined) %}{{ filter_data['filter_total_earning'] }}{% endif %}"/>
+                                        </th>
+                                        <th>
+                                            <input type="text" class="form-control" name="filter_admin_earning" value="{% if (filter_data['filter_commission'] is defined) %}{{ filter_data['filter_commission'] }}{% endif %}"/>
+                                        </th>
+                                        <th>
+                                            <input type="text" class="form-control" name="filter_seller_earning" value="{% if (filter_data['filter_seller_earning'] is defined) %}{{ filter_data['filter_seller_earning'] }}{% endif %}"/>
+                                        </th>
+                                        {% if (filter_data['type'] is defined and filter_data['type'] != '1') %} 
+                                            <th>
+                                                <div class="input-group date" style="margin-bottom:10px;">
+                                                    <input type="text" name="filter_from_date" value="{% if (filter_data['filter_from_date'] is defined) %}{{ filter_data['filter_from_date'] }}{% endif %}" placeholder="{{ text_from_date }}" data-date-format="YYYY-MM-DD" id="input-from-date" class="datepicker hasDatepicker form-control">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                    </span>
+                                                </div>
+                                                <div class="input-group date">
+                                                    <input type="text" name="filter_to_date" value="{% if (filter_data['filter_to_date'] is defined) %}{{ filter_data['filter_to_date'] }}{% endif %}" placeholder="{{ text_to_date }}" data-date-format="YYYY-MM-DD" id="input-to-date" class="datepicker hasDatepicker form-control">
+                                                    <span class="input-group-btn">
+                                                        <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                    </span>
+                                                </div>
+                                            </th>
+                                        {% endif %} 
+                                        <th>
+                                            {% if (filter_data['type'] is defined and filter_data['type'] == '1') %} 
+                                                <button type="button" id="button-reset" name="submitFilter" class="btn btn-warning" onclick="window.location.href = 'index.php?route=kbmp_marketplace/admin_commission&type=1&user_token={{ token }}'">
+                                                    <i class="fa fa-refresh"></i> {{ text_reset }} 
+                                                </button>
+                                            {% else %} 
+                                                <button type="button" id="button-reset" name="submitFilter" class="btn btn-warning" onclick="window.location.href = 'index.php?route=kbmp_marketplace/admin_commission&user_token={{ token }}'" style="margin-bottom: 10px;">
+                                                    <i class="fa fa-refresh"></i> {{ text_reset }} 
+                                                </button>
+                                            {% endif %} 
+                                            <button type="submit" id="button-filter" name="submitFilter" class="btn btn-primary">
+                                                <i class="fa fa-search"></i> {{ text_filter }} 
+                                            </button>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% if (admin_commission is defined and admin_commission is not empty) %}
+                                        {% for admin_commission in admin_commission %} 
+
+                                            <tr>
+                                                {% if (filter_data['type'] is defined and filter_data['type'] == '1') %} 
+                                                    <td>{{ admin_commission['category'] }}</td>
+                                                {% else %} 
+                                                    <td>{{ admin_commission['order_id'] }}</td>
+                                                    <td>{{ admin_commission['seller'] }}</td>
+                                                    <td>{{ admin_commission['seller_email'] }}</td>
+                                                {% endif %} 
+                                                <td>{{ admin_commission['total_earning'] }}</td>
+                                                <td>{{ admin_commission['admin_earning'] }}</td>
+                                                <td>{{ admin_commission['seller_earning'] }}</td>
+                                                {% if (filter_data['type'] is defined and filter_data['type'] != '1') %} 
+                                                    <td>{{ admin_commission['date_added'] }}</td>
+                                                {% endif %} 
+                                                <td></td>
+                                            </tr>
+                                        {% endfor %}
+                                    {% else %} 
+
+                                        <tr>
+                                            <td colspan="9">{{ text_no_results }}</td>
+                                        </tr>
+                                    {% endif %}
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 text-left">{{ pagination }}</div>
+                            <div class="col-sm-6 text-right">{{ results }}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--container fluid ends-->
+    </div>
+</div>
+<script type="text/javascript">
+    $('.date').datetimepicker({
+        pickTime: false
+    });
+
+    //Trigger click event on Enter Keypress
+    $(document).keypress(function (e) {
+        if (e.which == 13) {
+            $('#button-filter').trigger('click');
+        }
+    });
+
+    $('#button-filter').on('click', function () {
+
+        var url = 'index.php?route=kbmp_marketplace/admin_commission&user_token={{ token }}';
+
+        var filter_order = $('input[name=\'filter_order\']').val();
+
+        if (filter_order) {
+            url += '&filter_order=' + encodeURIComponent(filter_order);
+        }
+
+        var filter_seller = $('input[name=\'filter_seller\']').val();
+
+        if (filter_seller) {
+            url += '&filter_seller=' + encodeURIComponent(filter_seller);
+        }
+
+        var filter_email = $('input[name=\'filter_email\']').val();
+
+        if (filter_email) {
+            url += '&filter_email=' + encodeURIComponent(filter_email);
+        }
+
+        var filter_from_date_added = $('input[name=\'filter_from_date\']').val();
+
+        if (filter_from_date_added) {
+            url += '&filter_from_date=' + encodeURIComponent(filter_from_date_added);
+        }
+
+        var filter_to_date_added = $('input[name=\'filter_to_date\']').val();
+
+        if (filter_to_date_added) {
+            url += '&filter_to_date=' + encodeURIComponent(filter_to_date_added);
+        }
+
+        var filter_quantity = $('input[name=\'filter_quantity\']').val();
+
+        if (filter_quantity) {
+            url += '&filter_quantity=' + encodeURIComponent(filter_quantity);
+        }
+
+        var filter_total_earning = $('input[name=\'filter_total_earning\']').val();
+
+        if (filter_total_earning) {
+            url += '&filter_total_earning=' + encodeURIComponent(filter_total_earning);
+        }
+
+        var filter_admin_earning = $('input[name=\'filter_admin_earning\']').val();
+
+        if (filter_admin_earning) {
+            url += '&filter_commission=' + encodeURIComponent(filter_admin_earning);
+        }
+
+        var filter_seller_earning = $('input[name=\'filter_seller_earning\']').val();
+
+        if (filter_seller_earning) {
+            url += '&filter_seller_earning=' + encodeURIComponent(filter_seller_earning);
+        }
+
+        location = url;
+    });
+
+    //Function to change commission view by reloading the page and passing one parameter of type
+    function changeCommsionView(type) {
+
+        if (type == '1') {
+            var url = 'index.php?route=kbmp_marketplace/admin_commission&type=1&user_token={{ token }}';
+        } else {
+            var url = 'index.php?route=kbmp_marketplace/admin_commission&user_token={{ token }}';
+        }
+
+        location = url;
+    }
+
+    //Function to change commission view by reloading the page and passing one parameter of category
+    function changeCommsionViewByCategory(category) {
+
+        if (category != '') {
+            var url = 'index.php?route=kbmp_marketplace/admin_commission&type=1&category_id=' + category + '&user_token={{ token }}';
+        } else {
+            var url = 'index.php?route=kbmp_marketplace/admin_commission&type=1&user_token={{ token }}';
+        }
+
+        location = url;
+    }
+</script>
+{{ footer }}

@@ -1,0 +1,27 @@
+<div class="frontpage__cats">
+	{% for category in categories %}
+		{% if category.category_id == category_id %}
+			{% if category.children %}
+				{% for catChild in category.children %}
+						{% if catChild.category_id == 533 %}
+							<h3 class="frontpage__cats-title">{{ catChild.name }}</h3>
+						{% else %}
+							<h3 class="frontpage__cats-title">{{ category.name }} {{ catChild.name }}</h3>
+						{% endif %}
+					<div class="frontpage__cats-section">
+						{% if catChild.children %}
+							{% for child_1 in catChild.children %}
+								<a href="{{ child_1.href }}" class="frontpage__cats-item">
+									<div class="frontpage__cats_item-photo">
+										<img src="{{ child_1.image }}" alt="">
+									</div>
+									<div class="frontpage__cats_item-name">{{ child_1.name }}</div>
+								</a>
+							{% endfor %}
+						{% endif %}
+					</div>
+				{% endfor %}
+			{% endif %}
+		{% endif %}
+	{% endfor %}
+</div>

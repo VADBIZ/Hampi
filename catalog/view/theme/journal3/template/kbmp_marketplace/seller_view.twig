@@ -1,0 +1,168 @@
+{{ header }}
+<ul class="breadcrumb">
+    {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+    {% endfor %}
+</ul>
+{% if j3.settings.get('pageTitlePosition') == 'top' %}
+<h1 class="title page-title"><span>{{ heading_title }}</span></h1>
+{% endif %}
+{{ j3.loadController('journal3/layout', 'top') }}
+<div id="seller-view" class="container">
+        {% if error_warning %}
+            <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}</div>
+        {% endif %}
+        <div class="row">{{ column_left }}
+            {% if column_left and column_right %}
+                {% set class = 'col-sm-6' %}
+            {% elseif column_left or column_right %}
+                {% set class = 'col-sm-9' %}
+            {% else %}
+                {% set class = 'col-sm-12' %}
+            {% endif %}
+            <div id="content" class="{{ class }}">
+                {% if j3.settings.get('pageTitlePosition') == 'default' %}
+                <h1 class="title page-title">{{ heading_title }}</h1>
+                {% endif %}
+                    {{ content_top }}
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="seller_banner">
+                                <img src="{{ banner }}" alt="{{ title }}" title="{{ title }}" class="img-responsive" />
+                            </div>
+                            <div class="logo_container">
+                                <div class="seller_logo">
+                                    <img src="{{ logo }}" alt="{{ title }}" title="{{ title }}" class="img-responsive" />
+                                </div>
+                                <div class="seller_title">
+                                    <div class="seller_title_heading">{{ heading_title is defined and heading_title is not empty ? heading_title : text_not_mentioned }}</div>
+                                    <div class="kbmp_row">
+                                        <div class="kbmp_inner_block" style="position:relative;">
+                                            <a href="" title="">
+                                                <div class="vss_seller_ratings">
+                                                    <!-- Do not customise it -->
+                                                    <div class="vss_rating_unfilled">★★★★★</div>
+
+                                                    <!-- Set only width in percentage according to rating -->
+                                                    <div class="vss_rating_filled" style="width:{{ seller_rating }}%">★★★★★</div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                        <div class="kbmp_inner_block"><a title="{{ seller_total_reviews }}" href="{{ seller_reviews_link }}" class="vss_active_link"><i class="fa fa-book"></i>&nbsp;&nbsp;{{ text_view_reviews }}</a></div>
+                                        {% if (kbmp_marketplace_settings['kbmp_marketplace_setting']['kbmp_enable_seller_review'] is defined and kbmp_marketplace_settings['kbmp_marketplace_setting']['kbmp_enable_seller_review']) %} 
+                                            <div class="kbmp_inner_block"><a href="{{ seller_reviews_link }}" class="vss_active_link"><i class="fa fa-pencil"></i>&nbsp;&nbsp;{{ text_write_review }}</a></div>
+                                        {% endif %}
+                                        <div class="kbmp_inner_block">
+                                            <a href="{{ ticket_form_url }}&seller_id={{ seller_id }}" class="vss_active_link"><i  class="fa fa-comment"></i>{{ text_contact_this_seller }}</a>
+                                        </div>
+                                    </div>
+                                    <div class="kbmp_row">
+                                        <div class="seller-social">
+                                            {% if (fb_link is defined and fb_link != '') %} 
+                                                <a href="{{ fb_link }}" style="margin: 0 5px 0px 0px; font-size: 16px" target="_blank"><i style="font-size: 16px" class="fa fa-facebook"></i></a>
+                                            {% endif %} 
+                                            {% if (gplus_link is defined and gplus_link != '') %} 
+                                                <a href="{{ gplus_link }}" style="margin: 0 5px 0px 0px; font-size: 16px" target="_blank"><i style="font-size: 16px" class="fa fa-instagram"></i></a>
+                                            {% endif %} 
+                                            {% if (twit_link is defined and twit_link != '') %} 
+                                                <a href="{{ twit_link }}" style="margin: 0 5px 0px 0px; font-size: 16px" target="_blank"><i style="font-size: 16px" class="fa fa-twitter"></i></a>
+                                            {% endif %} 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="tabs-container product_extra product_tabs product_tabs-default" style="margin-top: 20px">
+                            <div class="col-sm-12">
+                                <!--Return Policy & Shipping Policy-->
+                                <ul class="nav nav-tabs">
+                                    <li class="active">
+                                        <a href="#tab-description" data-toggle="tab">{{ text_description }}</a>
+                                    </li>
+                                    <li class="">
+                                        <a href="#tab-return" data-toggle="tab">{{ text_return_policy }}</a>
+                                    </li>
+                                    <li>
+                                        <a href="#tab-shipping" data-toggle="tab">{{ text_shipping_policy }}</a>
+                                    </li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab-description">
+                                        {{ description is defined and description is not empty ? (description) : text_empty_description }} 
+                                    </div>
+                                    <div class="tab-pane" id="tab-return">
+                                        {{ return_policy is defined and return_policy is not empty ? (return_policy) : text_empty_policy }} 
+                                    </div>
+                                    <div class="tab-pane" id="tab-shipping">
+                                        {{ shipping_policy is defined and shipping_policy is not empty ? (shipping_policy) : text_empty_policy }} 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Products Listing-->
+                    {% if (products) %} 
+                        <br>
+                        <div class="row">
+
+                            <div class="products-filter">
+                                <div class="grid-list">
+                                    <button id="btn-grid-view" class="view-btn {% if j3.settings.get('globalProductView') == 'grid' %}active{% endif %}" data-toggle="tooltip" title="{{ button_grid }}" data-view="grid"></button>
+                                    <button id="btn-list-view" class="view-btn {% if j3.settings.get('globalProductView') == 'list' %}active{% endif %}" data-toggle="tooltip" title="{{ button_list }}" data-view="list"></button>
+                                    <a href="{{ compare }}" id="compare-total" class="compare-btn">{{ text_compare }}</a>
+                                </div>
+                                <div class="select-group">
+                                    <div class="input-group input-group-sm sort-by">
+                                        <label class="input-group-addon" for="input-sort">{{ text_sort }}</label>
+                                        <select id="input-sort" class="form-control" onchange="location = this.value;">
+                                            {% for sorts in sorts %}
+                                                {% if sorts.value == '%s-%s'|format(sort, order) %}
+                                                    <option value="{{ sorts.href }}" selected="selected">{{ sorts.text }}</option>
+                                                {% else %}
+                                                    <option value="{{ sorts.href }}">{{ sorts.text }}</option>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div class="input-group input-group-sm per-page">
+                                        <label class="input-group-addon" for="input-limit">{{ text_limit }}</label>
+                                        <select id="input-limit" class="form-control" onchange="location = this.value;">
+                                            {% for limits in limits %}
+                                                {% if limits.value == limit %}
+                                                    <option value="{{ limits.href }}" selected="selected">{{ limits.text }}</option>
+                                                {% else %}
+                                                    <option value="{{ limits.href }}">{{ limits.text }}</option>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="main-products product-{{ j3.settings.get('globalProductView') }}">
+                                {% set display = j3.settings.get('globalProductView') %}
+                                {% include "journal3/template/journal3/product_card.twig" %}
+                            </div>
+                        </div>
+                        <div class="row pagination-results">
+                            <div class="col-sm-6 text-left">{{ pagination }}</div>
+                            <div class="col-sm-6 text-right">{{ results }}</div>
+                        </div>
+                    {% endif %} 
+                    {% if (not products) %} 
+                        <p>{{ text_empty_products }}</p>
+                        <div class="buttons">
+                            <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+                        </div>
+                    {% endif %} 
+                    {{ content_bottom }} 
+                </div>
+                {{ column_right }} 
+            </div>
+        </div>
+        {{ footer }} 

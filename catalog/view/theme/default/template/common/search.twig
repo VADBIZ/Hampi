@@ -1,0 +1,43 @@
+<div id="search" class="header__search-group">
+	<input type="text" name="search" value="{{ search }}" placeholder="{{ text_search }}" class="header__search-input" />
+	<span class="header__search-remove" title="{{ text_remove }}">
+		<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 27.965 27.965" style="enable-background:new 0 0 27.965 27.965;" xml:space="preserve">
+			<g>
+				<g id="c142_x">
+					<path d="M13.98,0C6.259,0,0,6.261,0,13.983c0,7.721,6.259,13.982,13.98,13.982c7.725,0,13.985-6.262,13.985-13.982 C27.965,6.261,21.705,0,13.98,0z M19.992,17.769l-2.227,2.224c0,0-3.523-3.78-3.786-3.78c-0.259,0-3.783,3.78-3.783,3.78 l-2.228-2.224c0,0,3.784-3.472,3.784-3.781c0-0.314-3.784-3.787-3.784-3.787l2.228-2.229c0,0,3.553,3.782,3.783,3.782 c0.232,0,3.786-3.782,3.786-3.782l2.227,2.229c0,0-3.785,3.523-3.785,3.787C16.207,14.239,19.992,17.769,19.992,17.769z"/>
+				</g>
+				<g id="Capa_1_104_"></g>
+			</g>
+		</svg>
+	</span>
+	<span class="header__search-btn-wrap">
+		<button type="button" class="header__search-btn">		
+			<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path fill-rule="evenodd" clip-rule="evenodd" d="M2 9C2 5.13401 5.13401 2 9 2C12.866 2 16 5.13401 16 9C16 12.866 12.866 16 9 16C5.13401 16 2 12.866 2 9ZM9 0C4.02944 0 0 4.02944 0 9C0 13.9706 4.02944 18 9 18C11.125 18 13.078 17.2635 14.6177 16.0319L18.2929 19.7071C18.6834 20.0976 19.3166 20.0976 19.7071 19.7071C20.0976 19.3166 20.0976 18.6834 19.7071 18.2929L16.0319 14.6177C17.2635 13.078 18 11.125 18 9C18 4.02944 13.9706 0 9 0Z" fill="black" fill-opacity="0.2"/>
+			</svg>
+		</button>
+	</span>
+</div>
+
+<script>
+	$(document).ready(function(){
+		var btnRemove = $(".header__search-remove"),
+			inputField = $(".header__search-input");
+		if (inputField.val().length > 3) {
+			btnRemove.addClass("show");
+		} else {
+			btnRemove.removeClass("show");
+		}
+		inputField.keyup(function(){
+			if ($(this).val().length > 3) {
+				btnRemove.addClass("show");
+			} else {
+				btnRemove.removeClass("show");
+			}
+		});
+		$(".header__search-remove").click(function(){
+			inputField.val("").focus();
+			btnRemove.removeClass("show");
+		});
+	});
+</script>

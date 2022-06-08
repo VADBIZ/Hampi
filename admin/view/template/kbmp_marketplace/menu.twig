@@ -1,0 +1,107 @@
+<ul class="nav nav-tabs">
+    <li {% if (active_tab is defined and (active_tab == 1 or active_tab == 2 or active_tab == 3 or active_tab == 4 or active_tab == 5 or active_tab == 6 or active_tab is not defined)) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{general_settings}}">{{text_settings}}</a>
+    </li>
+    <li {% if (active_tab is defined and (active_tab == 11 or active_tab == 12 or active_tab == 13 or active_tab == 14 or active_tab == 15 or active_tab == 16 or active_tab == 17 or active_tab == 18 or active_tab == 19 or active_tab == 20)) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{sellers_list}}">{{text_kbmp_sellers_list_menu}}</a>
+    </li>
+    <li {% if (active_tab is defined and (active_tab == 21 or active_tab == 22 or active_tab == 23 or active_tab == 24 or active_tab == 25 or active_tab == 26 or active_tab == 27 or active_tab == 28 or active_tab == 29 or active_tab == 30)) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{products_list}}">{{text_kbmp_sellers_products_products}}</a>
+    </li>
+    <li {% if (active_tab is defined and (active_tab == 31 or active_tab == 32 or active_tab == 33 or active_tab == 34 or active_tab == 35 or active_tab == 36 or active_tab == 37 or active_tab == 38 or active_tab == 39 or active_tab == 40)) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{sellers_order}}">{{text_kbmp_sellers_orders_menu}}</a>
+    </li>
+    <li {% if (active_tab is defined and (active_tab == 41 or active_tab == 42 or active_tab == 43 or active_tab == 44 or active_tab == 45 or active_tab == 46 or active_tab == 47 or active_tab == 48 or active_tab == 49 or active_tab == 50)) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{admin_commission}}">{{text_kbmp_commission_menu}}</a>
+    </li>
+    <li {% if (active_tab is defined and (active_tab == 51))%} {{ 'class="active"' }} {% endif %}>
+        <a href="{{support}}">{{text_support}}</a>
+    </li>
+
+</ul>
+
+{% if (active_tab is defined and (active_tab == 1 or active_tab == 2 or active_tab == 3 or active_tab == 4 or active_tab == 5 or active_tab == 6 or active_tab is not defined)) %}
+<ul class="nav nav-tabs">
+    <li {% if (active_tab is defined and active_tab == 1 or active_tab is not defined) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{general_settings}}">{{text_kbmp_general_settings}}</a>
+    </li>
+    <li {% if (active_tab is defined and active_tab == 4) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{kbmp_order_settings}}">{{text_kbmp_order_settings}}</a>
+    </li>
+    <li {% if (active_tab is defined and active_tab == 2) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{paypal_payout}}">{{text_paypal_payout}}</a>
+    </li>
+    <li {% if (active_tab is defined and active_tab == 3) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{email_templates}}">{{text_email_templates}}</a>
+    </li>
+</ul>
+{% endif %}
+
+
+{% if (active_tab is defined and (active_tab == 11 or active_tab == 12 or active_tab == 13 or active_tab == 14 or active_tab == 15 or active_tab == 16 or active_tab == 17 or active_tab == 18 or active_tab == 19 or active_tab == 20)) %}
+<ul class="nav nav-tabs">
+    <li {% if (active_tab is defined and active_tab == 11) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{sellers_list}}">{{text_sellers_list}}</a>
+    </li>
+    <li {% if (active_tab is defined and active_tab == 12) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{sellers_account_approval_list}}">{{text_seller_account_approval_list}}</a>
+    </li>
+    <li {% if (active_tab is defined and active_tab == 18) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{custom_fields}}">{{text_custom_fields}}</a>
+    </li>
+    <li {% if (active_tab is defined and active_tab == 17) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{seller_category}}">{{text_seller_catgory_commision}}</a>
+    </li>
+    <li {% if (active_tab is defined and active_tab == 13) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{sellers_review}}">{{text_seller_reviews}}</a>
+    </li>
+    <li {% if (active_tab is defined and active_tab == 14) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{sellers_review_approval_list}}">{{text_reviews_approval_list}}</a>
+    </li>
+    <li {% if (active_tab is defined and active_tab == 15) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{sellers_shipping}}">{{text_seller_shippings}}</a>
+    </li>
+    <li {% if (active_tab is defined and active_tab == 16) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{sellers_category_request}}">{{text_seller_category_request_list}}</a>
+    </li>
+</ul>
+{% endif %}
+
+{% if (active_tab is defined and (active_tab == 21 or active_tab == 22 or active_tab == 23 or active_tab == 24 or active_tab == 25 or active_tab == 26 or active_tab == 27 or active_tab == 28 or active_tab == 29 or active_tab == 30)) %}
+<ul class="nav nav-tabs">
+    <li {% if (active_tab is defined and active_tab == 21) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{products_list}}">{{text_seller_products}}</a>
+    </li>
+    <li {% if (active_tab is defined and active_tab == 22) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{products_approval_list}}">{{text_product_approval_list}}</a>
+    </li>
+    <li {% if (active_tab is defined and active_tab == 23) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{products_review}}">{{text_product_reviews}}</a>
+    </li>
+</ul>
+{% endif %}
+
+{% if (active_tab is defined and (active_tab == 31 or active_tab == 32 or active_tab == 33 or active_tab == 34 or active_tab == 35 or active_tab == 36 or active_tab == 37 or active_tab == 38 or active_tab == 39 or active_tab == 40)) %}
+<ul class="nav nav-tabs">
+    <li {% if (active_tab is defined and active_tab == 31) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{sellers_order}}">{{text_seller_orders}}</a>
+    </li>
+    <li {% if (active_tab is defined and active_tab == 32) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{admin_order}}">{{text_admin_orders}}</a>
+    </li>
+</ul>
+{% endif %}
+
+{% if (active_tab is defined and (active_tab == 41 or active_tab == 42 or active_tab == 43 or active_tab == 44 or active_tab == 45 or active_tab == 46 or active_tab == 47 or active_tab == 48 or active_tab == 49 or active_tab == 50)) %}
+<ul class="nav nav-tabs">
+    <li {% if (active_tab is defined and active_tab == 41) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{admin_commission}}">{{text_admin_commissions}}</a>
+    </li>
+    <li {% if (active_tab is defined and active_tab == 43) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{sellers_balance}}">{{text_seller_transactions}}</a>
+    </li>
+    <li {% if (active_tab is defined and active_tab == 44) %} {{ 'class="active"' }} {% endif %}>
+        <a href="{{seller_payout_request}}">{{text_seller_payout_request}}</a>
+    </li>
+</ul>
+{% endif %}

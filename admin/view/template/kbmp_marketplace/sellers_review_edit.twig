@@ -1,0 +1,137 @@
+{{ header }}{{ column_left }} 
+<div id="content" class="bootstrap">
+    <div class="page-header">
+        <div class="container-fluid">          
+            <h1>{{ heading_title }}</h1>    
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %} 
+                    <li><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+                    {% endfor %} 
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">		
+        <div class="row">            
+            <div class="col-lg-12 col-md-12">
+                <div class="panel panel-default" id="fieldset_form">			
+                    <div class="panel-heading" style="display: inline-block; width: 100%;"> 
+                        {{ heading_title }} 
+                    </div>
+                    <div class="panel-body">
+                        {{tab_common}}
+                        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-review" class="form-horizontal">
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="input-author">{{ entry_author }}</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="author" value="{{ author }}" placeholder="{{ entry_author }}" id="input-author" class="form-control" />
+                                    {% if (error_author) %} 
+                                        <div class="text-danger">{{ error_author }}</div>
+                                    {% endif %} 
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="input-text">{{ entry_text }}</label>
+                                <div class="col-sm-10">
+                                    <textarea name="text" cols="60" rows="8" placeholder="{{ entry_text }}" id="input-text" class="form-control">{{ text }}</textarea>
+                                    {% if (error_text) %} 
+                                        <div class="text-danger">{{ error_text }}</div>
+                                    {% endif %} 
+                                </div>
+                            </div>
+                            <div class="form-group required">
+                                <label class="col-sm-2 control-label" for="input-name">{{ entry_rating }}</label>
+                                <div class="col-sm-10">
+                                    <label class="radio-inline">
+                                        {% if (rating == 1) %} 
+                                            <input type="radio" name="rating" value="1" checked="checked" />
+                                            1
+                                        {% else %} 
+                                            <input type="radio" name="rating" value="1" />
+                                            1
+                                        {% endif %} 
+                                    </label>
+                                    <label class="radio-inline">
+                                        {% if (rating == 2) %} 
+                                            <input type="radio" name="rating" value="2" checked="checked" />
+                                            2
+                                        {% else %} 
+                                            <input type="radio" name="rating" value="2" />
+                                            2
+                                        {% endif %} 
+                                    </label>
+                                    <label class="radio-inline">
+                                        {% if (rating == 3) %} 
+                                            <input type="radio" name="rating" value="3" checked="checked" />
+                                            3
+                                        {% else %} 
+                                            <input type="radio" name="rating" value="3" />
+                                            3
+                                        {% endif %} 
+                                    </label>
+                                    <label class="radio-inline">
+                                        {% if (rating == 4) %} 
+                                            <input type="radio" name="rating" value="4" checked="checked" />
+                                            4
+                                        {% else %} 
+                                            <input type="radio" name="rating" value="4" />
+                                            4
+                                        {% endif %} 
+                                    </label>
+                                    <label class="radio-inline">
+                                        {% if (rating == 5) %} 
+                                            <input type="radio" name="rating" value="5" checked="checked" />
+                                            5
+                                        {% else %} 
+                                            <input type="radio" name="rating" value="5" />
+                                            5
+                                        {% endif %} 
+                                    </label>
+                                    {% if (error_rating) %} 
+                                        <div class="text-danger">{{ error_rating }}</div>
+                                    {% endif %} 
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="input-date-added">{{ entry_date_added }}</label>
+                                <div class="col-sm-3">
+                                    <div class="input-group datetime">
+                                        <input type="text" name="date_added" value="{{ date_added }}" placeholder="{{ entry_date_added }}" data-date-format="YYYY-MM-DD HH:mm:ss" id="input-date-added" class="datepicker hasDatepicker form-control" />
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+                                <div class="col-sm-10">
+                                    <select name="status" id="input-status" class="form-control">
+                                        {% if (status and status == '1') %} 
+                                            <option value="1" selected="selected">{{ text_approved }}</option>
+                                            <option value="2">{{ text_disapproved }}</option>
+                                        {% else %} 
+                                            <option value="1">{{ text_approved }}</option>
+                                            <option value="2" selected="selected">{{ text_disapproved }}</option>
+                                        {% endif %} 
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <button type="submit" value="1" class="marketplace_setting_btn btn btn-default">
+                                    <i class="fa fa-save"></i> {{ button_save }} 
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--container fluid ends-->
+</div>
+<script type="text/javascript">
+    $('.datetime').datetimepicker({
+        pickTime: true
+    });
+</script>
+{{ footer }}

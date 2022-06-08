@@ -1,0 +1,55 @@
+{% set dropdown = filter.dropdown %}
+
+{% if layout == 'horizontal' %}
+{% set dropdown = true %}
+{% endif %}
+
+{% set class = 'ocf-filter' %}
+
+{% if dropdown %}
+{% set class = class ~ ' ocf-dropdown' %}
+{% endif %}
+
+{% if filter.type == 'slide' or filter.type == 'slide_dual' %}
+{% set class = class ~ ' ocf-slider' %}
+
+{% if slider_input %}
+{% set class = class ~ ' ocf-has-input' %}
+{% endif %}
+{% endif %}
+
+{% if filter.selected %}
+{% set class = class ~ ' ocf-active' %}
+{% endif %}
+
+<div class="{{ class }}" id="ocf-filter-{{ filter.id }}">
+  <div class="ocf-filter-body">
+    <div class="ocf-filter-header" data-ocf="expand">                         
+      
+      <span class="ocf-filter-name">{{ filter.name }}</span>         
+        
+		<div class="ocf-filter__icon">
+			<span class="ocf-filter__minus">
+				<svg width="10" height="2" viewBox="0 0 10 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M0 1.00049C-5.21268e-10 0.724346 0.223858 0.500488 0.5 0.500488L9.5009 0.500488C9.77704 0.500488 10.0009 0.724346 10.0009 1.00049C10.0009 1.27663 9.77704 1.50049 9.5009 1.50049H0.5C0.223858 1.50049 5.21268e-10 1.27663 0 1.00049Z" fill="#272727"/>
+				</svg>  
+			</span> 
+			<span class="ocf-filter__plus">	
+				<svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path fill-rule="evenodd" clip-rule="evenodd" d="M5.50043 0.5C5.50043 0.223858 5.27657 0 5.00043 0C4.72428 0 4.50043 0.223858 4.50043 0.5V4.50034H0.5C0.223858 4.50034 0 4.7242 0 5.00034C0 5.27648 0.223858 5.50034 0.5 5.50034H4.50043V9.5009C4.50043 9.77704 4.72428 10.0009 5.00043 10.0009C5.27657 10.0009 5.50043 9.77704 5.50043 9.5009V5.50034H9.5009C9.77704 5.50034 10.0009 5.27648 10.0009 5.00034C10.0009 4.7242 9.77704 4.50034 9.5009 4.50034H5.50043V0.5Z" fill="#272727"/>
+				</svg>
+			</span> 
+		</div>
+    </div><!-- /.ocf-filter-header -->
+    
+    {% if filter.type == 'slide' or filter.type == 'slide_dual' %}
+    
+    {% include('default/template/extension/module/ocfilter48/filter_slider_item.twig') %}
+    
+    {% else %}
+    
+    {% include('default/template/extension/module/ocfilter48/value_list.twig') %}
+    
+    {% endif %}
+  </div>    
+</div>

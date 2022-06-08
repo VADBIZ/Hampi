@@ -1,0 +1,62 @@
+<div class="categories__menu-wrap">
+	<div class="container">
+		<div class="categories__menu">
+			<div class="categories__menu-side">
+				<div class="categories__menu-title">{{ text_category_title }}</div>
+				<div class="categories__menu-main">
+					<ul>
+						{% for item in items %}
+							{% if ((item['type'] == "freelink") or (item['type'] == "category")) %} 
+								<li{% if (item['children']) %} class="categories__menu-main-dropdown"{% endif %}>
+									<a tabindex="-1" href="{{ item.href }}">{{ item['name'] }}</a>
+									{% if (item['children']) %}
+										<ul>
+											{% for child in item['children'] %}
+												<li {% if (child['children'] is not empty) %} class="categories__menu-sub-dropdown"{% endif %}>
+													<a href="{{ child.href }}">{{ child['name'] }}</a>
+													{% if (child['children'] is not empty) %}
+														<ul class="parent">
+															{% for subchild in child['children'] %} 
+																<li><a href="{{ subchild.href }}">{{ subchild['name'] }}</a></li>
+															{% endfor %}
+														</ul>
+													{% endif %}
+												</li>
+											{% endfor %}
+										</ul>
+									{% endif %}
+								</li>
+							{% endif %}
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function(){
+		var sTop = $(window).scrollTop();
+		if ($("body").hasClass("home") && sTop == 0 && $(window).width() > 780) {
+			$(".header__menu-btn").addClass("open");
+			$(".categories__menu-wrap").addClass("open");
+		}
+		$(window).scroll(function(){
+			if ($(window).width() > 780) {
+				var sTop = $(window).scrollTop();
+				if ($("body").hasClass("home") && sTop == 0) {
+					$(".header__menu-btn").addClass("open");
+					$(".categories__menu-wrap").addClass("open");
+				} else {
+					$(".categories__menu-wrap").removeClass("open");
+					$(".header__menu-btn").removeClass("open");
+				}
+			}
+		});
+		$(".header__menu-btn").click(function(){
+			$(".header__menu-btn").toggleClass("open");
+			$(".categories__menu-wrap").toggleClass("open");
+		});
+	});
+</script>

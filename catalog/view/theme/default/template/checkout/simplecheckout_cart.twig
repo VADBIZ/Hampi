@@ -1,0 +1,74 @@
+<div class="simplecheckout-block" id="simplecheckout_cart" {{ hide ? 'data-hide="true"' : '' }} {{ has_error ? 'data-error="true"' : '' }}>
+{% if display_header %}
+    <div class="checkout-heading panel-heading">{{ text_cart }} <span class="checkout-heading-button"><a href="javascript:void(0)" data-onclick="clearCart" class="text-danger" data-confirm-text="{{ text_clear_cart_question }}">{{ text_clear_cart }}</a></span></div>
+{% endif %}
+{% if attention %}
+    <div class="alert alert-danger simplecheckout-warning-block">{{ attention }}</div>
+{% endif %}
+{% if error_warning %}
+    <div class="alert alert-danger simplecheckout-warning-block">{{ error_warning }}</div>
+{% endif %}
+	
+	<h3 class="simplecheckout__cart-title">{{ title_order }}</h3>
+					<div class="cart__wrap">
+						<div class="cart__body">
+							{% for product in products %}
+								<div class="cart__body-item" data-id="{{ product.cart_id }}">
+									<div class="cart__body-wrap">
+										<div class="cart__body-thumb">
+											{% if product['thumb'] %}
+												<a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" /></a>
+											{% endif %}
+										</div>
+										<div class="cart__body-content">
+											<div class="cart__body-meta">
+												<div class="cart__body-title">
+													<a href="{{ product.href }}" class="cart__body-name">{{ product.name }}</a>
+												</div>
+												<div class="cart__body-sku">
+													Артикул: {{ product.model }}
+												</div>
+											</div>
+											<div class="cart__body-count">
+												<div class="cart__body_count-text">
+													<span>{{ text_count }}</span> {{ product.stock }}
+												</div>
+											</div>
+											<div class="cart__body-total" data-price="{{ product.price }}">
+												{{ product.total }}
+											</div>
+										</div>
+									</div>
+									<div class="cart__body-bottom">
+										<div class="cart__body-quantity"></div>
+										<div class="cart__body-icons">
+											<button data-onclick="removeProduct" data-product-key="{{ product['cart_id'] is not empty ? product['cart_id'] : product['key'] }}" data-toggle="tooltip" type="button" class="wishlist__add-to-cart_btn">
+												<svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+												<path fill-rule="evenodd" clip-rule="evenodd" d="M9.99994 0C10.5381 0 11.0784 0.043936 11.5411 0.132711C11.7725 0.177091 11.9967 0.23496 12.1981 0.310315C12.3822 0.37922 12.6253 0.49085 12.8286 0.680595C13.2325 1.05736 13.2544 1.69014 12.8776 2.09396C12.5187 2.47869 11.9273 2.51678 11.523 2.19369C11.5164 2.1909 11.5079 2.18747 11.4972 2.1835C11.4305 2.15851 11.3211 2.12697 11.1644 2.0969C10.8509 2.03677 10.4402 2 9.99994 2C9.55973 2 9.14896 2.03677 8.83554 2.0969C8.67879 2.12697 8.56943 2.15851 8.50266 2.1835C8.49204 2.18747 8.48351 2.1909 8.47689 2.19369C8.07257 2.51678 7.48123 2.47869 7.12227 2.09396C6.74551 1.69015 6.76744 1.05736 7.17125 0.680595C7.37462 0.490851 7.61765 0.37922 7.80181 0.310315C8.00321 0.23496 8.22739 0.177091 8.45875 0.132711C8.92152 0.0439361 9.46179 0 9.99994 0ZM0 4.3335H20V7.66683C19.7936 7.66683 19.6905 7.66683 19.6035 7.67444C18.6366 7.75903 17.87 8.52562 17.7854 9.49252C17.7778 9.57951 17.7778 9.68269 17.7778 9.88905V15.0002C17.7778 17.8286 17.7778 19.2428 16.8991 20.1215C16.0204 21.0002 14.6062 21.0002 11.7778 21.0002H8.22223C5.3938 21.0002 3.97958 21.0002 3.1009 20.1215C2.22222 19.2428 2.22222 17.8286 2.22222 15.0002V9.88905C2.22222 9.68269 2.22222 9.57951 2.21461 9.49252C2.13002 8.52562 1.36343 7.75903 0.396533 7.67444C0.309544 7.66683 0.206363 7.66683 0 7.66683V4.3335ZM7.22217 8.88916C7.77445 8.88916 8.22217 9.33688 8.22217 9.88916V15.4447C8.22217 15.997 7.77445 16.4447 7.22217 16.4447C6.66988 16.4447 6.22217 15.997 6.22217 15.4447V9.88916C6.22217 9.33688 6.66988 8.88916 7.22217 8.88916ZM12.7777 8.88916C13.33 8.88916 13.7777 9.33688 13.7777 9.88916V15.4447C13.7777 15.997 13.33 16.4447 12.7777 16.4447C12.2254 16.4447 11.7777 15.997 11.7777 15.4447V9.88916C11.7777 9.33688 12.2254 8.88916 12.7777 8.88916Z" fill="#303030"/>
+												</svg>
+                                    		</button>
+										</div>
+									</div>
+							</div>
+							{% endfor %}
+						</div>
+					</div>
+
+{% for total in totals %}
+    <div class="simplecheckout-cart-total" id="total_{{ total['code'] }}">
+        <span><b>{{ total['title'] }}</b></span>
+        <span class="simplecheckout-cart-total-value">{{ total['text'] }}</span>
+    </div>
+{% endfor %}
+<input type="hidden" name="remove" value="" id="simplecheckout_remove">
+<div style="display:none;" id="simplecheckout_cart_total">{{ cart_total }}</div>
+{% if not display_model %}
+    <style>
+    .simplecheckout-cart col.model,
+    .simplecheckout-cart th.model,
+    .simplecheckout-cart td.model {
+        display: none;
+    }
+    </style>
+{% endif %}
+</div>
