@@ -455,7 +455,7 @@ class ControllerExtensionModulekbmpMarketplace extends Controller {
         $data['seller_payout_request'] = $this->url->link('kbmp_marketplace/seller_payout_request', $this->session_token_key . '=' . $this->session_token, true);
         $data['paypal_payout'] = $this->url->link('kbmp_marketplace/paypal_payout', $this->session_token_key . '=' . $this->session_token, true);
         $data['email_templates'] = $this->url->link('kbmp_marketplace/email_templates', $this->session_token_key . '=' . $this->session_token, true);
-        $data['support'] = $this->url->link('kbmp_marketplace/support', $this->session_token_key . '=' . $this->session_token, true);
+//        $data['support'] = $this->url->link('kbmp_marketplace/support', $this->session_token_key . '=' . $this->session_token, true);
         $data['custom_fields'] = $this->url->link('kbmp_marketplace/seller_profile_custom_fields', $this->session_token_key . '=' . $this->session_token, true);
         
         if (VERSION >= '2.2.0.0') {

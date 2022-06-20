@@ -2696,3 +2696,312 @@
 2022-06-07 16:59:41 - PHP Warning:  Use of undefined constant error_seller_field - assumed 'error_seller_field' (this will throw an Error in a future version of PHP) in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1640
 2022-06-07 16:59:41 - PHP Warning:  count(): Parameter must be an array or an object that implements Countable in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1640
 2022-06-07 17:38:15 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1378
+2022-06-09 15:16:09 - PHP Notice:  Undefined variable: seller_get_field in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1384
+2022-06-09 15:16:09 - PHP Notice:  Undefined variable: seller_get_field in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1384
+2022-06-09 15:16:09 - PHP Notice:  Undefined variable: seller_get_field in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1384
+2022-06-09 15:16:09 - PHP Notice:  Undefined variable: seller_get_field in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1384
+2022-06-09 15:16:09 - PHP Notice:  Undefined variable: seller_get_field in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1384
+2022-06-09 15:16:09 - PHP Notice:  Undefined variable: seller_get_field in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1384
+2022-06-09 15:16:09 - PHP Notice:  Undefined variable: seller_get_field in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1384
+2022-06-09 15:16:25 - PHP Notice:  Undefined variable: seller_get_field in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1384
+2022-06-09 15:16:25 - PHP Notice:  Undefined variable: seller_get_field in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1384
+2022-06-09 15:16:25 - PHP Notice:  Undefined variable: seller_get_field in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1384
+2022-06-09 15:16:25 - PHP Notice:  Undefined variable: seller_get_field in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1384
+2022-06-09 15:16:25 - PHP Notice:  Undefined variable: seller_get_field in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1384
+2022-06-09 15:16:25 - PHP Notice:  Undefined variable: seller_get_field in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1384
+2022-06-09 15:16:25 - PHP Notice:  Undefined variable: seller_get_field in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1384
+2022-06-09 15:22:38 - PHP Notice:  Undefined index: value in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1386
+2022-06-09 15:22:38 - PHP Warning:  explode(): Empty delimiter in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1387
+2022-06-09 16:44:55 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1397
+2022-06-09 16:47:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1397
+2022-06-09 16:47:32 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1397
+2022-06-09 16:47:40 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1397
+2022-06-09 16:53:22 - PHP Notice:  Undefined index: custom_field_value in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 1393
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:31:06 - PHP Notice:  Undefined offset: 7 in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 272
+2022-06-16 13:40:11 - PHP Notice:  Undefined variable: customer_statuses in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 246
+2022-06-16 13:40:11 - PHP Notice:  Undefined variable: customer_statuses in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 246
+2022-06-16 13:40:11 - PHP Notice:  Undefined variable: customer_statuses in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 246
+2022-06-16 13:40:11 - PHP Notice:  Undefined variable: customer_statuses in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 246
+2022-06-16 13:40:11 - PHP Notice:  Undefined variable: customer_statuses in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 246
+2022-06-16 13:40:11 - PHP Notice:  Undefined variable: customer_statuses in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 246
+2022-06-16 13:40:11 - PHP Notice:  Undefined variable: customer_statuses in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 246
+2022-06-16 13:49:18 - PHP Notice:  Undefined index: field_type in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 506
+2022-06-16 13:49:18 - PHP Notice:  Undefined index: field_type in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 506
+2022-06-16 13:49:18 - PHP Notice:  Undefined index: field_type in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 506
+2022-06-16 13:49:18 - PHP Notice:  Undefined index: field_type in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 506
+2022-06-16 13:49:18 - PHP Notice:  Undefined index: field_type in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 506
+2022-06-16 13:49:18 - PHP Notice:  Undefined index: field_type in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 506
+2022-06-16 13:49:18 - PHP Notice:  Undefined index: field_type in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 506
+2022-06-16 14:32:39 - PHP Notice:  Undefined index:  in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1205
+2022-06-16 14:33:33 - PHP Notice:  Undefined index:  in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1205
+2022-06-16 14:38:15 - PHP Notice:  Undefined index:  in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1192
+2022-06-16 14:38:15 - PHP Notice:  Undefined index:  in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1192
+2022-06-16 14:39:40 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1320
+2022-06-16 14:39:40 - PHP Notice:  Undefined index: seller_id in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/customer_fields.php on line 32
+2022-06-16 14:39:48 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1320
+2022-06-16 14:39:48 - PHP Notice:  Undefined index: seller_id in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/customer_fields.php on line 32
+2022-06-16 14:40:24 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1320
+2022-06-16 14:40:24 - PHP Notice:  Undefined index: seller_id in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/customer_fields.php on line 32
+2022-06-16 14:44:06 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1324
+2022-06-16 14:44:06 - PHP Notice:  Undefined index: seller_id in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/customer_fields.php on line 32
+2022-06-16 14:44:37 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1325
+2022-06-16 14:44:37 - PHP Notice:  Undefined index: seller_id in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/customer_fields.php on line 32
+2022-06-16 14:45:53 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1320
+2022-06-16 14:45:53 - PHP Notice:  Undefined index: seller_id in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/customer_fields.php on line 32
+2022-06-16 14:46:14 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1322
+2022-06-16 14:46:14 - PHP Notice:  Undefined index: seller_id in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/customer_fields.php on line 32
+2022-06-16 14:47:20 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1323
+2022-06-16 14:47:20 - PHP Notice:  Undefined index: seller_id in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/customer_fields.php on line 32
+2022-06-16 14:48:38 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1325
+2022-06-16 14:48:38 - PHP Notice:  Undefined index: seller_id in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/customer_fields.php on line 32
+2022-06-16 14:49:22 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1325
+2022-06-16 14:49:22 - PHP Notice:  Undefined index: seller_id in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/customer_fields.php on line 32
+2022-06-16 14:49:56 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1325
+2022-06-16 14:49:56 - PHP Notice:  Undefined index: seller_id in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/customer_fields.php on line 32
+2022-06-16 14:49:56 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php:1281) in /home/p616774/www/test.hampi.ru/system/library/response.php on line 36
+2022-06-16 14:50:23 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1325
+2022-06-16 14:50:23 - PHP Notice:  Undefined index: seller_id in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/customer_fields.php on line 32
+2022-06-16 14:53:36 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1322
+2022-06-16 14:53:36 - PHP Notice:  Undefined index: seller_id in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/customer_fields.php on line 32
+2022-06-16 14:54:01 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1322
+2022-06-16 14:54:01 - PHP Notice:  Undefined index: seller_id in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/customer_fields.php on line 32
+2022-06-16 14:54:01 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php:1281) in /home/p616774/www/test.hampi.ru/system/library/response.php on line 36
+2022-06-16 14:57:41 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1323
+2022-06-16 14:57:41 - PHP Notice:  Undefined index: seller_id in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/customer_fields.php on line 32
+2022-06-16 14:58:59 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1323
+2022-06-16 14:58:59 - PHP Notice:  Undefined index: seller_id in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/customer_fields.php on line 32
+2022-06-16 14:59:06 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php:47) in /home/p616774/www/test.hampi.ru/system/library/response.php on line 36
+2022-06-16 15:00:31 - PHP Notice:  Undefined index:  in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1192
+2022-06-16 15:00:31 - PHP Notice:  Undefined index:  in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1192
+2022-06-16 15:00:31 - PHP Notice:  Undefined index:  in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1192
+2022-06-16 15:00:31 - PHP Notice:  Undefined index:  in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1192
+2022-06-16 15:00:31 - PHP Notice:  Undefined index:  in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1192
+2022-06-16 15:00:31 - PHP Notice:  Undefined index:  in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1192
+2022-06-16 15:01:49 - PHP Notice:  Undefined index:  in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1192
+2022-06-16 15:09:10 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php:1248) in /home/p616774/www/test.hampi.ru/system/library/response.php on line 36
+2022-06-16 15:13:35 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1287
+2022-06-16 15:13:35 - PHP Notice:  Undefined index: seller_id in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/customer_fields.php on line 32
+2022-06-16 15:13:35 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/p616774/www/test.hampi.ru/admin/controller/startup/error.php:34) in /home/p616774/www/test.hampi.ru/system/library/response.php on line 36
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:19:16 - PHP Notice:  Undefined index: customer_id in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/customer/customer.php on line 594
+2022-06-16 15:39:15 - PHP Notice:  Undefined variable: seller_fields in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1260
+2022-06-16 15:39:15 - PHP Warning:  Invalid argument supplied for foreach() in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1260
+2022-06-16 15:39:15 - PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/p616774/www/test.hampi.ru/admin/controller/startup/error.php:34) in /home/p616774/www/test.hampi.ru/system/library/response.php on line 36
+2022-06-16 15:41:12 - PHP Notice:  Undefined variable: customer_id in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1260
+2022-06-16 16:22:24 - PHP Notice:  Undefined variable: query in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/kbmp_marketplace.php on line 115
+2022-06-16 16:22:24 - PHP Notice:  Trying to get property 'rows' of non-object in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/kbmp_marketplace.php on line 115
+2022-06-16 16:22:24 - PHP Warning:  Invalid argument supplied for foreach() in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 831
+2022-06-16 16:23:08 - PHP Notice:  Undefined variable: query in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/kbmp_marketplace.php on line 115
+2022-06-16 16:23:08 - PHP Notice:  Trying to get property 'rows' of non-object in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/kbmp_marketplace.php on line 115
+2022-06-16 16:23:08 - PHP Warning:  Invalid argument supplied for foreach() in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 831
+2022-06-16 16:23:34 - PHP Notice:  Undefined variable: query in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/kbmp_marketplace.php on line 115
+2022-06-16 16:23:34 - PHP Notice:  Trying to get property 'rows' of non-object in /home/p616774/www/test.hampi.ru/admin/model/kbmp_marketplace/kbmp_marketplace.php on line 115
+2022-06-16 16:23:34 - PHP Warning:  Invalid argument supplied for foreach() in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 831
+2022-06-16 18:02:32 - PHP Notice:  Undefined index: email_content in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 43
+2022-06-16 18:02:32 - PHP Notice:  Undefined index: email_subject in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 48
+2022-06-16 18:02:32 - PHP Notice:  Undefined index: email_subject in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 64
+2022-06-16 18:04:41 - PHP Notice:  Undefined index: email_content in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 43
+2022-06-16 18:04:41 - PHP Notice:  Undefined index: email_subject in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 48
+2022-06-16 18:04:41 - PHP Notice:  Undefined index: email_subject in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 64
+2022-06-16 18:05:49 - PHP Notice:  Undefined index: email_content in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 43
+2022-06-16 18:05:49 - PHP Notice:  Undefined index: email_subject in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 48
+2022-06-16 18:05:49 - PHP Notice:  Undefined index: email_subject in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 64
+2022-06-16 18:08:56 - PHP Notice:  Undefined index: email_content in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 44
+2022-06-16 18:08:56 - PHP Notice:  Undefined index: email_subject in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 49
+2022-06-16 18:08:56 - PHP Notice:  Undefined index: email_subject in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 65
+2022-06-16 18:09:13 - PHP Notice:  Undefined index: email_content in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 44
+2022-06-16 18:09:13 - PHP Notice:  Undefined index: email_subject in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 49
+2022-06-16 18:09:13 - PHP Notice:  Undefined index: email_subject in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 65
+2022-06-16 18:57:34 - PHP Notice:  Undefined index: email in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 737
+2022-06-17 16:33:49 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:33:49 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:33:49 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:33:49 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:33:49 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:52:46 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:52:46 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:52:46 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:52:46 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:52:46 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:52:54 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:52:54 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:52:54 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:52:54 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:52:54 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:53:04 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:53:04 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:53:04 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:53:04 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:53:04 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 977
+2022-06-17 16:54:44 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 976
+2022-06-17 16:54:44 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 979
+2022-06-17 16:54:44 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 976
+2022-06-17 16:54:44 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 979
+2022-06-17 16:54:44 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 976
+2022-06-17 16:54:44 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 979
+2022-06-17 16:54:44 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 976
+2022-06-17 16:54:44 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 979
+2022-06-17 16:54:44 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 976
+2022-06-17 16:54:44 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 979
+2022-06-17 16:55:33 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 976
+2022-06-17 16:55:33 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 979
+2022-06-17 16:55:33 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 976
+2022-06-17 16:55:33 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 979
+2022-06-17 16:55:33 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 976
+2022-06-17 16:55:33 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 979
+2022-06-17 16:55:33 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 976
+2022-06-17 16:55:33 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 979
+2022-06-17 16:55:33 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 976
+2022-06-17 16:55:33 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 979
+2022-06-17 16:55:39 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 976
+2022-06-17 16:55:39 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 979
+2022-06-17 16:55:39 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 976
+2022-06-17 16:55:39 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 979
+2022-06-17 16:55:39 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 976
+2022-06-17 16:55:39 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 979
+2022-06-17 16:55:39 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 976
+2022-06-17 16:55:39 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 979
+2022-06-17 16:55:39 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 976
+2022-06-17 16:55:39 - PHP Notice:  Undefined index: secondname in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 979
+2022-06-17 18:00:33 - PHP Notice:  Undefined index: accesskbmp in /home/p616774/www/test.hampi.ru/admin/controller/user/user.php on line 253
+2022-06-17 18:00:50 - PHP Notice:  Undefined index: accesskbmp in /home/p616774/www/test.hampi.ru/admin/controller/user/user.php on line 253
+2022-06-17 19:10:00 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:10:00 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:10:00 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:10:29 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:10:29 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:10:29 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:11:18 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:11:18 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:11:18 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:11:23 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:11:23 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:11:23 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:11:26 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:11:26 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:11:26 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:11:30 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:11:30 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:11:30 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:11:42 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:11:42 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:11:42 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:13:36 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:13:36 - PHP Notice:  Undefined variable: data in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 8
+2022-06-17 19:13:36 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:13:36 - PHP Notice:  Undefined variable: data in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 8
+2022-06-17 19:13:36 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:13:36 - PHP Notice:  Undefined variable: data in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 8
+2022-06-17 19:13:39 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:13:39 - PHP Notice:  Undefined variable: data in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 8
+2022-06-17 19:13:39 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:13:39 - PHP Notice:  Undefined variable: data in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 8
+2022-06-17 19:13:39 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 7
+2022-06-17 19:13:39 - PHP Notice:  Undefined variable: data in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 8
+2022-06-17 19:16:54 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 8
+2022-06-17 19:16:54 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 8
+2022-06-17 19:16:54 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 8
+2022-06-17 19:16:58 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 8
+2022-06-17 19:16:58 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 8
+2022-06-17 19:16:58 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 8
+2022-06-17 19:17:05 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 8
+2022-06-17 19:17:05 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 8
+2022-06-17 19:17:05 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 8
+2022-06-17 19:17:08 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 8
+2022-06-17 19:17:08 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 8
+2022-06-17 19:17:08 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 8
+2022-06-18 14:43:01 - PHP Notice:  Undefined index: banner_id in /home/p616774/www/test.hampi.ru/catalog/controller/extension/module/banner.php on line 15
+2022-06-18 14:43:25 - PHP Warning:  Illegal string offset 'banner_id' in /home/p616774/www/test.hampi.ru/catalog/controller/extension/module/banner.php on line 15
+2022-06-18 14:48:44 - PHP Notice:  Undefined index: width in /home/p616774/www/test.hampi.ru/catalog/controller/extension/module/banner.php on line 24
+2022-06-18 14:48:44 - PHP Notice:  Undefined index: height in /home/p616774/www/test.hampi.ru/catalog/controller/extension/module/banner.php on line 24
+2022-06-18 14:49:40 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in /home/p616774/www/test.hampi.ru/system/library/image.php on line 173
+2022-06-18 14:49:40 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, bool given in /home/p616774/www/test.hampi.ru/system/library/image.php on line 176
+2022-06-18 14:49:40 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, bool given in /home/p616774/www/test.hampi.ru/system/library/image.php on line 177
+2022-06-18 14:49:40 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, bool given in /home/p616774/www/test.hampi.ru/system/library/image.php on line 179
+2022-06-18 14:49:40 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, bool given in /home/p616774/www/test.hampi.ru/system/library/image.php on line 181
+2022-06-18 14:49:40 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, bool given in /home/p616774/www/test.hampi.ru/system/library/image.php on line 194
+2022-06-18 14:49:40 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, bool given in /home/p616774/www/test.hampi.ru/system/library/image.php on line 196
+2022-06-18 14:49:40 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in /home/p616774/www/test.hampi.ru/system/library/image.php on line 173
+2022-06-18 14:49:40 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, bool given in /home/p616774/www/test.hampi.ru/system/library/image.php on line 176
+2022-06-18 14:49:40 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, bool given in /home/p616774/www/test.hampi.ru/system/library/image.php on line 177
+2022-06-18 14:49:40 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, bool given in /home/p616774/www/test.hampi.ru/system/library/image.php on line 179
+2022-06-18 14:49:40 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, bool given in /home/p616774/www/test.hampi.ru/system/library/image.php on line 181
+2022-06-18 14:49:40 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, bool given in /home/p616774/www/test.hampi.ru/system/library/image.php on line 194
+2022-06-18 14:49:40 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, bool given in /home/p616774/www/test.hampi.ru/system/library/image.php on line 196
+2022-06-18 14:49:40 - PHP Warning:  imagecreatetruecolor(): Invalid image dimensions in /home/p616774/www/test.hampi.ru/system/library/image.php on line 173
+2022-06-18 14:49:40 - PHP Warning:  imagealphablending() expects parameter 1 to be resource, bool given in /home/p616774/www/test.hampi.ru/system/library/image.php on line 176
+2022-06-18 14:49:40 - PHP Warning:  imagesavealpha() expects parameter 1 to be resource, bool given in /home/p616774/www/test.hampi.ru/system/library/image.php on line 177
+2022-06-18 14:49:40 - PHP Warning:  imagecolorallocatealpha() expects parameter 1 to be resource, bool given in /home/p616774/www/test.hampi.ru/system/library/image.php on line 179
+2022-06-18 14:49:40 - PHP Warning:  imagecolortransparent() expects parameter 1 to be resource, bool given in /home/p616774/www/test.hampi.ru/system/library/image.php on line 181
+2022-06-18 14:49:40 - PHP Warning:  imagefilledrectangle() expects parameter 1 to be resource, bool given in /home/p616774/www/test.hampi.ru/system/library/image.php on line 194
+2022-06-18 14:49:40 - PHP Warning:  imagecopyresampled() expects parameter 1 to be resource, bool given in /home/p616774/www/test.hampi.ru/system/library/image.php on line 196
+2022-06-18 17:54:52 - PHP Notice:  Undefined variable: settings in /home/p616774/www/test.hampi.ru/storage-t1/modification/catalog/controller/account/register.php on line 50
+2022-06-20 10:59:37 - PHP Notice:  Undefined index:  in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1297
+2022-06-20 11:03:05 - PHP Notice:  Undefined index: firstname in /home/p616774/www/test.hampi.ru/storage-t1/modification/catalog/controller/account/register.php on line 848
+2022-06-20 11:03:05 - PHP Notice:  Undefined index: lastname in /home/p616774/www/test.hampi.ru/storage-t1/modification/catalog/controller/account/register.php on line 852
+2022-06-20 11:10:04 - PHP Notice:  Undefined index: firstname in /home/p616774/www/test.hampi.ru/storage-t1/modification/catalog/controller/account/register.php on line 848
+2022-06-20 11:10:04 - PHP Notice:  Undefined index: lastname in /home/p616774/www/test.hampi.ru/storage-t1/modification/catalog/controller/account/register.php on line 852
+2022-06-20 11:54:47 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 9
+2022-06-20 11:54:47 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 9
+2022-06-20 11:54:47 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 9
+2022-06-20 18:14:53 - PHP Notice:  Undefined index:  in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1297
+2022-06-20 18:22:04 - PHP Notice:  Undefined index:  in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1301
+2022-06-20 18:23:40 - PHP Notice:  Undefined variable: field in /home/p616774/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 1232
+2022-06-20 18:27:07 - PHP Notice:  Undefined index: firstname in /home/p616774/www/test.hampi.ru/storage-t1/modification/catalog/controller/account/register.php on line 848
+2022-06-20 18:27:07 - PHP Notice:  Undefined index: lastname in /home/p616774/www/test.hampi.ru/storage-t1/modification/catalog/controller/account/register.php on line 852
+2022-06-20 18:30:00 - PHP Notice:  Undefined index: firstname in /home/p616774/www/test.hampi.ru/storage-t1/modification/catalog/controller/account/register.php on line 848
+2022-06-20 18:30:00 - PHP Notice:  Undefined index: lastname in /home/p616774/www/test.hampi.ru/storage-t1/modification/catalog/controller/account/register.php on line 852
+2022-06-20 18:30:13 - PHP Notice:  Undefined index: firstname in /home/p616774/www/test.hampi.ru/storage-t1/modification/catalog/controller/account/register.php on line 848
+2022-06-20 18:30:13 - PHP Notice:  Undefined index: lastname in /home/p616774/www/test.hampi.ru/storage-t1/modification/catalog/controller/account/register.php on line 852

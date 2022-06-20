@@ -1,5 +1,22 @@
 <?php
 class ControllerCommonColumnLeft extends Controller {
+	
+	public function checkPermission($slug = "") {
+		$this->load->model('user/user');
+		$user_id = $this->user->getId();
+		$user_group = $this->user->getGroupId();
+		if ((int)$user_group == 15) {
+			$access_slug = explode(",",$this->model_user_user->getPermissionModerator($user_id)['access_slug']);
+			if (in_array($slug,$access_slug))
+				return true;
+			else
+				return false;
+		}
+		if ((int)$user_group == 1) {
+			return true;
+		}
+	}
+	
 	public function index() {
 		if (isset($this->request->get['user_token']) && isset($this->session->data['user_token']) && ($this->request->get['user_token'] == $this->session->data['user_token'])) {
 			$this->load->language('common/column_left');
@@ -43,6 +60,88 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
+
+      // OCFilter start
+      $this->language->load('extension/module/ocfilter');
+      
+      $ocfilter = array();
+
+      if ($this->user->hasPermission('access', 'extension/module/ocfilter')) {
+        if (isset($this->session->data['user_token'])) {
+          $token_key = 'user_token';
+        } else {
+          $token_key = 'token';
+        }
+      
+        $ocfilter[] = array(
+          'name'     => $this->language->get('text_ocfilter_filter'),
+          'href'     => $this->url->link('extension/module/ocfilter/filter', $token_key . '=' . $this->session->data[$token_key], 'SSL'),
+          'children' => array()
+        );
+
+        $ocfilter[] = array(
+          'name'     => $this->language->get('text_ocfilter_page'),
+          'href'     => $this->url->link('extension/module/ocfilter/page', $token_key . '=' . $this->session->data[$token_key], 'SSL'),
+          'children' => array()
+        );
+
+        $ocfilter[] = array(
+          'name'     => $this->language->get('text_ocfilter_setting'),
+          'href'     => $this->url->link('extension/module/ocfilter', $token_key . '=' . $this->session->data[$token_key], 'SSL'),
+          'children' => array()
+        );
+      }
+
+      if ($ocfilter) {
+        $catalog[] = array(
+          'name'     => $this->language->get('text_ocfilter'),
+          'href'     => '',
+          'children' => $ocfilter
+        );
+      }
+      // OCFilter end
+      
+
+      // OCFilter start
+      $this->language->load('extension/module/ocfilter');
+      
+      $ocfilter = array();
+
+      if ($this->user->hasPermission('access', 'extension/module/ocfilter')) {
+        if (isset($this->session->data['user_token'])) {
+          $token_key = 'user_token';
+        } else {
+          $token_key = 'token';
+        }
+      
+        $ocfilter[] = array(
+          'name'     => $this->language->get('text_ocfilter_filter'),
+          'href'     => $this->url->link('extension/module/ocfilter/filter', $token_key . '=' . $this->session->data[$token_key], 'SSL'),
+          'children' => array()
+        );
+
+        $ocfilter[] = array(
+          'name'     => $this->language->get('text_ocfilter_page'),
+          'href'     => $this->url->link('extension/module/ocfilter/page', $token_key . '=' . $this->session->data[$token_key], 'SSL'),
+          'children' => array()
+        );
+
+        $ocfilter[] = array(
+          'name'     => $this->language->get('text_ocfilter_setting'),
+          'href'     => $this->url->link('extension/module/ocfilter', $token_key . '=' . $this->session->data[$token_key], 'SSL'),
+          'children' => array()
+        );
+      }
+
+      if ($ocfilter) {
+        $catalog[] = array(
+          'name'     => $this->language->get('text_ocfilter'),
+          'href'     => '',
+          'children' => $ocfilter
+        );
+      }
+      // OCFilter end
+      
 
       // OCFilter start
       $this->language->load('extension/module/ocfilter');
@@ -281,6 +380,24 @@ class ControllerCommonColumnLeft extends Controller {
 					);
 				}
 			
+
+				if ($this->user->hasPermission('access', 'extension/news')) {
+					$marketplace[] = array(
+						'name'	   => 'News',
+						'href'     => $this->url->link('extension/news', 'user_token=' . $this->session->data['user_token'], true),
+						'children' => array()		
+					);
+				}
+			
+
+				if ($this->user->hasPermission('access', 'extension/news')) {
+					$marketplace[] = array(
+						'name'	   => 'News',
+						'href'     => $this->url->link('extension/news', 'user_token=' . $this->session->data['user_token'], true),
+						'children' => array()		
+					);
+				}
+			
 			if ($this->user->hasPermission('access', 'marketplace/event')) {
 				$marketplace[] = array(
 					'name'	   => $this->language->get('text_event'),
@@ -451,7 +568,7 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
-			if ($customer) {
+			if ($customer && $this->user->getGroupId() != 15) {
 				$data['menus'][] = array(
 					'id'       => 'menu-customer',
 					'icon'	   => 'fa-user',
@@ -793,7 +910,44 @@ class ControllerCommonColumnLeft extends Controller {
 			// Stats
 			if ($this->user->hasPermission('access', 'report/statistics')) {
 
-                    $this->load->model('setting/kbmp_marketplace');
+         		$this->load->language('common/column_left');
+                
+				$this->load->model('sale/order');
+
+				$order_total = (float)$this->model_sale_order->getTotalOrders();
+
+				$this->load->model('report/statistics');
+
+				$complete_total = (float)$this->model_report_statistics->getValue('order_complete');
+
+				if ($complete_total && $order_total) {
+					$data['complete_status'] = round(($complete_total / $order_total) * 100);
+				} else {
+					$data['complete_status'] = 0;
+				}
+
+				$processing_total = (float)$this->model_report_statistics->getValue('order_processing');
+
+				if ($processing_total && $order_total) {
+					$data['processing_status'] = round(($processing_total / $order_total) * 100);
+				} else {
+					$data['processing_status'] = 0;
+				}
+
+				$other_total = (float)$this->model_report_statistics->getValue('order_other');
+
+				if ($other_total && $order_total) {
+					$data['other_status'] = round(($other_total / $order_total) * 100);
+				} else {
+					$data['other_status'] = 0;
+				}
+
+				$data['statistics_status'] = true;
+			} else {
+				$data['statistics_status'] = false;
+			}
+			
+              $this->load->model('setting/kbmp_marketplace');
                     $this->load->language('kbmp_marketplace/common');   
                     $marketplace_options = array();
     
@@ -828,7 +982,7 @@ class ControllerCommonColumnLeft extends Controller {
                     }
 
                     //Sellers List
-                    if ($this->user->hasPermission('access', 'kbmp_marketplace/sellers_list')) {
+                    if ($this->checkPermission("sellers")) {
                         $marketplace_options[] = array(
                             'name'      => $this->language->get('text_kbmp_sellers_list_menu'),
                             'href'      => '',
@@ -878,7 +1032,7 @@ class ControllerCommonColumnLeft extends Controller {
                     } 
                 
                     //Products Menu
-                    if ($this->user->hasPermission('access', 'kbmp_marketplace/products_list')) {
+                    if ($this->checkPermission("products")) {
                         $marketplace_options[] = array(
                             'name'	=> $this->language->get('text_kbmp_sellers_products_products'),
                             'href'      => '',
@@ -903,7 +1057,7 @@ class ControllerCommonColumnLeft extends Controller {
                     }
                 
                     //Sellers Orders
-                    if ($this->user->hasPermission('access', 'kbmp_marketplace/sellers_order')) {
+                    if ($this->checkPermission("orders")) {
                         $marketplace_options[] = array(
                             'name'	=> $this->language->get('text_kbmp_sellers_orders_menu'),
                             'href'      => '',
@@ -945,15 +1099,6 @@ class ControllerCommonColumnLeft extends Controller {
                             )		
                         );
                     }
-                
-                    //Support
-                    if ($this->user->hasPermission('access', 'kbmp_marketplace/support')) {
-                        $marketplace_options[] = array(
-                            'name'      => $this->language->get('text_kbmp_support'),
-                            'href'      => $this->url->link('kbmp_marketplace/support', 'user_token=' . $this->session->data['user_token'], true),
-                            'children'  => array()		
-                        );
-                    }
 
                     if ($marketplace_options && $this->model_setting_kbmp_marketplace->checkInstalled('kbmp_marketplace')) {
                         $data['menus'][] = array(
@@ -964,42 +1109,6 @@ class ControllerCommonColumnLeft extends Controller {
                             'children'  => $marketplace_options
                         );
                     }
-                    $this->load->language('common/column_left');			
-                
-				$this->load->model('sale/order');
-
-				$order_total = (float)$this->model_sale_order->getTotalOrders();
-
-				$this->load->model('report/statistics');
-
-				$complete_total = (float)$this->model_report_statistics->getValue('order_complete');
-
-				if ($complete_total && $order_total) {
-					$data['complete_status'] = round(($complete_total / $order_total) * 100);
-				} else {
-					$data['complete_status'] = 0;
-				}
-
-				$processing_total = (float)$this->model_report_statistics->getValue('order_processing');
-
-				if ($processing_total && $order_total) {
-					$data['processing_status'] = round(($processing_total / $order_total) * 100);
-				} else {
-					$data['processing_status'] = 0;
-				}
-
-				$other_total = (float)$this->model_report_statistics->getValue('order_other');
-
-				if ($other_total && $order_total) {
-					$data['other_status'] = round(($other_total / $order_total) * 100);
-				} else {
-					$data['other_status'] = 0;
-				}
-
-				$data['statistics_status'] = true;
-			} else {
-				$data['statistics_status'] = false;
-			}
 
 			return $this->load->view('common/column_left', $data);
 		}

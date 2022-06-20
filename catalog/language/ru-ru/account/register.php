@@ -19,6 +19,7 @@ $_['text_agree']           = 'Я прочитал и согласен с усл�
 $_['entry_customer_group'] = 'Группа покупателей';
 $_['entry_firstname']      = 'Имя';
 $_['entry_lastname']       = 'Фамилия';
+$_['entry_sellerfio']      = 'ФИО';
 $_['entry_email']          = 'E-Mail';
 $_['entry_telephone']      = 'Телефон';
 $_['entry_fax']            = 'Факс';

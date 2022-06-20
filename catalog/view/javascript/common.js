@@ -612,32 +612,9 @@ $(document).ready(function(){
 		$(this).closest(".ocf-filter").toggleClass("ocf-open");
 	});
 	
-//masks
-	function initPhoneMask(fieldId) {
-		$(fieldId).attr("maxlength", "14");
-		$.mask.definitions['9']='';
-		$.mask.definitions['d']='[0-9]';
-		$(fieldId).mask("+7 (ddd) ddd-dd-dd");
-//		$(fieldId).intlTelInput({
-//			  utilsScript:'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.13/js/utils.min.js',
-//			  defaultCountry: 'auto',
-//			  autoHideDialCode:false,
-//		//       autoPlaceholder:"aggressive",
-//			  placeholderNumberType:"MOBILE",
-//			  preferredCountries:['ru','by', 'kz', 'am', 'kg', 'uz'],
-//			  separateDialCode:true,
-//			  customPlaceholder:function(selectedCountryPlaceholder,selectedCountryData){
-//			  return '+'+selectedCountryData.dialCode+' '+selectedCountryPlaceholder.replace(/[0-9]/g,'_');
-//			  },
-//		});
-//		$(fieldId).on("close:countrydropdown",function(e,countryData){
-//		  $(this).val('');
-//		  $(this).mask($(this).attr('placeholder').replace(/[_]/g,'d'));
-//		});
-  	}
-  	$(".mask,input[type='tel']").each(function(){
-    	initPhoneMask($(this));
-  	});
+	//masks
+	$("input.field_phoneking, input.mask").inputmask("+7 (999) 999-99-99");
+	$("input.maskEmail, [name='email']").inputmask("email");
 });
 
 	function toolsCartFix(){
@@ -817,3 +794,12 @@ function compareArrow(){
 }
 $(document).ready(compareArrow);
 $(window).resize(compareArrow);
+
+$(document).ready(function(){
+	$("a.registerSeller__steps-button").click(function(e){
+		e.preventDefault();
+		$(".registerSeller__steps-item").removeClass("active");
+		let whatStep = $(this).attr("data-step");
+		$(".registerSeller__steps-item").eq(whatStep-1).addClass("active");
+	})
+});

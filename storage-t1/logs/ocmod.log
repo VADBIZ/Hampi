@@ -1,4 +1,4 @@
-2022-06-07 17:41:28 - MOD: Modification Default
+2022-06-20 18:30:23 - MOD: Modification Default
 
 FILE: system/engine/action.php
 REGEX: ~(require|include)(_once)?\(([^)]+)~
@@ -31,7 +31,7 @@ MOD: MEGAMENU PRO
 
 FILE: catalog/view/theme/default/template/common/header.twig
 CODE: {{ menu }}
-LINE: 151
+LINE: 150
 
 FILE: catalog/view/theme/default/template/common/home.twig
 CODE: <div id="content" class="{{ class }}">{{ content_top }}{{ content_bottom }}</div>
@@ -59,7 +59,7 @@ LINE: 1636
 
 FILE: admin/controller/common/column_left.php
 CODE: if ($this->user->hasPermission('access', 'catalog/filter'))
-LINE: 86
+LINE: 185
 
 FILE: admin/controller/design/layout.php
 CODE: 'module/' . $code
@@ -227,8 +227,6 @@ CODE: $this->registry->set('url'
 LINE: 47
 ----------------------------------------------------------------
 MOD: <font color="#15C403">Knowband Multivendor Marketplace</font>
-CODE: $this->load->model('sale/order');
-LINE: 959
 CODE: $data['telephone'] = $this->config->get('config_telephone');
 LINE: 175
 CODE: public function index() {
@@ -246,20 +244,21 @@ NOT FOUND - OPERATIONS ABORTED!
 
 FILE: catalog/controller/account/register.php
 CODE: $this->load->language('account/register');
-LINE: 20
+LINE: 21
+LINE: 290
 CODE: $data['action'] = $this->url->link('account/register', '', true);
-LINE: 116
+LINE: 274
 CODE: $this->document->addStyle('catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css');
-LINE: 31
+LINE: 39
 CODE: $data['header'] = $this->load->controller('common/header');
-LINE: 370
+LINE: 572
 CODE: $data['customer_groups'] = array();
-LINE: 133
+LINE: 312
 CODE: if ($this->config->get('captcha_' . $this->config->get('config_captcha') . '_status') && in_array('register', (array)$this->config->get('config_captcha_page'))) {
-LINE: 229
-LINE: 467
+LINE: 431
+LINE: 841
 CODE: $customer_id = $this->model_account_customer->addCustomer($this->request->post);
-LINE: 137
+LINE: 171
 
 FILE: catalog/view/theme/default/template/account/register.twig
 CODE: {{ footer }}
@@ -292,20 +291,20 @@ NOT FOUND - OPERATIONS ABORTED!
 
 FILE: admin/controller/customer/customer.php
 CODE: $this->response->setOutput($this->load->view('customer/customer_form', $data));
-LINE: 1120
+LINE: 1089
 CODE: $this->response->setOutput($this->load->view('customer/customer_form', $data));
-LINE: 1130
+LINE: 1099
 CODE: $this->model_customer_customer->addCustomer($this->request->post);
 LINE: 33
 CODE: $data['header'] = $this->load->controller('common/header');
-LINE: 673
-LINE: 1143
-LINE: 1499
+LINE: 678
+LINE: 1112
+LINE: 1385
 CODE: $this->model_customer_customer->editCustomer($this->request->get['customer_id'], $this->request->post);
 LINE: 107
 CODE: $data['action']
-LINE: 855
-LINE: 862
+LINE: 854
+LINE: 861
 CODE: $this->response->redirect($this->url->link('customer/customer', 'user_token=' . $this->session->data['user_token'] . $url, true));
 LINE: 82
 LINE: 163
@@ -314,11 +313,11 @@ LINE: 291
 LINE: 356
 LINE: 421
 CODE: protected function getForm() {
-LINE: 914
+LINE: 919
 CODE: if ($this->error && !isset($this->error['warning'])) {
-LINE: 1644
+LINE: 1535
 CODE: if (isset($this->error['address'])) {
-LINE: 1010
+LINE: 1015
 CODE: $this->model_customer_customer->editCustomer($this->request->get['customer_id'], $this->request->post);
 LINE: 105
 
@@ -326,13 +325,13 @@ FILE: admin/view/template/customer/customer_form.twig
 CODE: <li><a href="#tab-affiliate" data-toggle="tab">{{ tab_affiliate }}</a></li>
 LINE: 33
 CODE: <div class="tab-pane" id="tab-affiliate">
-LINE: 602
+LINE: 621
 CODE: <li><a href="#tab-ip" data-toggle="tab">{{ tab_ip }}</a></li>
 LINE: 43
 CODE: <div class="tab-pane" id="tab-ip">
-LINE: 1041
+LINE: 1060
 CODE: {{ footer }}
-LINE: 1702
+LINE: 1737
 
 FILE: admin/view/template/catalog/product_form.twig
 CODE: <li><a href="#tab-data" data-toggle="tab">{{ tab_data }}</a></li>
@@ -405,7 +404,7 @@ LINE: 386
 
 FILE: admin/model/customer/customer.php
 CODE: $this->db->query("UPDATE " . DB_PREFIX . "customer SET customer_group_id = '" . (int)$data['customer_group_id'] . "', firstname = '" . $this->db->escape($data['firstname']) . "', lastname = '" . $this->db->escape($data['lastname']) . "', email = '" . $this->db->escape($data['email']) . "', telephone = '" . $this->db->escape($data['telephone']) . "', custom_field = '" . $this->db->escape(isset($data['custom_field']) ? json_encode($data['custom_field']) : json_encode(array())) . "', newsletter = '" . (int)$data['newsletter'] . "', status = '" . (int)$data['status'] . "', safe = '" . (int)$data['safe'] . "' WHERE customer_id = '" . (int)$customer_id . "'");
-LINE: 204
+NOT FOUND - OPERATIONS ABORTED!
 
 FILE: catalog/model/account/return.php
 CODE: return $this->db->getLastId();
@@ -445,7 +444,7 @@ NOT FOUND - OPERATIONS ABORTED!
 
 FILE: catalog/controller/account/login.php
 CODE: $this->response->setOutput($this->load->view('account/login', $data));
-LINE: 151
+LINE: 173
 
 FILE: catalog/view/theme/default/template/account/login.twig
 CODE: <a href="{{ register }}" class="btn btn-primary">{{ button_continue }}</a></div>
@@ -453,7 +452,7 @@ NOT FOUND - OPERATIONS ABORTED!
 ----------------------------------------------------------------
 MOD: Advanced News System
 CODE: if ($this->user->hasPermission('access', 'marketplace/event')) {
-LINE: 283
+LINE: 400
 CODE: $data['contact'] = $this->url->link('information/contact');
 NOT FOUND - OPERATIONS ABORTED!
 

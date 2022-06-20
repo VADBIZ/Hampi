@@ -10,16 +10,16 @@ class ModelKbmpmarketplaceRegister extends Model {
                 if ($field_data['required'] == 1) {
                     $required = 'required';
                 }
-                $html.= '<div class="form-group ' . $required . '">';
-                $html.= '<label class="col-sm-2 control-label">' . $field_data["label"] . '</label>';
-                $html.= '<div class="col-sm-10">';
+                $html.= '<div class="form-group ' . $required . ' ' . $field_data['html_class'] . '">';
+                $html.= '<label class="control-label">' . $field_data["label"] . '</label>';
+                $html.= '<div>';
                 if ($field_data['type'] == 'text') {
                     $name = $field_data["field_name"];
                     $value_data = '';
                     if (isset($custom_field_data[$name])) {
                         $value_data = $custom_field_data[$name];
                     }
-                    $html.= '<input type="text" name="' . $field_data["field_name"] . '" value="' . $value_data . '" placeholder="' . $field_data["placeholder"] . '" id="' . $field_data["html_id"] . '"  class="form-control ' . $field_data["html_class"] . ' ' . $required . '" maxlength="' . $field_data["max_length"] . '" minlength="' . $field_data["min_length"] . '" data-validation= "' . $field_data["validation"] . '" data-type="text" data-error="' . $field_data["error_msg"] . '" />';
+                    $html.= '<input type="text" name="' . $field_data["field_name"] . '" value="' . $value_data . '" placeholder="' . $field_data["placeholder"] . '" id="' . $field_data["html_id"] . '"  class="form-control loginbox__input ' . $field_data["html_class"] . ' ' . $required . '" maxlength="' . $field_data["max_length"] . '" minlength="' . $field_data["min_length"] . '" data-validation= "' . $field_data["validation"] . '" data-type="text" data-error="' . $field_data["error_msg"] . '" />';
                 } else if ($field_data['type'] == 'select') {
                     $multiple = '';
                     $value_data = '';

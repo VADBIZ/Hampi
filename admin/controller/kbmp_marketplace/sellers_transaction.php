@@ -270,11 +270,27 @@ class ControllerKbmpMarketplaceSellersTransaction extends Controller {
         }
     }
 
+	public function checkPermission($slug = "") {
+		$this->load->model('user/user');
+		$user_id = $this->user->getId();
+		$user_group = $this->user->getGroupId();
+		if ((int)$user_group == 15) {
+			$access_slug = explode(",",$this->model_user_user->getPermissionModerator($user_id)['access_slug']);
+			if (in_array($slug,$access_slug))
+				return true;
+			else
+				return false;
+		}
+		if ((int)$user_group == 1) {
+			return true;
+		}
+	}
+	
     protected function validateForm() {
 
         $this->load->model('kbmp_marketplace/kbmp_marketplace');
 
-        if (!$this->user->hasPermission('modify', 'kbmp_marketplace/sellers_transaction')) {
+        if (!$this->checkPermission("sellers")) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
 

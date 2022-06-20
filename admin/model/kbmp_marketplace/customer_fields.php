@@ -4,7 +4,7 @@ class ModelKbmpMarketplaceCustomerFields extends Model {
 
 	//функция получения общего списка полей
 	public function getcustom_fields($data) {
-        $sql = "SELECT field.id_field,field.type,field.active,field_lang.label,field.required,field.max_length,field.min_length,field.file_extension FROM " . DB_PREFIX . "kb_mp_custom_fields as field " . "INNER JOIN " . DB_PREFIX . "kb_mp_custom_fields_lang field_lang "
+        $sql = "SELECT field.id_field,field.type,field.active,field_lang.label,field.required,field.max_length,field.min_length,field.file_extension,field.html_class,field.html_id FROM " . DB_PREFIX . "kb_mp_custom_fields as field " . "INNER JOIN " . DB_PREFIX . "kb_mp_custom_fields_lang field_lang "
 		. "ON field.id_field = field_lang.id_field "
 		. "WHERE field_lang.id_lang =  '" . (int) $data['lang_id'] . "'";
 		$query = $this->db->query($sql);

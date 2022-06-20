@@ -295,7 +295,7 @@
                             </select>
                           </div>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group hidden">
                           <label class="col-sm-2 control-label" for="input-safe"><span data-toggle="tooltip" title="{{ help_safe }}">{{ entry_safe }}</span></label>
                           <div class="col-sm-10">
                             <select name="safe" id="input-safe" class="form-control">
@@ -318,18 +318,37 @@
 								<legend>{{ text_sellerfields }}</legend>
 								{% for custom_field in sellers_fields %}
 									{% if custom_field.active %}
+										{% if custom_field.type == 'select' %}
+										<div class="form-group seller-field seller-field{{ custom_field.id_field }}{% if custom_field.required %} required{% endif %}">
+										  <label class="col-sm-2 control-label" for="input-seller-field{{ custom_field.id_field }}">{{ custom_field.label }}</label>
+										  <div class="col-sm-10">
+											<select name="seller_field[{{ custom_field.id_field }}]" id="input-seller-field{{ custom_field.id_field }}" class="form-control">
+											  <option value="">{{ text_select }}</option>
+											  {% for custom_field_value in custom_field.custom_field_value %}
+												{% if seller_field[custom_field.id_field] == custom_field_value.value %}
+													<option value="{{ custom_field_value.value }}" selected="selected">{{ custom_field_value.name }}</option>
+												{% else %}
+													<option value="{{ custom_field_value.value }}">{{ custom_field_value.name }}</option>
+												{% endif %}
+												{% endfor %}
+											</select>
+											{% if error_custom_field[custom_field.id_field] %}
+											<div class="text-danger">{{ error_custom_field[custom_field.id_field] }}</div>
+											{% endif %}</div>
+										</div>
+										{% endif %}
 										{% if custom_field.type == 'text' %}
 											<div class="form-group seller-field seller-field{{ custom_field.id_field }}{% if custom_field.required %} required{% endif %}">
 											  <label class="col-sm-2 control-label" for="input-seller-field{{ custom_field.id_field }}">{{ custom_field.label }}</label>
 											  <div class="col-sm-10">
-												<input type="text" name="seller_field[{{ custom_field.id_field }}]" value="{{ seller_field[custom_field.id_field] ? seller_field[custom_field.id_field] : '' }}" placeholder="{{ custom_field.label }}" id="input-seller-field{{ custom_field.id_field }}" class="form-control" />
+												<input type="text" name="seller_field[{{ custom_field.id_field }}]" value="{{ seller_field[custom_field.id_field] ? seller_field[custom_field.id_field] : '' }}" placeholder="{{ custom_field.label }}" id="input-seller-field{{ custom_field.id_field }}" class="form-control {{ custom_field.html_class }}"  />
 												{% if error_seller_field[custom_field.id_field] %}
 												<div class="text-danger">{{ error_seller_field[custom_field.id_field] }}</div>
 												{% endif %}</div>
 											</div>
 										{% endif %}
 										{% if custom_field.type == 'file' %}
-											<div class="form-group seller-field seller-field{{ custom_field.id_field }}">
+											<div class="form-group seller-field seller-field{{ custom_field.id_field }}{% if custom_field.required %} required{% endif %}">
 											  <label class="col-sm-2 control-label">{{ custom_field.label }}</label>
 											  <div class="col-sm-10">
 												<button type="button" id="button-seller-field{{ custom_field.id_field }}" data-loading-text="{{ text_loading }}" class="btn btn-default"><i class="fa fa-upload"></i> {{ button_upload }}</button>
@@ -1051,6 +1070,22 @@
     </div>
   </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/4.0.9/jquery.inputmask.bundle.min.js" integrity="sha512-VpQwrlvKqJHKtIvpL8Zv6819FkTJyE1DoVNH0L2RLn8hUPjRjkS/bCYurZs0DX9Ybwu9oHRHdBZR9fESaq8Z8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/css/suggestions.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/js/jquery.suggestions.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(".field_phoneking").inputmask("+7 (999) 999-99-99");
+		$(".field_emailking").inputmask("email");
+	});
+	var dadataToken = "2665fdf7fc2ea41b7ae830eb47ca0d0379c543f7";
+	//autocomplete address
+	$(".field_uraddress").suggestions({
+		token: dadataToken,
+		type: "ADDRESS"
+	});
+</script>
+	
   <script type="text/javascript"><!--
   $('input[name="affiliate"]').on('change', function() {
     if ($(this).val() == '1') { 

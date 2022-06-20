@@ -82,4 +82,9 @@ class ModelUserUserGroup extends Model {
 			$this->db->query("UPDATE " . DB_PREFIX . "user_group SET permission = '" . $this->db->escape(json_encode($data)) . "' WHERE user_group_id = '" . (int)$user_group_id . "'");
 		}
 	}
+	
+	public function getUsersByGroup($user_group_id){
+		$user_list = $this->db->query("SELECT * FROM " . DB_PREFIX . "user WHERE user_group_id = '" . (int)$user_group_id . "'");
+		return $user_list->rows;
+	}
 }

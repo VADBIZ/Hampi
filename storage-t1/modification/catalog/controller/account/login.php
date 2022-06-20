@@ -50,7 +50,6 @@ class ControllerAccountLogin extends Controller {
 
 		$this->load->language('account/login');
 
-		$this->document->setTitle($this->language->get('heading_title'));
 		$this->document->setRobots('noindex,follow');
 
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
@@ -107,7 +106,6 @@ class ControllerAccountLogin extends Controller {
 			$data['redirect'] = $this->request->post['redirect'];
 		} elseif (isset($this->session->data['redirect'])) {
 			$data['redirect'] = $this->session->data['redirect'];
-
 			unset($this->session->data['redirect']);
 		} else {
 			$data['redirect'] = '';
@@ -132,6 +130,24 @@ class ControllerAccountLogin extends Controller {
 		} else {
 			$data['password'] = '';
 		}
+		
+		//проверка на продавца
+		if (isset($this->request->get['seller']) && $this->request->get['seller'] == "1") {
+			$this->document->setTitle($this->language->get('heading_title_seller'));
+			$data['text_account_already'] = sprintf($this->language->get('text_account_already'), $this->url->link('account/register', 'seller_register=1', true));
+			
+			$data['banner'] = $this->load->controller('extension/module/banner',array(
+				'banner_id'=>9,
+				'view'=>'sellerlogin',
+				'width'=>40,
+				'height'=>40
+			));
+			
+			$data['redirect'] = $this->url->link('kbmp_marketplace/dashboard', '', true);
+			
+		} else {
+			$this->document->setTitle($this->language->get('heading_title'));
+		}
 
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
@@ -139,7 +155,13 @@ class ControllerAccountLogin extends Controller {
 		$data['content_bottom'] = $this->load->controller('common/content_bottom');
 		$data['footer'] = $this->load->controller('common/footer');
 		$data['header'] = $this->load->controller('common/header');
+		$data['headerEmpty'] = $this->load->controller('common/headerEmpty');
+		$data['footerEmpty'] = $this->load->controller('common/footerEmpty');
 
+		//проверка на продавца
+		if (isset($this->request->get['seller']) && $this->request->get['seller'] == "1") {
+			$this->response->setOutput($this->load->view('account/loginSeller', $data));
+		} else {
               
                     $store_id = (int) $this->config->get('config_store_id');
                     $settings = $this->model_setting_kbmp_marketplace->getSetting('kbmp_marketplace', $store_id);
@@ -149,7 +171,8 @@ class ControllerAccountLogin extends Controller {
                     $data['register_seller_txt'] = $this->language->get('text_seller_register');
                     //Ends
                 
-		$this->response->setOutput($this->load->view('account/login', $data));
+			$this->response->setOutput($this->load->view('account/login', $data));
+		}
 	}
 
 	protected function validate() {

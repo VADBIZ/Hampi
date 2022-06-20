@@ -125,4 +125,20 @@ class ModelUserUser extends Model {
 	public function deleteLoginAttempts($username) {
 		$this->db->query("DELETE FROM `" . DB_PREFIX . "customer_login` WHERE email = '" . $this->db->escape(utf8_strtolower($username)) . "'");
 	}
+	
+	//функция обновления доступов модераторам
+	public function updatePermissionModerator($data) {
+		$this->db->query("UPDATE `" . DB_PREFIX . "moderators_access` SET access_slug = '" . $this->db->escape($data['access_slug']) . "' WHERE moderator_id = '" . (int)$data['user_id'] . "'");
+	}
+	
+	//функция добавления доступов модераторам
+	public function addPermissionModerator($data) {
+		$this->db->query("INSERT INTO `" . DB_PREFIX . "moderators_access` SET access_slug = '" . $this->db->escape($data['access_slug']) . "', moderator_id ='" . $this->db->escape($data['user_id']) . "'");
+	}
+	
+	//функция считывания доступов у модератора
+	public function getPermissionModerator($user_id) {
+		$query = $this->db->query("SELECT * FROM `" . DB_PREFIX . "moderators_access` WHERE moderator_id = '" . $this->db->escape($user_id) . "'");
+		return $query->row;
+	}
 }

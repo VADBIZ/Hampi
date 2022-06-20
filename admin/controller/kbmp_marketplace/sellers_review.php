@@ -742,8 +742,24 @@ class ControllerKbmpMarketplaceSellersReview extends Controller {
         
     }
     
+	public function checkPermission($slug = "") {
+		$this->load->model('user/user');
+		$user_id = $this->user->getId();
+		$user_group = $this->user->getGroupId();
+		if ((int)$user_group == 15) {
+			$access_slug = explode(",",$this->model_user_user->getPermissionModerator($user_id)['access_slug']);
+			if (in_array($slug,$access_slug))
+				return true;
+			else
+				return false;
+		}
+		if ((int)$user_group == 1) {
+			return true;
+		}
+	}
+	
     protected function validateForm() {
-        if (!$this->user->hasPermission('modify', 'kbmp_marketplace/sellers_review')) {
+        if (!$this->checkPermission("reviews")) {
             $this->error['warning'] = $this->language->get('error_permission');
         }
 

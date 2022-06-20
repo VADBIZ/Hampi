@@ -69,6 +69,22 @@ class ControllerUserUser extends Controller {
 			if (isset($this->request->get['page'])) {
 				$url .= '&page=' . $this->request->get['page'];
 			}
+			
+			//добавление доступов модераторам
+			if (isset($this->request->post['accesskbmp'])) {
+				$accesskbmp = $this->request->post['accesskbmp'];
+				$user_id = $this->request->get['user_id'];
+				$access_slug = implode(",", $accesskbmp);
+				$data = [
+					"user_id" => $user_id,	
+					"access_slug" => $access_slug	
+				];
+				if (count($this->model_user_user->getPermissionModerator($user_id)) > 0) {
+					$this->model_user_user->updatePermissionModerator($data);
+				} else {
+					$this->model_user_user->addPermissionModerator($data);
+				}
+			}
 
 			$this->response->redirect($this->url->link('user/user', 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
@@ -414,6 +430,30 @@ class ControllerUserUser extends Controller {
 			$data['status'] = 0;
 		}
 
+		//модератор?
+		$moderator = false;
+		if ((int)$data['user_group_id'] == 15) {
+			$moderator = true;
+			
+			//список функций модератора
+			$moderator_access = array(
+				"Продавцы" => "sellers",
+				"Заказы" => "orders",
+				"Товары" => "products",
+				"Отзывы" => "reviews"
+			);
+			$data["moderator_access"] = $moderator_access;
+			
+			if (isset($this->request->get['user_id'])) {
+				$user_id = $this->request->get['user_id'];
+				if ($this->model_user_user->getPermissionModerator($user_id)) {
+					$data['moderator_access_current'] = explode(",",$this->model_user_user->getPermissionModerator($user_id)['access_slug']);
+				}
+			}
+			
+		}
+		$data['moderator'] = $moderator;
+		
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');

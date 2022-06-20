@@ -3,11 +3,14 @@
 // *	@license	GNU General Public License version 3; see LICENSE.txt
 
 // Heading
-$_['heading_title']         = 'Участники';
+$_['heading_title']         = 'Покупатели';
+
+$_['text_account']			= 'Основная информация';
+$_['text_password']			= 'Безопасность';
 
 // Text
 $_['text_success']          = 'Настройки успешно изменены!';
-$_['text_list']             = 'Список участников';
+$_['text_list']             = 'Список покупателей';
 $_['text_add']              = 'Добавить';
 $_['text_edit']             = 'Редактирование';
 $_['text_default']          = 'По умолчанию';
@@ -15,14 +18,11 @@ $_['text_balance']          = 'Баланс';
 
 $_['text_other']			= 'Другое';
 
-
-$_['text_sellerfields']     = 'Поля продавца';
-
 // Column
 $_['column_name']           = 'Контактное лицо';
 $_['column_email']          = 'E-Mail';
-$_['column_customer_group'] = 'Группа участников';
-$_['column_status']         = 'Статус';
+$_['column_customer_group'] = 'Группа покупателя';
+$_['column_status']         = 'Глобальный статус';
 $_['column_date_added']     = 'Дата добавления';
 $_['column_comment']        = 'Комментарий';
 $_['column_description']    = 'Описание';
@@ -36,14 +36,14 @@ $_['text_login']            = 'Войти в магазин';
 $_['text_unlock']           = 'Разблокировать аккаунт';
 
 // Entry
-$_['entry_customer_group']  = 'Группа участников';
+$_['entry_customer_group']  = 'Группа покупателя';
 $_['entry_firstname']       = 'Имя';
 $_['entry_lastname']        = 'Фамилия';
 $_['entry_email']           = 'E-Mail';
 $_['entry_telephone']       = 'Телефон';
 $_['entry_fax']             = 'Факс';
 $_['entry_newsletter']      = 'Рассылка';
-$_['entry_status']          = 'Статус';
+$_['entry_status']          = 'Глобальный статус';
 $_['entry_approved']        = 'Одобрить';
 $_['entry_safe']            = 'Безопасный';
 $_['entry_password']        = 'Пароль';
@@ -60,7 +60,7 @@ $_['entry_comment']         = 'Комментарий';
 $_['entry_description']     = 'Описание';
 $_['entry_amount']          = 'Итого';
 $_['entry_points']          = 'Бонусные баллы';
-$_['entry_name']            = 'Имя участника';
+$_['entry_name']            = 'Имя покупателя';
 $_['entry_ip']              = 'IP';
 $_['entry_date_added']      = 'Дата добавления';
 

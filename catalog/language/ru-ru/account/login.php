@@ -4,9 +4,12 @@
 
 // Heading
 $_['heading_title']                = 'Авторизация';
+$_['heading_title_seller']         = 'Авторизация продавца';
+$_['form_title']         		   = 'Вход продавца';
 $_['heading_client_title']         = 'Войти или создать профиль';
 
 // Text
+$_['text_account_already'] 		   = 'Впервые у нас? <a href="%s">Зарегистрируйтесь!</a>';
 $_['text_account']                 = 'Аккаунт';
 $_['text_login']                   = 'Авторизация';
 $_['button_next']                  = 'Вход';

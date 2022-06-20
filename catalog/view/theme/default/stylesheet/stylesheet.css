@@ -87,7 +87,7 @@ div.required .control-label:before {
 	min-height: 600px;
 }
 /* header */
-body {
+body:not(.noPadding) {
 	padding-top: 150px;
 }
 .header {
@@ -849,7 +849,7 @@ button {
 		top: 148px;
 		max-height: none;
 	}
-	body {
+	body:not(.noPadding) {
 		padding-top: 150px;
 	}
 }
@@ -867,7 +867,7 @@ button {
 		min-width: 1px;
 		max-width: 15px;
 	}
-	body {
+	body:not(.noPadding) {
 		padding-top: 132px;
 	}
 	.header__menu-btn-icon span:nth-child(2) {
@@ -5093,4 +5093,307 @@ ul.col-sm-8, .col-pad-0 {padding:0;}
 	-webkit-box-shadow: none;
 	box-shadow: none;
 	transition: .2s all;
+}
+
+.registerSeller {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	-moz-flex-direction: row;
+	-ms-flex-direction: row;
+	-o-flex-direction: row;
+	flex-direction: row;
+	min-height: 100vh;
+	position: relative;
+}
+
+.registerSeller .container {
+	position: relative;
+	z-index: 1;
+	width: 1215px;
+}
+
+.registerSeller__bg {
+	width: 56.2%;
+	height: 100%;
+	background: url("../image/registerSeller.jpeg") no-repeat;
+	background-position: center;
+	position: absolute;
+	border-radius: 0px 20px 20px 0px;
+	overflow: hidden;
+}
+
+.registerSeller__bg:before {
+	width: 100%;
+	background: -webkit-linear-gradient(rgba(91, 178, 255, 0.9) 0%, rgba(53, 146, 228, 0.9) 100%);
+	background: -o-linear-gradient(rgba(91, 178, 255, 0.9) 0%, rgba(53, 146, 228, 0.9) 100%);
+	background: linear-gradient(rgba(91, 178, 255, 0.9) 0%, rgba(53, 146, 228, 0.9) 100%);
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 100%;
+	content: "";
+}
+
+.registerSeller__top {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	-moz-flex-direction: row;
+	-ms-flex-direction: row;
+	-o-flex-direction: row;
+	flex-direction: row;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: space-between;
+	padding-top: 30px;
+}
+
+.registerSeller__already {
+	font: 15px "Roboto";
+	color: #272727;
+}
+
+.registerSeller__wrap {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	-moz-flex-direction: row;
+	-ms-flex-direction: row;
+	-o-flex-direction: row;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-top: 70px;
+}
+
+.registerSeller__left {
+	max-width: 585px;
+	min-width: 585px;
+}
+
+.registerSeller__title {
+	font: 700 40px/44px "Roboto";
+	color: #fff;
+}
+
+.sellerlogin__banner-wrap {
+	margin-top: 80px;
+	padding: 0 20px;
+}
+
+.sellerlogin__banner-item {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	-moz-flex-direction: row;
+	-ms-flex-direction: row;
+	-o-flex-direction: row;
+	flex-direction: row;
+	-ms-align-items: center;
+	align-items: center;
+}
+
+.sellerlogin__banner-item:not(:last-child) {
+	margin-bottom: 50px;
+}
+
+.sellerlogin__banner-icon {
+	min-width: 80px;
+	max-width: 80px;
+}
+
+.sellerlogin__banner-text {
+	font: 15px/16px "Roboto";
+	color: #fff;
+}
+
+.registerSeller__right {
+	max-width: 380px;
+	min-width: 380px;
+}
+
+.registerSeller__subtitle {
+	font: 700 28px/23px "Roboto";
+	color: #272727;
+	margin-bottom: 45px;
+}
+
+.registerSeller__right .form-group:nth-child(1) {
+	margin-bottom: 30px;
+}
+
+.registerSeller__steps-item {
+	display: none;
+	padding: 20px;
+	box-shadow: 0 0 16px -5px rgba(0, 0, 0, 0.1);
+}
+
+.registerSeller__steps-item.active {
+	display: block;
+}
+
+.registerSeller__steps-title {
+	font: 700 22px/18px "Roboto";
+	margin-bottom: 20px;
+}
+
+.registerSeller__form .form-group {
+	margin-bottom: 20px;
+}
+
+.registerSeller__steps-item:nth-child(2) .form-group {
+	margin-bottom: 0;	
+}
+
+.registerSeller__steps-buttons {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: -ms-flex;
+	display: -o-flex;
+	display: flex;
+	-webkit-flex-direction: row;
+	-moz-flex-direction: row;
+	-ms-flex-direction: row;
+	-o-flex-direction: row;
+	flex-direction: row;
+	justify-content: flex-end;
+}
+
+.registerSeller__steps-button {
+	background: -webkit-linear-gradient(299deg, #FF9B3C 0.9%, #FFAF38 48.4%, #FFC837 101.57%);
+	background: -o-linear-gradient(299deg, #FF9B3C 0.9%, #FFAF38 48.4%, #FFC837 101.57%);
+	background: linear-gradient(29deg, #FF9B3C 0.9%, #FFAF38 48.4%, #FFC837 101.57%);
+	border-radius: 10px;
+	display: -webkit-inline-flex;
+	display: -moz-inline-flex;
+	display: -ms-inline-flex;
+	display: -o-inline-flex;
+	display: inline-flex;
+	-webkit-flex-direction: row;
+	-moz-flex-direction: row;
+	-ms-flex-direction: row;
+	-o-flex-direction: row;
+	flex-direction: row;
+	-ms-align-items: center;
+	align-items: center;
+	justify-content: center;
+	max-width: 208px;
+	flex: 1;
+	height: 45px;
+	font: 600 15px/12px "Roboto";
+	color: #fff;
+	border: none;
+}
+
+.registerSeller__steps-button:nth-child(2) {
+	margin-left: 15px;
+}
+
+.field_docinn.form-control {
+	border: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+}
+
+.registerSeller .field_7 {
+	display: none;
+}
+
+.registerSeller__agree {
+	margin: 40px 0 15px;
+}
+
+@media (max-width:990px) {
+	.registerSeller .container {
+		width: 100%;
+	}
+	.registerSeller__title {
+		font: 700 30px/34px "Roboto";
+	}
+	.sellerlogin__banner-text br {
+		display: none;
+	}
+	.registerSeller__left{
+		max-width: 50%;
+    	min-width: 50%;
+	}
+	.registerSeller__right{
+		max-width: calc(100%/2 - 90px);
+    	min-width: calc(100%/2 - 90px);
+	}
+}
+
+@media (max-width:780px) {
+	.registerSeller__wrap {
+		-webkit-flex-direction: column;
+		-moz-flex-direction: column;
+		-ms-flex-direction: column;
+		-o-flex-direction: column;
+		flex-direction: column;
+	}
+	.registerSeller__left {
+		display: none;
+	}
+	.registerSeller__already {
+		color: #fff;
+	}
+	.registerSeller__already a {
+		color: #FFC438;
+	}
+	.registerSeller__bg {
+		width: 100%;
+		max-height: 320px;
+		border-radius: 0;
+	}
+	.registerSeller__right {
+		max-width: 470px;
+		min-width: 470px;
+		margin: 0 auto;
+		background: #fff;
+		padding: 40px 50px;
+		border-radius: 20px;
+		box-shadow: 6px 6px 16px -5px rgba(0, 0, 0, 0.1);
+	}
+}
+
+@media (max-width:600px) {
+	.registerSeller__wrap {
+		margin-top: 50px;
+	}
+	.registerSeller__already {
+		max-width: 150px;
+		line-height: 25px;
+	}
+}
+
+@media (max-width:480px) {
+	.registerSeller__logo {
+		max-width: 150px;
+	}
+	.registerSeller__logo svg {
+		max-width: 100%;
+	}
+	.registerSeller__right {
+		min-width: 1px;
+		max-width: none;
+		padding: 30px 20px;
+	}
+}
+
+@media (max-width:340px) {
+	.registerSeller__logo {
+		max-width: 120px;
+	}
 }

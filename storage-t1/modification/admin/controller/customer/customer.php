@@ -590,18 +590,23 @@ class ControllerCustomerCustomer extends Controller {
 				);
 			}
 
-			$data['customers'][] = array(
-				'customer_id'    => $result['customer_id'],
-				'name'           => $result['name'],
-				'email'          => $result['email'],
-				'customer_group' => $result['customer_group'],
-				'status'         => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
-				'ip'             => $result['ip'],
-				'date_added'     => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-				'unlock'         => $unlock,
-				'store'          => $store_data,
-				'edit'           => $this->url->link('customer/customer/edit', 'user_token=' . $this->session->data['user_token'] . '&customer_id=' . $result['customer_id'] . $url, true)
-			);
+			$this->load->model('kbmp_marketplace/kbmp_marketplace');
+			$is_seller = $this->model_kbmp_marketplace_kbmp_marketplace->is_seller($result['customer_id']);
+			
+			if (!$is_seller) {
+				$data['customers'][] = array(
+					'customer_id'    => $result['customer_id'],
+					'name'           => $result['name'],
+					'email'          => $result['email'],
+					'customer_group' => $result['customer_group'],
+					'status'         => ($result['status'] ? $this->language->get('text_enabled') : $this->language->get('text_disabled')),
+					'ip'             => $result['ip'],
+					'date_added'     => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
+					'unlock'         => $unlock,
+					'store'          => $store_data,
+					'edit'           => $this->url->link('customer/customer/edit', 'user_token=' . $this->session->data['user_token'] . '&customer_id=' . $result['customer_id'] . $url, true)
+				);
+			}
 		}
 
 		$data['user_token'] = $this->session->data['user_token'];
@@ -1022,12 +1027,6 @@ class ControllerCustomerCustomer extends Controller {
 		} else {
 			$data['error_address'] = array();
 		}
-		
-		if (isset($this->error['error_seller_field'])) {
-			$data['error_seller_field'] = $this->error['error_seller_field'];
-		} else {
-			$data['error_seller_field'] = array();
-		}
 
 		$url = '';
 
@@ -1358,36 +1357,6 @@ class ControllerCustomerCustomer extends Controller {
 			$data['affiliate_custom_field'] = array();
 		}
 		
-		//добавляем поля продавца
-		if (isset($this->request->get['customer_id'])) {
-			$this->load->model('kbmp_marketplace/sellers_profile_custom_fields');
-			$this->load->model('kbmp_marketplace/customer_fields');
-
-			$lang_id = 0;
-			$get_language_details = $this->model_kbmp_marketplace_sellers_profile_custom_fields->getLanguage();
-			if (!empty($get_language_details)) {
-				foreach ($get_language_details as $key => $value) {
-					$lang_id = $value['language_id'];
-					break;
-				}
-			}
-			$customer_field_data['lang_id'] = $lang_id;
-
-			$sellers_get_fields = $this->model_kbmp_marketplace_customer_fields->getcustom_fields($customer_field_data);
-
-			$field_data = array (
-				'customer_id' => (int)$this->request->get['customer_id']
-			);
-			$seller_fields = $this->model_kbmp_marketplace_customer_fields->getseller_field($field_data);
-
-			if (isset($this->request->get['redirect']) && ($this->request->get['redirect'] == "sellers_list")) {
-				$data['sellers_fields'] = $sellers_get_fields;
-				$data['seller_field'] = $seller_fields;
-			} else {
-				$data['sellers_fields'] = '';
-			}
-		}
-		
 
                     $data['approved'] = 0;
                     if(isset($this->request->post['seller'])){
@@ -1572,84 +1541,6 @@ class ControllerCustomerCustomer extends Controller {
 				}
 			}
 		}
-		
-		//осталось: обновление данных
-		$this->load->model('kbmp_marketplace/customer_fields');
-		$this->load->model('kbmp_marketplace/sellers_profile_custom_fields');
-		if (isset($this->request->post['seller_field'])) {
-			
-			$lang_id = 0;
-			$get_language_details = $this->model_kbmp_marketplace_sellers_profile_custom_fields->getLanguage();
-			if (!empty($get_language_details)) {
-				foreach ($get_language_details as $key => $value) {
-					$lang_id = $value['language_id'];
-					break;
-				}
-			}
-			$customer_field_data['lang_id'] = $lang_id;
-
-			$sellers_get_fields = $this->model_kbmp_marketplace_customer_fields->getcustom_fields($customer_field_data);
-			
-			$check_sellers_fields = array();
-			foreach($sellers_get_fields as $field) {
-				$check_sellers_fields[$field['id_field']]['min_length'] = $field['min_length'];
-				$check_sellers_fields[$field['id_field']]['max_length'] = $field['max_length'];
-				$check_sellers_fields[$field['id_field']]['required'] = $field['required'];
-				$check_sellers_fields[$field['id_field']]['type'] = $field['type'];
-				$check_sellers_fields[$field['id_field']]['file_extension'] = $field['file_extension'];
-			}
-			
-			$error_seller_field = array();
-			$seller_fields = $this->request->post['seller_field'];
-			
-			foreach($seller_fields as $key => $field) {
-				$error_data['id_field'] = $key;
-				$error_data['id_shop'] = (int) $this->config->get('config_store_id');
-				$error_data['id_lang'] = $lang_id;
-				$error_msg = $this->model_kbmp_marketplace_customer_fields->getErrorMessage_Field_seller($error_data);
-				
-				$type = $check_sellers_fields[$key]['type'];
-				$min_length = $check_sellers_fields[$key]['min_length'];
-				$max_length = $check_sellers_fields[$key]['max_length'];
-				$required = $check_sellers_fields[$key]['required'];
-				$file_extension = $check_sellers_fields[$key]['file_extension'];
-				$error_field = false;
-				
-				if ($type == "text" || $type == "textarea") {
-					if ((strlen($field) == 0 && $required) || (strlen($field) < $min_length || strlen($field) > $max_length)) {
-						$error_field = true;
-					}
-				}
-				
-				if ($type == "file") {
-					$get_extension = substr(strrchr($field, "."), 1);
-					$file_ext = explode(", ", $file_extension);
-					if (!in_array($get_extension, $file_ext)) {
-						$error_field = true;	
-					}
-				}
-				
-				if ($error_field) {
-					if (strlen($error_msg) == 0) {
-						if ($type == "text" || $type == "textarea")
-							$error_msg = $this->language->get('error_type_text');
-						if ($type == "file")
-							$error_msg = $this->language->get('error_type_file');
-					}
-					$error_seller_field[$key] = $error_msg;
-				}
-					
-			}
-			
-			$customer_id = $this->request->get['customer_id'];
-			$edit_data['customer_id'] = $customer_id;
-			$edit_data['fields'] = $seller_fields;
-			$edit_data['seller_id'] = $this->model_kbmp_marketplace_customer_fields->get_SellerID($customer_id);
-			$this->model_kbmp_marketplace_customer_fields->setseller_field_values($edit_data);
-			
-			if (count($error_seller_field) > 0)
-				$this->error['error_seller_field'] = $error_seller_field;
-		}
 
 
                     $this->load->language('kbmp_marketplace/common'); 
@@ -1663,11 +1554,6 @@ class ControllerCustomerCustomer extends Controller {
 		}
 
 		return !$this->error;
-	}
-	
-	//функция проверки валидности полей продавцов
-	protected function validateSellerField() {
-		
 	}
   
     protected function validateApprove() {

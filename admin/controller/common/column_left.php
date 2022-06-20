@@ -1,5 +1,22 @@
 <?php
 class ControllerCommonColumnLeft extends Controller {
+	
+	public function checkPermission($slug = "") {
+		$this->load->model('user/user');
+		$user_id = $this->user->getId();
+		$user_group = $this->user->getGroupId();
+		if ((int)$user_group == 15) {
+			$access_slug = explode(",",$this->model_user_user->getPermissionModerator($user_id)['access_slug']);
+			if (in_array($slug,$access_slug))
+				return true;
+			else
+				return false;
+		}
+		if ((int)$user_group == 1) {
+			return true;
+		}
+	}
+	
 	public function index() {
 		if (isset($this->request->get['user_token']) && isset($this->session->data['user_token']) && ($this->request->get['user_token'] == $this->session->data['user_token'])) {
 			$this->load->language('common/column_left');
@@ -43,6 +60,88 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
+
+      // OCFilter start
+      $this->language->load('extension/module/ocfilter');
+      
+      $ocfilter = array();
+
+      if ($this->user->hasPermission('access', 'extension/module/ocfilter')) {
+        if (isset($this->session->data['user_token'])) {
+          $token_key = 'user_token';
+        } else {
+          $token_key = 'token';
+        }
+      
+        $ocfilter[] = array(
+          'name'     => $this->language->get('text_ocfilter_filter'),
+          'href'     => $this->url->link('extension/module/ocfilter/filter', $token_key . '=' . $this->session->data[$token_key], 'SSL'),
+          'children' => array()
+        );
+
+        $ocfilter[] = array(
+          'name'     => $this->language->get('text_ocfilter_page'),
+          'href'     => $this->url->link('extension/module/ocfilter/page', $token_key . '=' . $this->session->data[$token_key], 'SSL'),
+          'children' => array()
+        );
+
+        $ocfilter[] = array(
+          'name'     => $this->language->get('text_ocfilter_setting'),
+          'href'     => $this->url->link('extension/module/ocfilter', $token_key . '=' . $this->session->data[$token_key], 'SSL'),
+          'children' => array()
+        );
+      }
+
+      if ($ocfilter) {
+        $catalog[] = array(
+          'name'     => $this->language->get('text_ocfilter'),
+          'href'     => '',
+          'children' => $ocfilter
+        );
+      }
+      // OCFilter end
+      
+
+      // OCFilter start
+      $this->language->load('extension/module/ocfilter');
+      
+      $ocfilter = array();
+
+      if ($this->user->hasPermission('access', 'extension/module/ocfilter')) {
+        if (isset($this->session->data['user_token'])) {
+          $token_key = 'user_token';
+        } else {
+          $token_key = 'token';
+        }
+      
+        $ocfilter[] = array(
+          'name'     => $this->language->get('text_ocfilter_filter'),
+          'href'     => $this->url->link('extension/module/ocfilter/filter', $token_key . '=' . $this->session->data[$token_key], 'SSL'),
+          'children' => array()
+        );
+
+        $ocfilter[] = array(
+          'name'     => $this->language->get('text_ocfilter_page'),
+          'href'     => $this->url->link('extension/module/ocfilter/page', $token_key . '=' . $this->session->data[$token_key], 'SSL'),
+          'children' => array()
+        );
+
+        $ocfilter[] = array(
+          'name'     => $this->language->get('text_ocfilter_setting'),
+          'href'     => $this->url->link('extension/module/ocfilter', $token_key . '=' . $this->session->data[$token_key], 'SSL'),
+          'children' => array()
+        );
+      }
+
+      if ($ocfilter) {
+        $catalog[] = array(
+          'name'     => $this->language->get('text_ocfilter'),
+          'href'     => '',
+          'children' => $ocfilter
+        );
+      }
+      // OCFilter end
+      
 			if ($this->user->hasPermission('access', 'catalog/filter')) {
 				$catalog[] = array(
 					'name'	   => $this->language->get('text_filter'),
@@ -231,6 +330,24 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
+
+				if ($this->user->hasPermission('access', 'extension/news')) {
+					$marketplace[] = array(
+						'name'	   => 'News',
+						'href'     => $this->url->link('extension/news', 'user_token=' . $this->session->data['user_token'], true),
+						'children' => array()		
+					);
+				}
+			
+
+				if ($this->user->hasPermission('access', 'extension/news')) {
+					$marketplace[] = array(
+						'name'	   => 'News',
+						'href'     => $this->url->link('extension/news', 'user_token=' . $this->session->data['user_token'], true),
+						'children' => array()		
+					);
+				}
+			
 			if ($this->user->hasPermission('access', 'marketplace/event')) {
 				$marketplace[] = array(
 					'name'	   => $this->language->get('text_event'),
@@ -401,7 +518,7 @@ class ControllerCommonColumnLeft extends Controller {
 				);
 			}
 
-			if ($customer) {
+			if ($customer && $this->user->getGroupId() != 15) {
 				$data['menus'][] = array(
 					'id'       => 'menu-customer',
 					'icon'	   => 'fa-user',
@@ -742,6 +859,9 @@ class ControllerCommonColumnLeft extends Controller {
 
 			// Stats
 			if ($this->user->hasPermission('access', 'report/statistics')) {
+
+         		$this->load->language('common/column_left');
+                
 				$this->load->model('sale/order');
 
 				$order_total = (float)$this->model_sale_order->getTotalOrders();
@@ -776,6 +896,169 @@ class ControllerCommonColumnLeft extends Controller {
 			} else {
 				$data['statistics_status'] = false;
 			}
+			
+              $this->load->model('setting/kbmp_marketplace');
+                    $this->load->language('kbmp_marketplace/common');   
+                    $marketplace_options = array();
+    
+                    //Settings
+                    if ($this->user->hasPermission('access', 'extension/module/kbmp_marketplace')) {
+                        $marketplace_options[] = array(
+                            'name'     => $this->language->get('text_kbmp_settings'),
+                            'href'     => '',
+                            'children' => array(
+                                array(
+                                    'name'     => $this->language->get('text_kbmp_general_settings'),
+                                    'href'     => $this->url->link('extension/module/kbmp_marketplace', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children' => array()		
+                                ),
+                                array(
+                                    'name'     => $this->language->get('text_kbmp_order_settings'),
+                                    'href'     => $this->url->link('kbmp_marketplace/settings/order', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children' => array()		
+                                ),
+                                array(
+                                    'name'     => $this->language->get('text_kbmp_paypal_payout'),
+                                    'href'     => $this->url->link('kbmp_marketplace/paypal_payout', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children' => array()		
+                                ),
+                                array(
+                                    'name'     => $this->language->get('text_kbmp_email_templates'),
+                                    'href'     => $this->url->link('kbmp_marketplace/email_templates', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children' => array()		
+                                )
+                            )		
+                        );
+                    }
+
+                    //Sellers List
+                    if ($this->checkPermission("sellers")) {
+                        $marketplace_options[] = array(
+                            'name'      => $this->language->get('text_kbmp_sellers_list_menu'),
+                            'href'      => '',
+                            'children' => array(
+                                array(
+                                    'name'     => $this->language->get('text_kbmp_sellers_list'),
+                                    'href'     => $this->url->link('kbmp_marketplace/sellers_list', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children' => array()		
+                                ),
+                                array(
+                                    'name'     => $this->language->get('text_kbmp_approval_list'),
+                                    'href'     => $this->url->link('kbmp_marketplace/sellers_account_approval_list', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children' => array()		
+                                ),
+                                array(
+                                    'name'      => $this->language->get('text_kbmp_category_commissions'),
+                                    'href'      => $this->url->link('kbmp_marketplace/seller_category', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children'  => array()		
+                                ),
+                                array(
+                                    'name'     => $this->language->get('text_kbmp_approval_list'),
+                                    'href'     => $this->url->link('kbmp_marketplace/sellers_account_approval_list', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children' => array()		
+                                ),
+                                array(
+                                    'name'      => $this->language->get('text_kbmp_sellers_reviews'),
+                                    'href'      => $this->url->link('kbmp_marketplace/sellers_review', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children'  => array()		
+                                ),
+                                array(
+                                    'name'      => $this->language->get('text_kbmp_sellers_reviews_approval_list'),
+                                    'href'      => $this->url->link('kbmp_marketplace/sellers_review_approval_list', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children'  => array()		
+                                ),
+                                array(
+                                    'name'      => $this->language->get('text_kbmp_sellers_shipping'),
+                                    'href'      => $this->url->link('kbmp_marketplace/sellers_shipping', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children'  => array()		
+                                ),
+                                array(
+                                    'name'      => $this->language->get('text_kbmp_sellers_category_request_list'),
+                                    'href'      => $this->url->link('kbmp_marketplace/sellers_category_request', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children'  => array()		
+                                )   
+                            )		
+                        );
+                    } 
+                
+                    //Products Menu
+                    if ($this->checkPermission("products")) {
+                        $marketplace_options[] = array(
+                            'name'	=> $this->language->get('text_kbmp_sellers_products_products'),
+                            'href'      => '',
+                            'children'  => array(
+                                array(
+                                    'name'      => $this->language->get('text_kbmp_sellers_products'),
+                                    'href'      => $this->url->link('kbmp_marketplace/products_list', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children'  => array()		
+                                ),
+                                array(
+                                    'name'      => $this->language->get('text_kbmp_products_approval_list'),
+                                    'href'      => $this->url->link('kbmp_marketplace/products_approval_list', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children'  => array()
+                                ),
+                                array(
+                                    'name'      => $this->language->get('text_kbmp_product_reviews'),
+                                    'href'      => $this->url->link('kbmp_marketplace/products_review', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children'  => array()		
+                                )
+                            )		
+                        );
+                    }
+                
+                    //Sellers Orders
+                    if ($this->checkPermission("orders")) {
+                        $marketplace_options[] = array(
+                            'name'	=> $this->language->get('text_kbmp_sellers_orders_menu'),
+                            'href'      => '',
+                            'children'  => array(
+                                array(
+                                    'name'      => $this->language->get('text_kbmp_sellers_orders'),
+                                    'href'      => $this->url->link('kbmp_marketplace/sellers_order', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children'  => array()		
+                                ),
+                                array(
+                                    'name'      => $this->language->get('text_kbmp_admin_orders'),
+                                    'href'      => $this->url->link('kbmp_marketplace/admin_order', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children'  => array()		
+                                )
+                            )		
+                        );
+                    }
+                
+                    if ($this->user->hasPermission('access', 'kbmp_marketplace/admin_commission')) {
+                        $marketplace_options[] = array(
+                            'name'      => $this->language->get('text_kbmp_commission_menu'),
+                            'href'      => '',
+                            'children'  => array(
+                                array(
+                                    'name'      => $this->language->get('text_kbmp_admin_commissions'),
+                                    'href'      => $this->url->link('kbmp_marketplace/admin_commission', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children'  => array()		
+                                ),
+                                array(
+                                    'name'      => $this->language->get('text_kbmp_sellers_transactions'),
+                                    'href'      => $this->url->link('kbmp_marketplace/sellers_balance', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children'  => array()		
+                                ),
+                                array(
+                                    'name'      => $this->language->get('text_kbmp_sellers_payout_request'),
+                                    'href'      => $this->url->link('kbmp_marketplace/seller_payout_request', 'user_token=' . $this->session->data['user_token'], true),
+                                    'children'  => array()		
+                                )
+                            )		
+                        );
+                    }
+
+                    if ($marketplace_options && $this->model_setting_kbmp_marketplace->checkInstalled('kbmp_marketplace')) {
+                        $data['menus'][] = array(
+                            'id'        => 'menu-knowband-marketplace',
+                            'icon'      => 'fa-line-chart', 
+                            'name'      => $this->language->get('text_knowband_marketplace'),
+                            'href'      => '',
+                            'children'  => $marketplace_options
+                        );
+                    }
 
 			return $this->load->view('common/column_left', $data);
 		}

@@ -27,8 +27,13 @@ class ModelKbmpMarketplaceKbmpMarketplace extends Model {
     }
 
     public function getSellers($data = array()) {
-        $sql = "SELECT c.customer_id, c.firstname, c.lastname, c.email, ksd.title as shop, ks.seller_id, ks.state, ks.country_id, ks.active, ks.date_added, ct.name as country, s.name as state_name FROM " . DB_PREFIX . "kb_mp_seller ks LEFT JOIN " . DB_PREFIX . "kb_mp_seller_details ksd ON (ks.seller_id = ksd.seller_id) INNER JOIN " . DB_PREFIX . "customer c ON (c.customer_id = ks.customer_id) LEFT JOIN " . DB_PREFIX . "country ct ON (ks.country_id = ct.country_id) LEFT JOIN " . DB_PREFIX . "zone s ON (s.zone_id = ks.state) WHERE ks.approved = '1'";
+        $sql = "SELECT c.customer_id, c.firstname, c.lastname, c.secondname, c.email, CONCAT(c.lastname, ' ', c.firstname, ' ', c.secondname) AS fio, ksd.title as shop, kfc.value as companyname, kfs.value as statusmain, ks.seller_id, ks.state, ks.country_id, ks.active, ks.date_added, ct.name as country, s.name as state_name FROM " . DB_PREFIX . "kb_mp_seller ks LEFT JOIN " . DB_PREFIX . "kb_mp_seller_details ksd ON (ks.seller_id = ksd.seller_id) INNER JOIN " . DB_PREFIX . "customer c ON (c.customer_id = ks.customer_id) LEFT JOIN " . DB_PREFIX . "country ct ON (ks.country_id = ct.country_id) LEFT JOIN " . DB_PREFIX . "zone s ON (s.zone_id = ks.state)";
 
+		$sql .= "LEFT JOIN " . DB_PREFIX . "kb_mp_custom_field_seller_mapping kfc ON (c.customer_id = kfc.id_customer) and kfc.id_field = '2' ";
+		$sql .= "LEFT JOIN " . DB_PREFIX . "kb_mp_custom_field_seller_mapping kfs ON (c.customer_id = kfs.id_customer) and kfs.id_field = '7' ";
+		
+		$sql .= "WHERE ks.approved = '1'";
+		
         if (!empty($data['filter_firstname'])) {
             $sql .= " AND c.firstname LIKE '" . $this->db->escape($data['filter_firstname']) . "%'";
         }
@@ -71,12 +76,15 @@ class ModelKbmpMarketplaceKbmpMarketplace extends Model {
         $sort_data = array(
             'c.firstname',
             'c.lastname',
+			'c.fio',
             'c.email',
             'ksd.title',
             'ks.state',
             'ct.name',
             'ks.active',
-            'ks.date_added'
+            'ks.date_added',
+			'companyname',
+			'statusmain'
         );
 
         if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
@@ -104,6 +112,12 @@ class ModelKbmpMarketplaceKbmpMarketplace extends Model {
         }
 
         $query = $this->db->query($sql);
+		
+//		var_dump($sql);
+		
+//		echo "<pre>";
+//		var_dump($query);
+//		echo "</pre>";
 
         return $query->rows;
     }
@@ -522,7 +536,7 @@ class ModelKbmpMarketplaceKbmpMarketplace extends Model {
      */
 
     public function getSellersProducts($data = array()) {
-        $sql = "SELECT ksp.seller_id, ksp.product_id, ksp.approved, ksp.date_added, p.model, p.quantity, p.image, p.status, pd.name as product_name, c.firstname, c.lastname FROM " . DB_PREFIX . "customer c INNER JOIN " . DB_PREFIX . "kb_mp_seller ks ON (c.customer_id = ks.customer_id) INNER JOIN " . DB_PREFIX . "kb_mp_seller_product ksp ON (ks.seller_id = ksp.seller_id) INNER JOIN " . DB_PREFIX . "product p ON (ksp.product_id = p.product_id) INNER JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE pd.language_id = '" . (int) $this->config->get('config_language_id') . "' AND ksp.deleted != '1' AND ksp.approved = '1'";
+        $sql = "SELECT ksp.seller_id, ksp.product_id, ksp.approved, ksp.date_added, p.model, p.quantity, p.image, p.status, pd.name as product_name, c.firstname, c.lastname, c.secondname FROM " . DB_PREFIX . "customer c INNER JOIN " . DB_PREFIX . "kb_mp_seller ks ON (c.customer_id = ks.customer_id) INNER JOIN " . DB_PREFIX . "kb_mp_seller_product ksp ON (ks.seller_id = ksp.seller_id) INNER JOIN " . DB_PREFIX . "product p ON (ksp.product_id = p.product_id) INNER JOIN " . DB_PREFIX . "product_description pd ON (p.product_id = pd.product_id) WHERE pd.language_id = '" . (int) $this->config->get('config_language_id') . "' AND ksp.deleted != '1' AND ksp.approved = '1'";
 
         if (!empty($data['filter_productname'])) {
             $sql .= " AND pd.name LIKE '" . $this->db->escape($data['filter_productname']) . "%'";
