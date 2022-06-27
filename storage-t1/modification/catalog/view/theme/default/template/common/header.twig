@@ -82,13 +82,13 @@
 							<path d="M11 15.3103L11 10.1379" stroke="#272727" stroke-width="2" stroke-linecap="round"/>
 							<path d="M15 15.3103L15 8.06896" stroke="#272727" stroke-width="2" stroke-linecap="round"/>
 						</svg>
-                      	<span class="header__icons_compare-count">{{ text_comparelist }}</span>
+                      	<span class="header__icons_compare-count{% if text_comparelist %} hidden{% endif %}">{{ text_comparelist }}</span>
 					</a>
 					<a href="{{ link_likes }}" class="header__icons-likes">
 						<svg width="26" height="23" viewBox="0 0 26 23" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M3.83925 12.898L12.2952 21.2997L12.2952 21.2997C12.6276 21.63 12.7938 21.7952 13 21.7952C13.2062 21.7952 13.3724 21.63 13.7048 21.2997L22.1607 12.898C24.3677 10.7052 24.639 7.22796 22.7989 4.71938L22.2567 3.98022C19.9684 0.860827 15.167 1.36442 13.5758 4.89069C13.352 5.38651 12.648 5.38651 12.4242 4.89069C10.833 1.36442 6.03156 0.860829 3.74335 3.98022L3.20114 4.71938C1.36099 7.22796 1.63229 10.7052 3.83925 12.898Z" fill="white" stroke="white" stroke-width="2"/>
 						</svg>
-						<span class="header__icons_likes-count">{{ text_wishlist }}</span>
+						<span class="header__icons_likes-count{% if text_wishlist %} hidden{% endif %}">{{ text_wishlist }}</span>
 					</a>
 					{{ cart }}
 				</div>
@@ -135,13 +135,13 @@
 							<path d="M11 15.3103L11 10.1379" stroke="#272727" stroke-width="2" stroke-linecap="round"/>
 							<path d="M15 15.3103L15 8.06896" stroke="#272727" stroke-width="2" stroke-linecap="round"/>
 						</svg>
-                        <span class="header__icons_compare-count">{{ text_comparelist }}</span>
+                        <span class="header__icons_compare-count{% if text_comparelist == '0' %} hidden{% endif %}">{{ text_comparelist }}</span>
 					</a>
 					<a href="{{ link_likes }}" class="header__icons-likes">
 						<svg width="26" height="23" viewBox="0 0 26 23" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M3.83925 12.898L12.2952 21.2997L12.2952 21.2997C12.6276 21.63 12.7938 21.7952 13 21.7952C13.2062 21.7952 13.3724 21.63 13.7048 21.2997L22.1607 12.898C24.3677 10.7052 24.639 7.22796 22.7989 4.71938L22.2567 3.98022C19.9684 0.860827 15.167 1.36442 13.5758 4.89069C13.352 5.38651 12.648 5.38651 12.4242 4.89069C10.833 1.36442 6.03156 0.860829 3.74335 3.98022L3.20114 4.71938C1.36099 7.22796 1.63229 10.7052 3.83925 12.898Z" fill="white" stroke="white" stroke-width="2"/>
 						</svg>
-						<span class="header__icons_likes-count">{{ text_wishlist }}</span>
+						<span class="header__icons_likes-count{% if text_wishlist == '0' %} hidden{% endif %}">{{ text_wishlist }}</span>
 					</a>
 					{{ cart }}
 				</div>

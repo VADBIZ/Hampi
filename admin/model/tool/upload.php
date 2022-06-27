@@ -23,6 +23,12 @@ class ModelToolUpload extends Model {
 
 		return $query->row;
 	}
+	
+	public function getUploadByFilename($filename) {
+		$sql = "SELECT * FROM " . DB_PREFIX . "upload WHERE filename LIKE '" . $this->db->escape($filename) . "'";
+		$query = $this->db->query($sql);
+		return $query->row;
+	}
 
 	public function getUploads($data = array()) {
 		$sql = "SELECT * FROM " . DB_PREFIX . "upload";

@@ -187,9 +187,9 @@ var cart = {
 				}
 
 				if (json['success']) {
-					console.log(json);
 					$(".header").find(".header__icons-cart").each(function(){
 						$(this).find(".cart-total").html(json['total']);
+						$(this).find(".cart-total").removeClass("hidden");
 					});
 					$.toast({
 					  text: "Товар успешно добавлен в корзину!",
@@ -262,7 +262,14 @@ var cart = {
 				
 				var countCart = $(".cart__body-item").length;
 				 $(".cart-total").text(countCart);
-
+					$(".header").find(".header__icons-cart").each(function(){
+						$(this).find(".cart-total").html(countCart);
+						if (countCart > 0) {
+							$(this).find(".cart-total").removeClass("hidden");
+						} else {
+							$(this).find(".cart-total").addClass("hidden");
+						}
+					});
 				$(".cart__tools-value").text(XFormatPrice(sumPrice));
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
@@ -337,6 +344,7 @@ var wishlist = {
 					
 					$(".header").find(".header__icons-likes").each(function(){
 						$(this).find(".header__icons_likes-count").html(json['total']);
+						$(this).find(".header__icons_likes-count").removeClass("hidden");
 					});
 				}
                 
@@ -388,6 +396,7 @@ var compare = {
 					});
 					$(".header").find(".header__icons-compare").each(function(){
 						$(this).find(".header__icons_compare-count").html(json['total']);
+						$(this).find(".header__icons_compare-count").removeClass("hidden");
 					});
 				}
 			},
@@ -416,6 +425,11 @@ var compare = {
 					});
 				$(".header").find(".header__icons-compare").each(function(){
 						$(this).find(".header__icons_compare-count").html(json['total']);
+						if (json['total'] > 0) {
+							$(this).find(".header__icons_compare-count").removeClass("hidden");
+						} else {
+							$(this).find(".header__icons_compare-count").addClass("hidden");
+						}
 					});
 			},
 			error: function(xhr, ajaxOptions, thrownError) {
@@ -613,7 +627,7 @@ $(document).ready(function(){
 	});
 	
 	//masks
-	$("input.field_phoneking, input.mask").inputmask("+7 (999) 999-99-99");
+	$("input.mask").inputmask("+7 (999) 999-99-99");
 	$("input.maskEmail, [name='email']").inputmask("email");
 });
 

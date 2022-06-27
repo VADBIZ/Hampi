@@ -114,15 +114,20 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 			 if($this->request->post['seller'] == 1) {
                         $customer_address_details = array();
                         $this->load->model('kbmp_marketplace/kbmp_marketplace');
+                        $this->load->model('kbmp_marketplace/customer_fields');
                         $this->load->model('setting/setting');
                         $customer_id = $this->model_kbmp_marketplace_kbmp_marketplace->get_customer_id();
+				 
                         $store_id = (int) $this->config->get('config_store_id');
                         $settings = $this->model_setting_setting->getSetting('kbmp_marketplace', $store_id);
                         $this->model_kbmp_marketplace_kbmp_marketplace->addSeller($customer_id, $customer_address_details, $settings, $store_id);
 				 
 				 	$seller_fields = $this->request->post['seller_field'];
 					$edit_data['customer_id'] = $customer_id;
+				 	//меняем статус на модерация при регистрации
+				 	$seller_fields[7] = "m";
 					$edit_data['fields'] = $seller_fields;
+				 
 					$edit_data['seller_id'] = $this->model_kbmp_marketplace_customer_fields->get_SellerID($customer_id);
 					$this->model_kbmp_marketplace_customer_fields->setseller_field_values($edit_data);
 				 
@@ -136,10 +141,6 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 					 
 				$this->load->model('user/user_group');
 				$this->load->model('customer/customer');
-				$moderators[] = $this->model_user_user_group->getUsersByGroup(20);
-				$moderators[] = $this->model_user_user_group->getUsersByGroup(19);
-				$moderators[] = $this->model_user_user_group->getUsersByGroup(18);
-				$moderators[] = $this->model_user_user_group->getUsersByGroup(17);
 				$moderators[] = $this->model_user_user_group->getUsersByGroup(15);
 
 				$Moderators = array();
@@ -281,17 +282,17 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 			$data['error_bank_account_number'] = '';
 		}
 
-		if (isset($this->error['password'])) {
-			$data['error_password'] = $this->error['password'];
-		} else {
-			$data['error_password'] = '';
-		}
-
-		if (isset($this->error['confirm'])) {
-			$data['error_confirm'] = $this->error['confirm'];
-		} else {
-			$data['error_confirm'] = '';
-		}
+//		if (isset($this->error['password'])) {
+//			$data['error_password'] = $this->error['password'];
+//		} else {
+//			$data['error_password'] = '';
+//		}
+//
+//		if (isset($this->error['confirm'])) {
+//			$data['error_confirm'] = $this->error['confirm'];
+//		} else {
+//			$data['error_confirm'] = '';
+//		}
 
 		if (isset($this->error['custom_field'])) {
 			$data['error_custom_field'] = $this->error['custom_field'];
@@ -634,29 +635,36 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 			}
 			$customer_field_data['lang_id'] = $lang_id;
 
+			$sellers_out_fields = array();
 			$sellers_get_fields = $this->model_kbmp_marketplace_customer_fields->getcustom_fields($customer_field_data);
 			
 			foreach($sellers_get_fields as $sellers_get_field) {
+				$id_field = $sellers_get_field["id_field"];
+				$sellers_out_fields[$id_field] = array(
+					"id_field" => $id_field,
+					"label"	=> $sellers_get_field['label'],
+					"required" => $sellers_get_field['required'],
+					"html_class" => $sellers_get_field['html_class'],
+					"active" => $sellers_get_field['active'],
+					"type" => $sellers_get_field['type']
+				);
 				if ($sellers_get_field["type"] == "select") {
-					$id_field = $sellers_get_field["id_field"];
 					$select_value = $this->model_kbmp_marketplace_sellers_profile_custom_fields->get_custom_fields_lang_data($id_field)[0]["value"];
 					$select_value_default = $this->model_kbmp_marketplace_sellers_profile_custom_fields->get_custom_fields_lang_data($id_field)[0]["default_value"];
 					$select_value = explode("<br>",str_replace(PHP_EOL, '<br>', $select_value));
 					$i=0;
 					foreach($select_value as $sval) {
 						$sval = explode(" | ", $sval);
-						$sellers_get_fields[$id_field - 1]['custom_field_value'][$i]["name"] = $sval[1];
-						$sellers_get_fields[$id_field - 1]['custom_field_value'][$i]["value"] = $sval[0];
+						$sellers_out_fields[$id_field]['custom_field_value'][$i]["name"] = $sval[1];
+						$sellers_out_fields[$id_field]['custom_field_value'][$i]["value"] = $sval[0];
 						if ($select_value_default == $sval[0])
-							$sellers_get_fields[$id_field - 1]['custom_field_value'][$i]["default"] = 1;
+							$sellers_out_fields[$id_field]['custom_field_value'][$i]["default"] = 1;
 						else
-							$sellers_get_fields[$id_field - 1]['custom_field_value'][$i]["default"] = 0;
+							$sellers_out_fields[$id_field]['custom_field_value'][$i]["default"] = 0;
 						$i++;
 					}
 				}
 			}
-
-			$data['sellers_fields'] = $sellers_get_fields;
 		
 		if (isset($this->request->get['customer_id'])) {
 			$field_data = array (
@@ -664,6 +672,17 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 			);
 			$seller_fields = $this->model_kbmp_marketplace_customer_fields->getseller_field($field_data);
 			$data['seller_field'] = $seller_fields;
+			
+			$file_links = array();
+			foreach($seller_fields as $key => $field) {
+				$fieldData = $this->model_kbmp_marketplace_sellers_profile_custom_fields->get_Customfields_data($key);
+				if ($fieldData['type'] == "file") {
+					$file_link = $this->url->link('tool/upload/download', 'user_token=' . $this->session->data['user_token'] . '&code=' . $field, true);
+					$file_links[$key] = $file_link;
+				}
+			}	
+			
+			$data['file_links'] = $file_links;
 		} else {
 			
 			if (isset($this->request->post['seller_field'])) {
@@ -672,6 +691,14 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 				$data['seller_field'] = array();
 			}
 		}
+		
+		$data['sellers_fields'] = $sellers_out_fields;
+		
+		$redirectPage = "sellers_list";
+		if (isset($this->request->get['redirect'])) {
+			$redirectPage = $this->request->get['redirect'];
+		}
+		$data['redirect'] = $redirectPage;
 		
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
@@ -687,7 +714,7 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 		$this->document->setTitle($this->language->get('heading_title'));
 
 		$this->load->model('customer/customer');
-
+		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validateForm()) {
 			$this->model_customer_customer->editCustomer($this->request->get['customer_id'], $this->request->post);
 			
@@ -737,8 +764,13 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 			if (isset($this->request->get['page'])) {
 				$url .= '&page=' . $this->request->get['page'];
 			}
-
-			$this->response->redirect($this->url->link('kbmp_marketplace/sellers_list', 'user_token=' . $this->session->data['user_token'] . $url, true));
+			
+			$redirectPage = "sellers_list";
+			if (isset($this->request->post['redirect'])) {
+				$redirectPage = $this->request->post['redirect'];
+			}
+			
+			$this->response->redirect($this->url->link('kbmp_marketplace/'.$redirectPage, 'user_token=' . $this->session->data['user_token'] . $url, true));
 		}
 
 		$this->getForm();
@@ -956,7 +988,7 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 //				echo "<pre>";
 //					var_dump($field['seller_value']);
 //				echo "</pre>";
-				if ($field["field_name"] == "field_urname") {
+				if ($field["field_name"] == "field_21") {
 					$seller_companyname = $field['seller_value'];
 				}
 				if (($field["field_name"] == "field_7")) {
@@ -1292,7 +1324,7 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 		$sellers_get_fields = $this->model_kbmp_marketplace_customer_fields->getcustom_fields($customer_field_data);
 		
 		foreach($sellers_get_fields as $sellers_get_field) {
-			if ($sellers_get_field["type"] == "select") {
+			if ($sellers_get_field["type"] == "select" && $sellers_get_field["html_class"] == "field_7") {
 				$id_field = $sellers_get_field["id_field"];
 				$select_value = $this->model_kbmp_marketplace_sellers_profile_custom_fields->get_custom_fields_lang_data($id_field)[0]["value"];
 				$select_value = explode("<br>",str_replace(PHP_EOL, '<br>', $select_value));
@@ -1358,15 +1390,15 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 			}
 		}
 
-		if ($this->request->post['password'] || (!isset($this->request->get['customer_id']))) {
-			if ((utf8_strlen(html_entity_decode($this->request->post['password'], ENT_QUOTES, 'UTF-8')) < 4) || (utf8_strlen(html_entity_decode($this->request->post['password'], ENT_QUOTES, 'UTF-8')) > 40)) {
-				$this->error['password'] = $this->language->get('error_password');
-			}
-
-			if ($this->request->post['password'] != $this->request->post['confirm']) {
-				$this->error['confirm'] = $this->language->get('error_confirm');
-			}
-		}
+//		if ($this->request->post['password'] || (!isset($this->request->get['customer_id']))) {
+//			if ((utf8_strlen(html_entity_decode($this->request->post['password'], ENT_QUOTES, 'UTF-8')) < 4) || (utf8_strlen(html_entity_decode($this->request->post['password'], ENT_QUOTES, 'UTF-8')) > 40)) {
+//				$this->error['password'] = $this->language->get('error_password');
+//			}
+//
+//			if ($this->request->post['password'] != $this->request->post['confirm']) {
+//				$this->error['confirm'] = $this->language->get('error_confirm');
+//			}
+//		}
 		
 		//осталось: обновление данных
 		$this->load->model('kbmp_marketplace/customer_fields');
@@ -1398,6 +1430,7 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 			$seller_fields = $this->request->post['seller_field'];
 			
 			foreach($seller_fields as $key => $field) {
+				
 				$error_data['id_field'] = $key;
 				$error_data['id_shop'] = (int) $this->config->get('config_store_id');
 				$error_data['id_lang'] = $lang_id;
@@ -1417,11 +1450,23 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 				}
 				
 				if ($type == "file") {
-					$get_extension = substr(strrchr($field, "."), 1);
-					$file_ext = explode(", ", $file_extension);
-					if ((strlen($field) > 0 && $required) && !in_array($get_extension, $file_ext)) {
+					if ($field != "") {
+						$this->load->model('tool/upload');
+						$file_name = $this->model_tool_upload->getUploadByCode($field)['filename'];
+						$get_extension = substr(strrchr($file_name, "."), 1);
+						$file_ext = explode(",", $file_extension);
+						if ((strlen($file_name) > 0 && $required) && !in_array($get_extension, $file_ext)) {
+							$error_field = true;
+						}
+					} else {
 						$error_field = true;
 					}
+//					var_dump(strlen($field));
+//					var_dump($required);
+//					var_dump($get_extension);
+//					var_dump($file_ext);
+//					var_dump($error_field);
+//					die;
 				}
 				
 				if ($error_field) {
@@ -1440,8 +1485,6 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 			
 //			$lastCustomerID = $this->model_customer_customer->getLastID();
 //			$lastCustomerID++;
-			
-			
 			
 			if (count($error_seller_field) > 0)
 				$this->error['error_seller_field'] = $error_seller_field;

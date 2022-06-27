@@ -241,7 +241,7 @@ class ControllerKbmpMarketplaceSellersAccountApprovalList extends Controller {
         $results = $this->model_kbmp_marketplace_kbmp_marketplace->getPendingApprovals($filter_data);
       
         foreach ($results as $result) {
-            
+			
             $data['pending_approvals'][] = array(
                 'seller_id' => $result['seller_id'],
                 'customer_id' => $result['customer_id'],
@@ -253,7 +253,7 @@ class ControllerKbmpMarketplaceSellersAccountApprovalList extends Controller {
                 'status' => $result['active'],
                 'approval_status' => $result['approved'],
                 'date_added' => date($this->language->get('date_format_short'), strtotime($result['date_added'])),
-                'edit' => $this->url->link('customer/customer/edit', $this->session_token_key.'=' . $this->session_token . '&customer_id='.$result['customer_id'] . '&redirect=sellers_account_approval_list', true)
+                'edit' => $this->url->link('kbmp_marketplace/sellers_list/edit', $this->session_token_key.'=' . $this->session_token . '&customer_id='.$result['customer_id'] . '&redirect=sellers_account_approval_list', true)
             );
         }
 
@@ -429,6 +429,7 @@ class ControllerKbmpMarketplaceSellersAccountApprovalList extends Controller {
         $data['column_left'] = $this->load->controller('common/column_left');
         $data['footer'] = $this->load->controller('common/footer');
         
+		$data['delete'] = $this->url->link('kbmp_marketplace/sellers_list/delete', 'user_token=' . $this->session->data['user_token'] . $url, true);
         $active_tab['active_tab'] = 12;
         $data['tab_common'] = $this->load->controller($this->module_path . '/kbmp_marketplace/common', $active_tab);
         
@@ -532,6 +533,13 @@ class ControllerKbmpMarketplaceSellersAccountApprovalList extends Controller {
                         }
                     }
                 }
+				
+				$this->load->model('kbmp_marketplace/customer_fields');
+				$edit_data = array();
+				$seller_fields[7] = "act";
+				$edit_data['fields'] = $seller_fields;
+				$edit_data['customer_id'] = $this->model_kbmp_marketplace_customer_fields->get_CustomerID($this->request->get['seller_id']);
+				$this->model_kbmp_marketplace_customer_fields->setseller_field_values($edit_data);
                 //Ends
                 
                 $this->session->data['success'] = $this->language->get('text_approval_success');
@@ -563,6 +571,7 @@ class ControllerKbmpMarketplaceSellersAccountApprovalList extends Controller {
 
                 if (isset($email_template) && !empty($email_template)) {
                     $message = str_replace("{{disapproval_reason}}", $seller_details['disapprove_comment'] , $email_template['email_content']); //Seller Email
+					$message = str_replace("{{disapproval_link}}",'<a href="'.HTTPS_CATALOG.'register/?seller_register=1'.'">ссылке</a>',$message);
                     $message = str_replace("{{full_name}}", $seller_details['firstname'] . ' ' . $seller_details['lastname'] , $message); //Seller Full Name
 
                     $email_content  = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/strict.dtd">' . "\n";
@@ -632,6 +641,13 @@ class ControllerKbmpMarketplaceSellersAccountApprovalList extends Controller {
                         }
                     }
                 }
+				
+				$this->load->model('kbmp_marketplace/customer_fields');
+				$edit_data = array();
+				$seller_fields[7] = "rm";
+				$edit_data['fields'] = $seller_fields;
+				$edit_data['customer_id'] = $this->model_kbmp_marketplace_customer_fields->get_CustomerID($this->request->get['seller_id']);
+				$this->model_kbmp_marketplace_customer_fields->setseller_field_values($edit_data);
                 //Ends
                 
                 $this->session->data['success'] = $this->language->get('text_disapproval_success');
@@ -641,4 +657,62 @@ class ControllerKbmpMarketplaceSellersAccountApprovalList extends Controller {
         }
         $this->response->redirect($this->url->link('kbmp_marketplace/sellers_account_approval_list', $this->session_token_key.'=' . $this->session_token, true));
     }
+	
+	public function delete() {
+
+		$this->load->language('kbmp_marketplace/sellers_list');
+		$this->document->setTitle($this->language->get('heading_title'));
+
+		$this->load->model('customer/customer');
+
+		if (isset($this->request->post['selected']) && $this->validateDelete()) {
+			foreach ($this->request->post['selected'] as $customer_id) {
+				$this->model_customer_customer->deleteCustomer($customer_id);
+			}
+
+			$this->session->data['success'] = $this->language->get('text_success');
+
+			$url = '';
+
+			if (isset($this->request->get['filter_name'])) {
+				$url .= '&filter_name=' . urlencode(html_entity_decode($this->request->get['filter_name'], ENT_QUOTES, 'UTF-8'));
+			}
+
+			if (isset($this->request->get['filter_email'])) {
+				$url .= '&filter_email=' . urlencode(html_entity_decode($this->request->get['filter_email'], ENT_QUOTES, 'UTF-8'));
+			}
+
+			if (isset($this->request->get['filter_customer_group_id'])) {
+				$url .= '&filter_customer_group_id=' . $this->request->get['filter_customer_group_id'];
+			}
+
+			if (isset($this->request->get['filter_status'])) {
+				$url .= '&filter_status=' . $this->request->get['filter_status'];
+			}
+
+			if (isset($this->request->get['filter_ip'])) {
+				$url .= '&filter_ip=' . $this->request->get['filter_ip'];
+			}
+
+			if (isset($this->request->get['filter_date_added'])) {
+				$url .= '&filter_date_added=' . $this->request->get['filter_date_added'];
+			}
+
+			if (isset($this->request->get['sort'])) {
+				$url .= '&sort=' . $this->request->get['sort'];
+			}
+
+			if (isset($this->request->get['order'])) {
+				$url .= '&order=' . $this->request->get['order'];
+			}
+
+			if (isset($this->request->get['page'])) {
+				$url .= '&page=' . $this->request->get['page'];
+			}
+
+			$this->response->redirect($this->url->link('kbmp_marketplace/sellers_account_approval_list', 'user_token=' . $this->session->data['user_token'] . $url, true));
+		}
+
+		$this->getList();
+	}
 }

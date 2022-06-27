@@ -1290,7 +1290,7 @@ button {
 		right: -282px;
 		top: 0;
 		height: 100%;
-		background-color: #fff;
+		background-color: #fafafa;
 		z-index: 1000;
 		transition: .2s all;
 		display: block;
@@ -5120,6 +5120,7 @@ ul.col-sm-8, .col-pad-0 {padding:0;}
 	width: 56.2%;
 	height: 100%;
 	background: url("../image/registerSeller.jpeg") no-repeat;
+	background-size: cover;
 	background-position: center;
 	position: absolute;
 	border-radius: 0px 20px 20px 0px;
@@ -5253,7 +5254,7 @@ ul.col-sm-8, .col-pad-0 {padding:0;}
 	margin-bottom: 20px;
 }
 
-.registerSeller__steps-item:nth-child(2) .form-group {
+.registerSeller__steps-item:nth-child(2) .form-group:last-child {
 	margin-bottom: 0;	
 }
 

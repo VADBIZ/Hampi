@@ -257,11 +257,11 @@ class ControllerToolUpload extends Controller {
 
 		$this->load->language('tool/upload');
 
-		if (isset($this->request->get['code'])) {
-			$code = $this->request->get['code'];
-		} else {
-			$code = 0;
-		}
+			if (isset($this->request->get['code'])) {
+				$code = $this->request->get['code'];
+			} else {
+				$code = 0;
+			}
 
 		$url = '';
 
@@ -378,15 +378,19 @@ class ControllerToolUpload extends Controller {
 		}
 
 		if (!$json) {
-			$file = $filename . '.' . token(32);
+			$file = $filename;
 
 			move_uploaded_file($this->request->files['file']['tmp_name'], DIR_UPLOAD . $file);
 
 			// Hide the uploaded file name so people can not link to it directly.
 			$this->load->model('tool/upload');
+			
+			$code = $this->model_tool_upload->addUpload($filename, $file);
+			$filelink = $this->url->link('tool/upload/download', 'user_token=' . $this->session->data['user_token'] . '&code=' . $code, true);
 			 
-			$json['code'] = $this->model_tool_upload->addUpload($filename, $file);
+			$json['code'] = $code;
 			$json['filename'] = $filename;
+			$json['filelink'] = "<a href='".$filelink."' style='margin-left:10px;display:inline-block;'>Скачать файл</a>";
 
 			$json['success'] = $this->language->get('text_upload');
 		}

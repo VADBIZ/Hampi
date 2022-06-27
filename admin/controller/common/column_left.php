@@ -953,11 +953,6 @@ class ControllerCommonColumnLeft extends Controller {
                                     'children'  => array()		
                                 ),
                                 array(
-                                    'name'     => $this->language->get('text_kbmp_approval_list'),
-                                    'href'     => $this->url->link('kbmp_marketplace/sellers_account_approval_list', 'user_token=' . $this->session->data['user_token'], true),
-                                    'children' => array()		
-                                ),
-                                array(
                                     'name'      => $this->language->get('text_kbmp_sellers_reviews'),
                                     'href'      => $this->url->link('kbmp_marketplace/sellers_review', 'user_token=' . $this->session->data['user_token'], true),
                                     'children'  => array()		

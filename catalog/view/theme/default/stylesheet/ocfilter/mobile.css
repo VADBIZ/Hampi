@@ -218,6 +218,7 @@
   .ocf-value-color ~ .ocf-value-append{ margin-top: 2px; } 
   
 /* FOOTER */
+.ocf-theme-light .ocf-footer:after {box-shadow: none !important;}
 .ocf-footer { position: sticky; bottom: 0; z-index: 3; margin: 15px -10px 0; padding: 10px;}
 
 /* POPOVER */

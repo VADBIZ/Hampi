@@ -32,7 +32,7 @@ class ModelKbmpMarketplaceKbmpMarketplace extends Model {
 		$sql .= "LEFT JOIN " . DB_PREFIX . "kb_mp_custom_field_seller_mapping kfc ON (c.customer_id = kfc.id_customer) and kfc.id_field = '2' ";
 		$sql .= "LEFT JOIN " . DB_PREFIX . "kb_mp_custom_field_seller_mapping kfs ON (c.customer_id = kfs.id_customer) and kfs.id_field = '7' ";
 		
-		$sql .= "WHERE ks.approved = '1'";
+		//$sql .= "WHERE ks.approved = '1'";
 		
         if (!empty($data['filter_firstname'])) {
             $sql .= " AND c.firstname LIKE '" . $this->db->escape($data['filter_firstname']) . "%'";
@@ -2735,7 +2735,7 @@ class ModelKbmpMarketplaceKbmpMarketplace extends Model {
 
             $sql = "INSERT INTO " . DB_PREFIX . "kb_mp_seller SET "
                     . "seller_id = '', "
-                    . "approved = '1', "
+                    . "approved = '0', "
                     . "customer_id = '" . (int) $customer_id . "', "
                     . "store_id = '" . (int) $store_id . "', "
                     . "active = '1', "
@@ -3004,5 +3004,10 @@ class ModelKbmpMarketplaceKbmpMarketplace extends Model {
         $array['kbmp_marketplace_settings'] = $kbmp_marketplace_settings;
         return $array;
     }
+	
+	//изменить статус
+	public function setStatus(){
+		
+	}
 
 }

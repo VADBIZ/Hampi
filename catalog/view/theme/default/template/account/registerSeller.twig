@@ -44,21 +44,21 @@
 						<div class="registerSeller__steps">
 							<div class="registerSeller__steps-item active">
 								<h3 class="registerSeller__steps-title">Контактное лицо</h3>
-								<div class="form-group required">
+								<div class="form-group required{% if error_sellerfio %} has-error{% endif %}">
 									<label for="" class="control-label">{{ entry_sellerfio }}</label>
 									<input type="text" name="sellerfio" value="{{ sellerfio }}" class="form-control loginbox__input" />
 									{% if error_sellerfio %}
 									<div class="text-danger">{{ error_sellerfio }}</div>
 									{% endif %}
 								</div>
-								<div class="form-group required">
+								<div class="form-group required{% if error_email %} has-error{% endif %}">
 									<label for="" class="control-label">{{ entry_email }}</label>
 									<input type="email" name="email" value="{{ email }}" class="form-control maskEmail loginbox__input" />
 									{% if error_email %}
 									<div class="text-danger">{{ error_email }}</div>
 									{% endif %}
 								</div>
-								<div class="form-group required">
+								<div class="form-group required{% if error_telephone %} has-error{% endif %}">
 									<label for="input-telephone" class="control-label">{{ entry_telephone }}</label>
 									  <input type="tel" name="telephone" value="{{ telephone }}" id="input-telephone" class="form-control mask loginbox__input" />
 									  {% if error_telephone %}
@@ -123,12 +123,12 @@
 <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/js/jquery.suggestions.min.js"></script>
 <script type="text/javascript">
 	//masks
-	$("input.field_phoneking, input.mask").inputmask("+7 (999) 999-99-99");
+	$("input.mask").inputmask("+7 (999) 999-99-99");
 	$("input.maskEmail").inputmask("email");
 	
 	var dadataToken = "2665fdf7fc2ea41b7ae830eb47ca0d0379c543f7";
 	//autocomplete address
-	$("input.field_uraddress").suggestions({
+	$('[name="field_30"]').suggestions({
 		token: dadataToken,
 		type: "ADDRESS"
 	});
@@ -138,7 +138,7 @@
 		var url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party";
 		var token = dadataToken;
 		var query = $(this).val();
-		console.log(query);
+//		console.log(query);
 
 		var options = {
 			method: "POST",
@@ -160,11 +160,48 @@
 	//подставить значения после инн
 	function changeByInn(result=""){
 		var suggestions = JSON.parse(result).suggestions;
-		console.log(suggestions);
-		var companyName = suggestions[0].value;
-		var companyAddress = suggestions[0].data.address.unrestricted_value;
-		$("[name='field_urname']").val(companyName);
-		$("[name='field_uraddress']").val(companyAddress);
+//		console.log(suggestions);
+		$("[name='field_21']").val(suggestions[0].value);
+		if (suggestions[0].data.address !== null)
+			$("[name='field_30']").val(suggestions[0].data.address.unrestricted_value);
+		if (suggestions[0].data.phones !== null)
+			$("[name='field_33']").val(suggestions[0].data.phones.source);
+		if (suggestions[0].data.emails !== null)
+			$("[name='field_34']").val(suggestions[0].data.emails.source);
+		var companyType = "Юридическое лицо";
+		if (suggestions[0].data.type == "LEGAL")
+			companyType = "Юридическое лицо";
+		if (suggestions[0].data.type == "INDIVIDUAL")
+			companyType = "Индивидуальный предприниматель";
+		$("[name='field_8']").val(companyType);
+		$("[name='field_9']").val(suggestions[0].data.name.short_with_opf);
+		$("[name='field_24']").val(suggestions[0].data.kpp);
+		$("[name='field_25']").val(suggestions[0].data.ogrn);
+		if (typeof(suggestions[0].data.fio) != "undefined" && suggestions[0].data.fio !== null) {
+			var ipFIO = "";
+			if (typeof(suggestions[0].data.fio.surname) != "undefined" && suggestions[0].data.fio.surname !== null)
+				ipFIO += suggestions[0].data.fio.surname;
+			if (typeof(suggestions[0].data.fio.name) != "undefined" && suggestions[0].data.fio.name !== null)
+				ipFIO += " "+suggestions[0].data.fio.name;
+			if (typeof(suggestions[0].data.fio.patronymic) != "undefined" && suggestions[0].data.fio.patronymic !== null)
+				ipFIO += " "+suggestions[0].data.fio.patronymic;
+			$("[name='field_13']").val(ipFIO);
+		}
+		if (typeof(suggestions[0].data.management) != "undefined" && suggestions[0].data.management !== null) {
+			$("[name='field_32']").val(suggestions[0].data.management.name);
+			$("[name='field_31']").val(suggestions[0].data.management.post);
+		}
+		if (typeof(suggestions[0].data.state) != "undefined" && suggestions[0].data.state !== null) {
+			$("[name='field_22']").val(new Date(suggestions[0].data.state.registration_date).toLocaleDateString("ru-RU"));
+			const companyStatus = new Map([
+			  ['ACTIVE', 'Действующая'],
+			  ['LIQUIDATING', 'Ликвидируется'],
+			  ['LIQUIDATED', 'Ликвидирована'],
+			  ['BANKRUPT', 'Банкротство'],
+			  ['REORGANIZING', 'В процессе ликвидации']
+			]);
+			$("[name='field_23']").val(companyStatus.get(suggestions[0].data.state.status));
+		}
 	}
 </script>
 <script type="text/javascript"><!--
@@ -258,5 +295,63 @@ $('.datetime').datetimepicker({
 	pickDate: true,
 	pickTime: true
 });
+
+  $('.registerSeller__steps').delegate('button[id^=\'button-seller-field\']', 'click', function() {
+    var node = this;
+
+    $('#form-upload').remove();
+
+    $('body').prepend('<form enctype="multipart/form-data" id="form-upload" style="display: none;"><input type="file" name="file" /></form>');
+
+    $('#form-upload input[name=\'file\']').trigger('click');
+
+    if (typeof timer != 'undefined') {
+        clearInterval(timer);
+    }
+
+    timer = setInterval(function() {
+      if ($('#form-upload input[name=\'file\']').val() != '') {
+        clearInterval(timer);
+
+        $.ajax({
+          url: 'index.php?route=tool/upload/upload&user_token={{ user_token }}',
+          type: 'post',
+          dataType: 'json',
+          data: new FormData($('#form-upload')[0]),
+          cache: false,
+          contentType: false,
+          processData: false,
+          beforeSend: function() {
+            $(node).button('loading');
+          },
+          complete: function() {
+            $(node).button('reset');
+          },
+          success: function(json) {
+            $(node).parent().find('.text-danger').remove();
+
+            if (json['error']) {
+              $(node).parent().find('input[type=\'hidden\']').after('<div class="text-danger">' + json['error'] + '</div>');
+            }
+
+            if (json['success']) {
+              alert(json['success']);
+            }
+
+            if (json['code']) {
+              $(node).parent().find('input[type=\'hidden\']').val(json['code']);
+              $(node).parent().find('input[type=\'hidden\']').attr("file_name",json['filename']);
+				$(node).parent().find("a").remove();
+			  $(node).parent().append(json['filelink']);
+            }
+          },
+          error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+          }
+        });
+      }
+    }, 500);
+  });
+
 //--></script> 
 {{ footerEmpty }} 

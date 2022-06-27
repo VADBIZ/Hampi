@@ -60,38 +60,38 @@ $_['file_type']                             = 'Файл';
 $_['date']                                  = 'Дата';
 $_['text']                                  = 'Текстовое поле';
 
- $_['field_label']                          = 'Label';
- $_['field_label_hint']                     = 'Field name which will be displayed to seller o the front';
- $_['field_description']                    = 'Short Description';
- $_['required_field']                       = 'Required';
+ $_['field_label']                          = 'Символьное поля';
+ $_['field_label_hint']                     = 'Заголовок поля для отображения на сайте';
+ $_['field_description']                    = 'Короткое описание';
+ $_['required_field']                       = 'Обязательное';
  $_['required_field_hint']                  = 'Specify whether fields is mandatory to fill by the seller.';
- $_['seller_registration']                  = 'Show in seller registration Form';
- $_['textseller_profile_page']              = 'Show in Seller Profile Page';
- $_['textseller_profile_page_hint']         = 'Show this field in the seller profile page';
- $_['field_status']                         = 'Active';
+ $_['seller_registration']                  = 'Показывать в форме регистрации';
+ $_['textseller_profile_page']              = 'Показывать в личном кабинете';
+ $_['textseller_profile_page_hint']         = 'Скрыть поле из личного кабинета';
+ $_['field_status']                         = 'Активное';
  $_['field_status_hint']                    = 'Specify whether field is enabled OR not';
 
  $_['html_id']                              = 'HTML ID';
- $_['html_class']                           = 'HTML Class';
- $_['field_name']                           = 'Field Name';
- $_['section']                              = 'Section';
+ $_['html_class']                           = 'HTML Класс';
+ $_['field_name']                           = 'Название поля';
+ $_['section']                              = 'Секция';
 
- $_['text_general'] = 'General';
-$_['text_meta_info'] = 'Meta Information';
+ $_['text_general'] = 'Основное';
+$_['text_meta_info'] = 'Мета информация';
 $_['text_policy'] = 'Policy';
 $_['text_payout_info'] = 'Payout Information';
 
 
 //for the text field
-$_['text_placeholder'] = 'Placeholder';
-$_['error_message'] = 'Error Message';
-$_['error_message_hint'] = 'Error Message which will be displayed to seller. Enter the proper validation message.';
-$_['min_length'] = 'Minimum Length';
-$_['max_length'] = 'Maximum Length';
+$_['text_placeholder'] = 'Подсказка';
+$_['error_message'] = 'Сообщение об ошибке';
+$_['error_message_hint'] = 'Сообщение об ошибке, если поле введено неверно!';
+$_['min_length'] = 'Минимальная длина';
+$_['max_length'] = 'Максимальная длина';
 
-$_['select_option'] = 'Options';
-$_['multiselect'] = 'Multiple Select';
-$_['select_option_default'] = 'Default value (optional)';
+$_['select_option'] = 'Опции';
+$_['multiselect'] = 'Множественный выбор';
+$_['select_option_default'] = 'Значение по умолчанию';
 $_['select_option_msg'] = 'Enter only one option in 1 line. Avoid blank lines. Accepted format example: <br/>m|Male <br/>f|Female';
 $_['select_option_default_msg'] = 'For select, radio or checkbox, set the default value like: If option is n|No, Default value will be: n';
 
@@ -108,15 +108,15 @@ $_['validation_textarea'] = 'Validation';
 $_['text_editor_show'] = 'Show text editor';
 
 //for the file type
-$_['editable_label'] = 'Editable';
+$_['editable_label'] = 'Редактируемое?';
 $_['editable_label_hint'] = 'Once field, Specify whether seller can update the field OR not?';
-$_['file_extension'] = 'File Extension';
-$_['file_extension_msg'] = 'Extension must be comma separated value i.e. png, jpg';
-$_['field_position'] = 'Field Sort Order';
+$_['file_extension'] = 'Расширение файлов';
+$_['file_extension_msg'] = 'Расширение файлов может быть через запятую, например: png, jpg';
+$_['field_position'] = 'Порядок сотрировки';
 
 //Form submission
-$_['submit_status'] = 'Custom Fields Submitted Successfully';
-$_['error_status'] = 'Fields Name Exist';
+$_['submit_status'] = 'Поля продавца успешно сохранены!';
+$_['error_status'] = 'Уже есть такое поле!';
 
 //For the data listing page
 $_['id'] = 'ID';

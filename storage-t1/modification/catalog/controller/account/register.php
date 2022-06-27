@@ -56,18 +56,22 @@ class ControllerAccountRegister extends Controller {
 		}
 		
 		//делаем из ФИО Фамилию Имя Отчество
-		if ($this->request->server['REQUEST_METHOD'] == 'POST') {
+		if (count($this->request->post) > 0) {
 			if (isset($this->request->post['seller']) && !empty($this->request->post['seller'])) {
 				if ($this->request->post['sellerfio'] != "") {
 					$fio_array = explode(" ",$this->request->post['sellerfio']);
 					$this->request->post['lastname'] = $fio_array[1];
 					$this->request->post['firstname'] = $fio_array[0];
-					$this->request->post['secondname'] = $fio_array[2];
+					if (isset($fio_array[2]))
+						$this->request->post['secondname'] = $fio_array[2];
+					else
+						$this->request->post['secondname'] = "";
 				}
 			}
 		}
 		
 		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+			
 			$customer_id = $this->model_account_customer->addCustomer($this->request->post);
 
                         $this->load->model('setting/kbmp_marketplace');
@@ -178,7 +182,7 @@ class ControllerAccountRegister extends Controller {
                         if (isset($customer_id) && !empty($customer_id) && isset($this->request->post['seller']) && !empty($this->request->post['seller']) && $settings['kbmp_marketplace_setting']['kbmp_seller_registration']) {
 							
                             $this->load->model('kbmp_marketplace/kbmp_marketplace');
-                           // $this->model_kbmp_marketplace_kbmp_marketplace->addSeller($customer_id, $this->request->post, $settings, $store_id);
+                            //$this->model_kbmp_marketplace_kbmp_marketplace->addSeller($customer_id, $this->request->post, $settings, $store_id);
                             
                             //Send Welcome Mail
                             $email_template = $this->model_kbmp_marketplace_kbmp_marketplace->getEmailTemplate(1);
@@ -246,37 +250,38 @@ class ControllerAccountRegister extends Controller {
                                 $mail->send();
                             }
                             //For the custom fields add By DHarmanshu 16-06-2020
+								//статус модерация при регистрации
+								$this->request->post['field_7'] = "m";
                             	$column_names = implode(',',(array_keys($this->request->post)));
                                 $this->load->model('kbmp_marketplace/kbmp_marketplace');
                                 $seller_id = $this->model_kbmp_marketplace_kbmp_marketplace->get_SellerID($customer_id);
                                 $fieldID_array = $this->model_kbmp_marketplace_kbmp_marketplace->get_field_id($column_names);
 								$this->model_kbmp_marketplace_kbmp_marketplace->insert_seller_mapping($customer_id,$seller_id,$fieldID_array,$this->request->post);
-								if(!empty($this->request->files)){
-									foreach ($this->request->files as $key => $value) {
-                                        $field_name = [];
-                                        $name = $value['tmp_name'];
-                                        $file = $value['name'];
-
-                                        $temp = explode(".",$value['name']);
-                                        $newfilename = round(microtime(true)) . '.' . end($temp);
-                                        $name = $value['tmp_name'];
-                                        $file = $value['name'];
-                                        $file = $newfilename;
-										if (move_uploaded_file($name, DIR_IMAGE . 'seller_custom_field/'. $file)) {
-											$field_name[$key] = $file;
-											$fieldID_array = $this->model_kbmp_marketplace_kbmp_marketplace->get_field_id($key);
-											$this->model_kbmp_marketplace_kbmp_marketplace->insert_seller_mapping($customer_id,$seller_id,$fieldID_array,$field_name);
-										}
-									}										
-								} 
+//								if(!empty($this->request->files)){
+//									foreach ($this->request->files as $key => $value) {
+//                                        $field_name = [];
+//                                        $name = $value['tmp_name'];
+//                                        $file = $value['name'];
+//                                        $temp = explode(".",$value['name']);
+//                                        $newfilename = round(microtime(true)) . '.' . end($temp);
+//                                        $name = $value['tmp_name'];
+//                                        $file = $value['name'];
+//                                        $file = $newfilename;
+//										if (move_uploaded_file($name, DIR_IMAGE . 'seller_custom_field/'. $file)) {
+//											$field_name[$key] = $file;
+//											$fieldID_array = $this->model_kbmp_marketplace_kbmp_marketplace->get_field_id($key);
+//											$this->model_kbmp_marketplace_kbmp_marketplace->insert_seller_mapping($customer_id,$seller_id,$fieldID_array,$field_name);
+//										}
+//									}										
+//								} 
                                 //For the custom fields add By DHarmanshu 16-06-2020
-                    }
+                    } else {
+							$this->customer->login($this->request->post['email'], $this->request->post['password']);
+						}
                 
 
 			// Clear any previous login attempts for unregistered accounts.
 			$this->model_account_customer->deleteLoginAttempts($this->request->post['email']);
-
-			//$this->customer->login($this->request->post['email'], $this->request->post['password']);
 
 			unset($this->session->data['guest']);
 			
@@ -718,6 +723,11 @@ class ControllerAccountRegister extends Controller {
                     
                     //For the custom fields add By DHarmanshu 16-06-2020
                    $custom_field_data = $this->request->post;
+					if (isset($this->error['sellerErrorFields'])) {
+						$data['select_error'] = $this->error['sellerErrorFields'];
+					} else {
+						$data['select_error'] = array();
+					}
                    $select_error = $data['select_error'];
                    $kbmp_marketplace_settings = $data['kbmp_marketplace_settings'];
                    $fields = $data['fields'];
@@ -873,6 +883,21 @@ class ControllerAccountRegister extends Controller {
 					$this->error['warning'] = $this->language->get('error_exists');
 				}
 			}
+			
+			//провяерм продавца на обязательные поля
+			$sellerErrorFields = array();
+			$store_id = (int) $this->config->get('config_store_id');
+			$lang_id = $this->config->get('config_language_id');
+			$this->load->model('kbmp_marketplace/kbmp_marketplace');
+			$this->load->model('kbmp_marketplace/register');
+			$fieldsSellers = $this->model_kbmp_marketplace_kbmp_marketplace->get_custom_field($lang_id,$store_id);
+			foreach($fieldsSellers as $fieldSellers) {
+				if ($fieldSellers['required'] == "1" && empty($this->request->post[$fieldSellers['field_name']]) && $fieldSellers['show_registration_form'] == "1") {
+					$sellerErrorFields[$fieldSellers['field_name']] = true;
+				}
+			}
+			if (count($sellerErrorFields) > 0)
+				$this->error['sellerErrorFields'] = $sellerErrorFields;
 		} else {
 			if ($this->model_account_customer->getTotalCustomersByEmail($this->request->post['email'])) {
 				$this->error['warning'] = $this->language->get('error_exists');

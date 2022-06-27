@@ -3664,6 +3664,7 @@ class ModelKbmpMarketplaceKbmpMarketplace extends Model {
                 . "field.min_length,"
                 . "field.multiselect,"
                 . "field.required,"
+				. "field.show_registration_form,"
                 . "field_lang.label,"
                 . "field_lang.description,"
                 . "field_lang.default_value,"
@@ -3676,8 +3677,7 @@ class ModelKbmpMarketplaceKbmpMarketplace extends Model {
                 . "ON field.id_field = field_lang.id_field "
                 . "WHERE field_lang.id_lang =  '" . (int) $lang_id . "' "
                 . "AND field_lang.id_shop = '" . (int) $store_id . "' "
-                . "AND  field.active = 1 AND "
-                . "field.show_registration_form = 1";
+                . "AND  field.active = 1";
         $query = $this->db->query($sql);
         return $query->rows;
     }

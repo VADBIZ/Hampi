@@ -10,7 +10,11 @@ class ModelKbmpmarketplaceRegister extends Model {
                 if ($field_data['required'] == 1) {
                     $required = 'required';
                 }
-                $html.= '<div class="form-group ' . $required . ' ' . $field_data['html_class'] . '">';
+				$show_register = '';
+				if ($field_data['show_registration_form'] == 0) {
+					$show_register = 'hidden';
+				}
+                $html.= '<div class="form-group ' . $required . ' ' . $field_data['html_class'] . ' ' . $show_register . '">';
                 $html.= '<label class="control-label">' . $field_data["label"] . '</label>';
                 $html.= '<div>';
                 if ($field_data['type'] == 'text') {
@@ -100,14 +104,12 @@ class ModelKbmpmarketplaceRegister extends Model {
                     }
                     $html.= '<textarea type="textarea" name="' . $field_data["field_name"] . '" value="" placeholder="' . $field_data["placeholder"] . '" id="' . $field_data["html_id"] . '"  class="' . $required . ' form-control ' . $field_data["html_class"] . '" maxlength="' . $field_data["max_length"] . '" minlength="' . $field_data["min_length"] . '" data-validation= "' . $field_data["validation"] . '" data-type="textarea" data-error="' . $field_data["error_msg"] . '">' . $value_data . '</textarea>';
                 } else if ($field_data['type'] == 'file') {
-                    $file_extension = explode(',', $field_data['file_extension']);
-                    $file_ext_data = [];
-                    foreach ($file_extension as $fil_ext) {
-                        $file_ext_data [] = strtolower($fil_ext);
+                    $name = $field_data["field_name"];
+                    $value_data = '';
+                    if (isset($custom_field_data[$name])) {
+                        $value_data = $custom_field_data[$name];
                     }
-                    $file_extension = implode(',', $file_ext_data);
-                    $html.= '<input type="file" data-type="file" name="' . $field_data["field_name"] . '"  id="' . $field_data["html_id"] . '"  class="file_input_data ' . $required . ' form-control ' . $field_data["html_class"] . '">';
-                    $html.= '<input type="hidden" name="file_' . $field_data["html_id"] . '" id="file_' . $field_data["html_id"] . '" value="' . $file_extension . '">';
+					$html .= '<button type="button" id="button-seller-' . $field_data["html_id"] . '" data-loading-text="Загрузка файла..." class="btn btn-default"><i class="fa fa-upload"></i> Загрузить файл</button><input type="hidden" name="' . $field_data["field_name"] . '" value="'.$value_data.'" id="' . $field_data["html_id"] . '" />';
                 } else if ($field_data['type'] == 'date') {
                     $name = $field_data["field_name"];
                     $value_data = '';
@@ -121,12 +123,17 @@ class ModelKbmpmarketplaceRegister extends Model {
                     $html.= '</div>';
                     $html.= '</div>';
                 }
-                $html.= '<p class="helptext">';
-				$html.= $field_data["description"] . "&nbsp;";
-				if (!empty($field_data['file_extension'])) {
-					$html.= $this->language->get('valid_extension_file') . $field_data['file_extension'];
+				if ($field_data["description"] != '') {
+					$html.= '<p class="helptext">';
+					$html.= $field_data["description"] . "&nbsp;";
+					if (!empty($field_data['file_extension'])) {
+						$html.= $this->language->get('valid_extension_file') . $field_data['file_extension'];
+					}
+					$html.= '</p>';
 				}
-				$html.= '</p>';
+				if (isset($select_error[$field_data['field_name']])) {
+					$html.= '<div class="text-danger" style="margin-bottom:20px">Поле '.$field_data['label'].' является обязательным!</div>';
+				}
                 $html.= '</div>';
                 $html.= '</div>';
             }

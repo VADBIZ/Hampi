@@ -32,6 +32,14 @@ class ModelKbmpMarketplaceCustomerFields extends Model {
         return $row['seller_id'];
     }
 	
+	//функция получения id пользователя
+	public function get_CustomerID($seller_id) {
+        $sql = "SELECT customer_id FROM " . DB_PREFIX . "kb_mp_seller WHERE seller_id = '" . (int) $seller_id . "'";
+        $query = $this->db->query($sql);
+        $row = $query->row;
+        return $row['customer_id'];
+    }
+	
 	//функция обновления/добавления значения полей по customer id
 	public function setseller_field_values($data) {
 		foreach($data['fields'] as $key => $field) {
