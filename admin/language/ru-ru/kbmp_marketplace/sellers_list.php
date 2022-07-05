@@ -130,3 +130,12 @@ $_['error_custom_field']    = '%s необходим!';
 
 $_['error_type_text']		= 'Пожалуйста, заполните поле!';
 $_['error_type_file']		= 'Пожалуйста, загрузите файл!';
+
+//Messages
+$_['text_approval_success']                 = 'Вы успешно одобрили продавца!';
+$_['text_approval_error']                   = 'Продавец не был одобрен!';
+$_['text_disapproval_success']              = 'Успешно: Продавец был успешно отклонен.';
+$_['text_disapproval_error']                = 'Ошибка: не удалось отклонить продавца!';
+$_['text_approval_confirmation']            = 'Вы хотите утвердить продавца?';
+$_['text_disapproval_confirmation']         = 'Вы хотите отклонить продавца?';
+$_['text_disapproval']                      = 'Отклонить продавца?';

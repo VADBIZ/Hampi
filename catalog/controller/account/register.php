@@ -51,8 +51,8 @@ class ControllerAccountRegister extends Controller {
 			if (isset($this->request->post['seller']) && !empty($this->request->post['seller'])) {
 				if ($this->request->post['sellerfio'] != "") {
 					$fio_array = explode(" ",$this->request->post['sellerfio']);
-					$this->request->post['lastname'] = $fio_array[1];
-					$this->request->post['firstname'] = $fio_array[0];
+					$this->request->post['lastname'] = $fio_array[0];
+					$this->request->post['firstname'] = $fio_array[1];
 					if (isset($fio_array[2]))
 						$this->request->post['secondname'] = $fio_array[2];
 					else
@@ -72,7 +72,7 @@ class ControllerAccountRegister extends Controller {
                         if (isset($customer_id) && !empty($customer_id) && isset($this->request->post['seller']) && !empty($this->request->post['seller']) && $settings['kbmp_marketplace_setting']['kbmp_seller_registration']) {
 							
                             $this->load->model('kbmp_marketplace/kbmp_marketplace');
-                            //$this->model_kbmp_marketplace_kbmp_marketplace->addSeller($customer_id, $this->request->post, $settings, $store_id);
+                            $this->model_kbmp_marketplace_kbmp_marketplace->addSeller($customer_id, $this->request->post, $settings, $store_id);
                             
                             //Send Welcome Mail
                             $email_template = $this->model_kbmp_marketplace_kbmp_marketplace->getEmailTemplate(1);
@@ -141,12 +141,14 @@ class ControllerAccountRegister extends Controller {
                             }
                             //For the custom fields add By DHarmanshu 16-06-2020
 								//статус модерация при регистрации
-								$this->request->post['field_7'] = "m";
-                            	$column_names = implode(',',(array_keys($this->request->post)));
+								$postData = $this->request->post;
+								$postData['field_7'] = "m";
+							
+                            	$column_names = implode(',',(array_keys($postData)));
                                 $this->load->model('kbmp_marketplace/kbmp_marketplace');
                                 $seller_id = $this->model_kbmp_marketplace_kbmp_marketplace->get_SellerID($customer_id);
                                 $fieldID_array = $this->model_kbmp_marketplace_kbmp_marketplace->get_field_id($column_names);
-								$this->model_kbmp_marketplace_kbmp_marketplace->insert_seller_mapping($customer_id,$seller_id,$fieldID_array,$this->request->post);
+								$this->model_kbmp_marketplace_kbmp_marketplace->insert_seller_mapping($customer_id,$seller_id,$fieldID_array,$postData);
 //								if(!empty($this->request->files)){
 //									foreach ($this->request->files as $key => $value) {
 //                                        $field_name = [];

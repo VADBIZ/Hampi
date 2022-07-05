@@ -12,7 +12,9 @@
 			</div>
 			  <div class="pull-right">
 				<a href="{{ seller_add }}" data-toggle="tooltip" title="{{ button_add }}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
-				<button type="button" data-toggle="tooltip" title="{{ button_delete }}" class="btn btn-danger" onclick="confirm('{{ text_confirm }}') ? $('#form-seller').submit() : false;"><i class="fa fa-trash-o"></i></button>
+				  {% if usergroup == 1 %}
+					<button type="button" data-toggle="tooltip" title="{{ button_delete }}" class="btn btn-danger" onclick="confirm('{{ text_confirm }}') ? $('#form-seller').submit() : false;"><i class="fa fa-trash-o"></i></button>
+				  {% endif %}
 			  </div>
         </div>
     </div>
@@ -42,7 +44,9 @@
 								<table class="table filter">
 									<thead>
 										<tr>
-											<td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
+											{% if usergroup == 1 %}
+												<td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
+											{% endif %}
 										   <!-- <th>
 												{% if (sort == 'c.firstname') %} 
 													<a href="{{ sort_firstname }}" class="{{ (order) }}">{{ column_firstname }}</a>
@@ -161,20 +165,21 @@
 										{% if (sellers is defined and sellers is not empty) %}
 											{% for seller in sellers %} 
 												<tr>
-													
-													<td class="text-center">{% if seller.customer_id in selected %}
-													  <input type="checkbox" name="selected[]" value="{{ seller.customer_id }}" checked="checked" />
-													  {% else %}
-													  <input type="checkbox" name="selected[]" value="{{ seller.customer_id }}" />
-													  {% endif %}
-													</td>
+													{% if usergroup == 1 %}
+														<td class="text-center">{% if seller.customer_id in selected %}
+														  <input type="checkbox" name="selected[]" value="{{ seller.customer_id }}" checked="checked" />
+														  {% else %}
+														  <input type="checkbox" name="selected[]" value="{{ seller.customer_id }}" />
+														  {% endif %}
+														</td>
+													{% endif %}
 													
 													<td>{{ seller['fio'] }}</td>
 													<td>{{ seller['email'] }}</td>
 													<td>{{ seller['companyname'] }}</td>
 													<td>{{ seller['date_added'] }}</td>
 													<td>{{ seller['statusmain'] }}</td>
-													<td class="text-right" style="width: 145px;">
+													<td class="text-right" style="width: 190px;">
 														{% if (seller['status'] is defined and seller['status'] == 1) %}
 															<a href="{{ seller['disable'] }}" data-toggle="tooltip" title="{{ text_inactivate }}" data-customer-id="{{seller['customer_id']}}" onclick="return window.confirm('{{text_disable_confirm_message}}');" class="btn btn-danger"><i class="fa fa-ban"></i></a>
 														{% else %}
@@ -182,6 +187,7 @@
 														{% endif %}
 														<a href="javascript://" data-toggle="tooltip" title="{{ text_seller_info }}" data-customer-id="{{seller['customer_id']}}" class="btn btn-primary sellerInfo"><i class="fa fa-eye"></i></a>
 														<a href="{{ seller['edit'] }}" data-toggle="tooltip" title="{{ text_edit }}" class="btn btn-primary"><i class="fa fa-pencil"></i></a>
+														<a href="javascript://" onclick="approve_seller('{{ seller['seller_id'] }}')" data-toggle="tooltip" title="{{ text_approve }}" class="btn btn-success"><i class="fa fa-check"></i></a>
 													</td>
 												</tr>
 											{% endfor %}
@@ -227,9 +233,21 @@
 </div>
             
 <script type="text/javascript">
-    
+	
     var customerId = '';
+
+		//Function to send approve seller request
+		function approve_seller(seller) {
+			if (seller != '') {
+				if (confirm('{{ text_approval_confirmation }}')) {
+					var url = 'index.php?route=kbmp_marketplace/sellers_account_approval_list/approve&user_token={{ token }}&seller_id=' + seller;
+					location = url;
+				}
+			}
+		}
+	
     $(document).ready(function() {
+		
         $(".sellerInfo").click(function() {
             customerId = $(this).attr("data-customer-id");
             $("#sellerInfoDetails").modal("show");

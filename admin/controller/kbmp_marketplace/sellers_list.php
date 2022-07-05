@@ -419,6 +419,38 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 		} else {
 			$data['telephone'] = '';
 		}
+		
+		//seller fields
+		$this->load->model('kbmp_marketplace/sellers_profile_custom_fields');
+		$this->load->model('kbmp_marketplace/customer_fields');
+		if (isset($this->request->get['customer_id'])) {
+			if (isset($this->request->post['seller_field'])) {
+				$seller_fields = $this->request->post['seller_field'];
+			} else {
+				$field_data = array (
+					'customer_id' => (int)$this->request->get['customer_id']
+				);
+				$seller_fields = $this->model_kbmp_marketplace_customer_fields->getseller_field($field_data);
+			}
+			
+			$data['seller_field'] = $seller_fields;
+			$file_links = array();
+			foreach($seller_fields as $key => $field) {
+				$fieldData = $this->model_kbmp_marketplace_sellers_profile_custom_fields->get_Customfields_data($key);
+				if ($fieldData['type'] == "file") {
+					$file_link = $this->url->link('tool/upload/download', 'user_token=' . $this->session->data['user_token'] . '&code=' . $field, true);
+					$file_links[$key] = $file_link;
+				}
+			}	
+			
+			$data['file_links'] = $file_links;
+		} else {
+			if (isset($this->request->post['seller_field'])) {
+				$data['seller_field'] = $this->request->post['seller_field'];
+			} else {
+				$data['seller_field'] = array();
+			}
+		}
 
 		// Custom Fields
 		$this->load->model('customer/custom_field');
@@ -621,9 +653,6 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 		}
 		
 		//добавляем поля продавца
-		
-			$this->load->model('kbmp_marketplace/sellers_profile_custom_fields');
-			$this->load->model('kbmp_marketplace/customer_fields');
 
 			$lang_id = 0;
 			$get_language_details = $this->model_kbmp_marketplace_sellers_profile_custom_fields->getLanguage();
@@ -665,32 +694,6 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 					}
 				}
 			}
-		
-		if (isset($this->request->get['customer_id'])) {
-			$field_data = array (
-				'customer_id' => (int)$this->request->get['customer_id']
-			);
-			$seller_fields = $this->model_kbmp_marketplace_customer_fields->getseller_field($field_data);
-			$data['seller_field'] = $seller_fields;
-			
-			$file_links = array();
-			foreach($seller_fields as $key => $field) {
-				$fieldData = $this->model_kbmp_marketplace_sellers_profile_custom_fields->get_Customfields_data($key);
-				if ($fieldData['type'] == "file") {
-					$file_link = $this->url->link('tool/upload/download', 'user_token=' . $this->session->data['user_token'] . '&code=' . $field, true);
-					$file_links[$key] = $file_link;
-				}
-			}	
-			
-			$data['file_links'] = $file_links;
-		} else {
-			
-			if (isset($this->request->post['seller_field'])) {
-				$data['seller_field'] = $this->request->post['seller_field'];
-			} else {
-				$data['seller_field'] = array();
-			}
-		}
 		
 		$data['sellers_fields'] = $sellers_out_fields;
 		
@@ -984,6 +987,7 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 			
 			$seller_companyname = "";
 			$seller_status = "";
+			
 			foreach ($fields as $field) {
 //				echo "<pre>";
 //					var_dump($field['seller_value']);
@@ -992,10 +996,17 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 					$seller_companyname = $field['seller_value'];
 				}
 				if (($field["field_name"] == "field_7")) {
-					if ($field['seller_value'] == "") {
+					
+					$this->load->model('kbmp_marketplace/customer_fields');
+					$dataStatus = array(
+						'customer_id' => $result['customer_id']
+					);
+					$status_value = $this->model_kbmp_marketplace_customer_fields->getseller_field($dataStatus);
+					
+					if (empty($status_value[7])) {
 						$seller_status = "Нет данных";	
 					} else {
-						$seller_status = $this->getStatus($field['seller_value']);
+						$seller_status = $this->getStatus($status_value[7]);
 					}
 				}
 			}
@@ -1004,15 +1015,13 @@ class ControllerKbmpMarketplacesellersList extends Controller {
 				$seller_companyname = $this->language->get('column_companyname_empty');
 			}
 			
+			//группа пользователя
+			$data['usergroup'] = $this->user->getGroupId();
+			
             $data['sellers'][] = array(
                 'seller_id' => $result['seller_id'],
                 'customer_id' => $result['customer_id'],
-                'firstname' => $result['firstname'],
-                'lastname' => $result['lastname'],
-                'secondname' => $result['secondname'],
 				'fio' => $result['fio'],
-                'lastname' => $result['lastname'],
-                'secondname' => $result['secondname'],
                 'email' => $result['email'],
 				'companyname' => $seller_companyname,
                 'status' => $result['active'],

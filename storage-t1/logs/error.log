@@ -3198,3 +3198,23 @@
 2022-06-27 16:11:13 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 9
 2022-06-27 16:11:13 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 9
 2022-06-27 16:11:13 - PHP Notice:  Undefined index: access_slug in /home/p616774/www/test.hampi.ru/storage-t1/modification/admin/controller/common/column_left.php on line 9
+2022-06-28 15:34:59 - PHP Notice:  Undefined index: seller_id in /var/www/www-root/data/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_account_approval_list.php on line 58
+2022-06-28 20:17:41 - PHP Notice:  Undefined index: seller_id in /var/www/www-root/data/www/test.hampi.ru/catalog/model/kbmp_marketplace/kbmp_marketplace.php on line 3950
+2022-06-28 21:17:22 - PHP Notice:  Undefined variable: field_data in /var/www/www-root/data/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 430
+2022-06-28 21:17:22 - PHP Notice:  Undefined index: type in /var/www/www-root/data/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 440
+2022-06-28 21:17:22 - PHP Notice:  Undefined index: type in /var/www/www-root/data/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 440
+2022-06-28 21:17:22 - PHP Notice:  Undefined index: type in /var/www/www-root/data/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 440
+2022-06-28 21:17:22 - PHP Notice:  Undefined index: type in /var/www/www-root/data/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 440
+2022-06-28 21:17:22 - PHP Notice:  Undefined index: type in /var/www/www-root/data/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 440
+2022-06-28 21:17:58 - PHP Notice:  Undefined variable: seller_fields in /var/www/www-root/data/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 438
+2022-06-28 21:17:58 - PHP Warning:  Invalid argument supplied for foreach() in /var/www/www-root/data/www/test.hampi.ru/admin/controller/kbmp_marketplace/sellers_list.php on line 438
+2022-06-30 11:46:09 - Warning: fopen(https://api.telegram.org/bot5478123142:AAH_dNJ9ktu5FzQoUUPmqCziHuBO-a0HGcc/sendMessage?chat_id=-815875142&amp;parse_mode=html&amp;text=test bot!): failed to open stream: HTTP request failed! HTTP/1.1 400 Bad Request
+ in /var/www/www-root/data/www/test.hampi.ru/catalog/controller/tool/telegram.php on line 14
+2022-06-30 16:53:04 - PHP Notice:  Undefined variable: test in /var/www/www-root/data/www/test.hampi.ru/storage-t1/modification/catalog/controller/common/header.php on line 32
+2022-06-30 16:54:17 - PHP Notice:  Undefined variable: test in /var/www/www-root/data/www/test.hampi.ru/storage-t1/modification/catalog/controller/common/header.php on line 32
+2022-06-30 17:04:22 - PHP Notice:  Undefined variable: test in /var/www/www-root/data/www/test.hampi.ru/storage-t1/modification/catalog/controller/common/header.php on line 32
+2022-06-30 17:17:31 - PHP Notice:  Undefined index: customer_id in /var/www/www-root/data/www/test.hampi.ru/storage-t1/modification/catalog/controller/mail/register.php on line 36
+2022-06-30 17:17:32 - PHP Notice:  Undefined index: customer_id in /var/www/www-root/data/www/test.hampi.ru/storage-t1/modification/catalog/controller/mail/register.php on line 90
+2022-06-30 17:19:50 - PHP Notice:  Undefined index: customer_id in /var/www/www-root/data/www/test.hampi.ru/storage-t1/modification/catalog/controller/mail/register.php on line 36
+2022-06-30 17:19:51 - PHP Notice:  Undefined index: customer_id in /var/www/www-root/data/www/test.hampi.ru/storage-t1/modification/catalog/controller/mail/register.php on line 90
+2022-07-01 12:27:17 - PHP Notice:  Undefined index: email in /var/www/www-root/data/www/test.hampi.ru/catalog/controller/kbmp_marketplace/seller_activation.php on line 46

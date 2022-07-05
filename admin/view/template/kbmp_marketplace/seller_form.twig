@@ -300,7 +300,7 @@
 								{% for custom_field in sellers_fields %}
 									{% if custom_field.active %}
 										{% if custom_field.type == 'select' %}
-										<div class="form-group seller-field seller-field{{ custom_field.id_field }}{% if custom_field.required %} required{% endif %}">
+										<div class="form-group seller-field seller-field{{ custom_field.id_field }}{% if custom_field.required %} required{% endif %}{% if custom_field.id_field == '7' %} hidden{% endif %}">
 										  <label class="col-sm-2 control-label" for="input-seller-field{{ custom_field.id_field }}">{{ custom_field.label }}</label>
 										  <div class="col-sm-10">
 											<select name="seller_field[{{ custom_field.id_field }}]" id="input-seller-field{{ custom_field.id_field }}" class="form-control">
@@ -717,17 +717,93 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/inputmask/4.0.9/jquery.inputmask.bundle.min.js" integrity="sha512-VpQwrlvKqJHKtIvpL8Zv6819FkTJyE1DoVNH0L2RLn8hUPjRjkS/bCYurZs0DX9Ybwu9oHRHdBZR9fESaq8Z8A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <link href="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/css/suggestions.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/suggestions-jquery@21.12.0/dist/js/jquery.suggestions.min.js"></script>
+
 <script type="text/javascript">
-	$(document).ready(function(){
-		$(".field_phoneking,.maskPhone").inputmask("+7 (999) 999-99-99");
-		$(".field_emailking,.maskEmail").inputmask("email");
-	});
+<!--
+//masks
+$(document).ready(function(){
+	$("input.mask").inputmask("+7 (999) 999-99-99");
+	$("input.maskEmail").inputmask("email");
+	
 	var dadataToken = "2665fdf7fc2ea41b7ae830eb47ca0d0379c543f7";
 	//autocomplete address
-	$(".field_uraddress").suggestions({
+	$('[name="seller_field[30]"]').suggestions({
 		token: dadataToken,
 		type: "ADDRESS"
 	});
+	
+	//поиск по инн
+	$("[name='seller_field[1]']").keyup(function(){
+		var url = "https://suggestions.dadata.ru/suggestions/api/4_1/rs/findById/party";
+		var token = dadataToken;
+		var query = $(this).val();
+		console.log(query);
+
+		var options = {
+			method: "POST",
+			mode: "cors",
+			headers: {
+				"Content-Type": "application/json",
+				"Accept": "application/json",
+				"Authorization": "Token " + token
+			},
+			body: JSON.stringify({query: query})
+		}
+
+		fetch(url, options)
+		.then(response => response.text())
+		.then(result => changeByInn(result))
+		.catch(error => console.log("error", error));
+	});
+	
+	//подставить значения после инн
+	function changeByInn(result=""){
+		var suggestions = JSON.parse(result).suggestions;
+		console.log(suggestions);
+		$("[name='seller_field[21]']").val(suggestions[0].value);
+		if (suggestions[0].data.address !== null)
+			$("[name='seller_field[30]']").val(suggestions[0].data.address.unrestricted_value);
+		if (suggestions[0].data.phones !== null)
+			$("[name='seller_field[33]']").val(suggestions[0].data.phones.source);
+		if (suggestions[0].data.emails !== null)
+			$("[name='seller_field[34]']").val(suggestions[0].data.emails.source);
+		var companyType = "Юридическое лицо";
+		if (suggestions[0].data.type == "LEGAL")
+			companyType = "Юридическое лицо";
+		if (suggestions[0].data.type == "INDIVIDUAL")
+			companyType = "Индивидуальный предприниматель";
+		$("[name='seller_field[8]']").val(companyType);
+		$("[name='seller_field[9]']").val(suggestions[0].data.name.short_with_opf);
+		$("[name='seller_field[24]']").val(suggestions[0].data.kpp);
+		$("[name='seller_field[25]']").val(suggestions[0].data.ogrn);
+		if (typeof(suggestions[0].data.fio) != "undefined" && suggestions[0].data.fio !== null) {
+			var ipFIO = "";
+			if (typeof(suggestions[0].data.fio.surname) != "undefined" && suggestions[0].data.fio.surname !== null)
+				ipFIO += suggestions[0].data.fio.surname;
+			if (typeof(suggestions[0].data.fio.name) != "undefined" && suggestions[0].data.fio.name !== null)
+				ipFIO += " "+suggestions[0].data.fio.name;
+			if (typeof(suggestions[0].data.fio.patronymic) != "undefined" && suggestions[0].data.fio.patronymic !== null)
+				ipFIO += " "+suggestions[0].data.fio.patronymic;
+			$("[name='seller_field[13]']").val(ipFIO);
+		}
+		if (typeof(suggestions[0].data.management) != "undefined" && suggestions[0].data.management !== null) {
+			$("[name='seller_field[32]']").val(suggestions[0].data.management.name);
+			$("[name='seller_field[31]']").val(suggestions[0].data.management.post);
+		}
+		if (typeof(suggestions[0].data.state) != "undefined" && suggestions[0].data.state !== null) {
+			$("[name='seller_field[22]']").val(new Date(suggestions[0].data.state.registration_date).toLocaleDateString("ru-RU"));
+			const companyStatus = new Map([
+			  ['ACTIVE', 'Действующая'],
+			  ['LIQUIDATING', 'Ликвидируется'],
+			  ['LIQUIDATED', 'Ликвидирована'],
+			  ['BANKRUPT', 'Банкротство'],
+			  ['REORGANIZING', 'В процессе ликвидации']
+			]);
+			$("[name='seller_field[23]']").val(companyStatus.get(suggestions[0].data.state.status));
+		}
+	}
+});
+	//-->
 </script>
 	
   <script type="text/javascript"><!--

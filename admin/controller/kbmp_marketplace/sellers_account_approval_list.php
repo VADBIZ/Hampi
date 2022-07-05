@@ -54,7 +54,7 @@ class ControllerKbmpMarketplaceSellersAccountApprovalList extends Controller {
     
     // Function definition to get Sellers List
     protected function getList() {
-        
+		
         if (isset($this->request->get['filter_firstname'])) {
             $filter_firstname = $this->request->get['filter_firstname'];
         } else {
@@ -463,8 +463,10 @@ class ControllerKbmpMarketplaceSellersAccountApprovalList extends Controller {
                 $email_template = $this->model_kbmp_marketplace_kbmp_marketplace->getEmailTemplate(2, $this->config->get('config_language_id'));
 
                 if (isset($email_template) && !empty($email_template)) {
-                    $message = str_replace("{{email}}", $seller_details['email'] , $email_template['email_content']); //Seller Email
-                    $message = str_replace("{{full_name}}", $seller_details['firstname'] . ' ' . $seller_details['lastname'] , $message); //Seller Full Name
+					$seller_id = $this->request->get['seller_id'];
+					$token = $this->model_kbmp_marketplace_kbmp_marketplace->generateTokenApprove($seller_id);
+					$linkToPassword = "<a href='".HTTPS_CATALOG . "index.php?route=kbmp_marketplace/seller_activation&token=".$token."'>задать новый пароль</a>";
+                    $message = str_replace("{{linkToPassword}}", $linkToPassword , $email_template['email_content']); //ссылка на пароль
 
                     $email_content  = '<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/strict.dtd">' . "\n";
                     $email_content .= '<html>' . "\n";
@@ -547,7 +549,7 @@ class ControllerKbmpMarketplaceSellersAccountApprovalList extends Controller {
                 $this->session->data['error'] = $this->language->get('text_approval_error');
             }
         }
-        $this->response->redirect($this->url->link('kbmp_marketplace/sellers_account_approval_list', $this->session_token_key.'=' . $this->session_token, true));
+        $this->response->redirect($this->url->link('kbmp_marketplace/sellers_list', $this->session_token_key.'=' . $this->session_token, true));
     }
     
     /*

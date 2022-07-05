@@ -884,6 +884,13 @@ class ModelKbmpMarketplaceKbmpMarketplace extends Model {
         $query = $this->db->query($sql);
         return $query->row;
     }
+	
+    // Function to get seller information by customer Id 
+    public function getSellerByCustomerIdValue($customer_id) {
+        $sql = "SELECT * FROM " . DB_PREFIX . "kb_mp_seller WHERE customer_id = '" . (int) $customer_id . "'";
+        $query = $this->db->query($sql);
+        return $query->row;
+    }
 
     /* Starts Changes done by Mahima on 22nd April 2020 for adding commission new page
      * Function to get seller commission by sellers Id
@@ -3906,4 +3913,51 @@ class ModelKbmpMarketplaceKbmpMarketplace extends Model {
     public function getProduct_approvaldata($product_id){
         
     }
+	
+	//получаем пользователя по токену
+	public function getSellerByToken($token) {
+		$sql = "SELECT customer_id FROM " . DB_PREFIX . "kb_mp_seller WHERE approveToken = '" . $token . "'";
+		$query = $this->db->query($sql);
+		$row = $query->row;
+		if ((count($row)) > 0)
+			return (int) $row['customer_id'];
+		else
+			return false;
+	}
+	
+	//меняем текущий пароль у продавца
+	public function setSellerPassword($customer_id, $password) {
+		$this->db->query("UPDATE " . DB_PREFIX . "customer SET salt = '" . $this->db->escape($salt = token(9)) . "', password = '" . $this->db->escape(sha1($salt . sha1($salt . sha1($password)))) . "', code = '' WHERE customer_id = '" . $customer_id . "'");
+		return true;
+	}
+	
+	//удаляем токен у продавца
+	public function removeSellerToken($token) {
+		$this->db->query("UPDATE " . DB_PREFIX . "kb_mp_seller SET approveToken = '' WHERE approveToken = '" . $token . "'");
+		return true;
+	}
+	
+	//получаем email продавца
+	public function getSellerFirst($customer_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "customer WHERE customer_id = '" . (int)$customer_id . "'");
+		return $query->row;
+	}
+	
+	//функция обновления/добавления значения полей по customer id
+	public function setseller_field_values($data) {
+		foreach($data['fields'] as $key => $field) {
+			$sql = "SELECT COUNT(*) as exist FROM " . DB_PREFIX . "kb_mp_custom_field_seller_mapping as field "
+                . "WHERE id_customer =  '" . (int) $data['customer_id'] . "' AND id_field = '" . $key . "'";
+			$checkFieldExist = (int)$this->db->query($sql)->row['exist'];
+			if ($checkFieldExist > 0) {
+				$sql = "UPDATE " . DB_PREFIX . "kb_mp_custom_field_seller_mapping SET ";
+					$sql .= " value = '" . $field . "'";
+				$sql .= " WHERE id_customer = '" . (int)$data['customer_id'] . "' AND id_field = '" . (int)$key . "'";
+			} else {
+				$sql = "INSERT INTO " . DB_PREFIX . "kb_mp_custom_field_seller_mapping SET id_customer = '" . (int)$data['customer_id'] . "', id_seller = '" . (int)$data['seller_id'] . "', id_field = '" . (int)$key . "', value = '" . $this->db->escape($field) . "'";
+			}
+			$this->db->query($sql);
+		}
+		return $data['customer_id'];
+	}
 }

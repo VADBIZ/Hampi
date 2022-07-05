@@ -3005,9 +3005,12 @@ class ModelKbmpMarketplaceKbmpMarketplace extends Model {
         return $array;
     }
 	
-	//изменить статус
-	public function setStatus(){
-		
+	//генерируем токен для последующего пароля
+	public function generateTokenApprove($seller_id){
+		$bytes = openssl_random_pseudo_bytes(20, $cstrong);
+		$token = bin2hex($bytes);
+		$this->db->query("UPDATE " . DB_PREFIX . "kb_mp_seller SET approveToken = '" . $token . "' WHERE seller_id = '" . $seller_id . "'");
+		return $token;
 	}
 
 }

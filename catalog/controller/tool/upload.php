@@ -82,9 +82,9 @@ class ControllerToolUpload extends Controller {
 		$json = array();
 
 		// Check user has permission
-		if (!$this->user->hasPermission('modify', 'tool/upload')) {
-			$json['error'] = $this->language->get('error_permission');
-		}
+//		if (!$this->user->hasPermission('modify', 'tool/upload')) {
+//			$json['error'] = $this->language->get('error_permission');
+//		}
 
 		if (!$json) {
 			if (!empty($this->request->files['file']['name']) && is_file($this->request->files['file']['tmp_name'])) {

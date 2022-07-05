@@ -5,7 +5,7 @@ class ControllerCommonColumnLeft extends Controller {
 		$this->load->model('user/user');
 		$user_id = $this->user->getId();
 		$user_group = $this->user->getGroupId();
-		if ((int)$user_group == 15) {
+		if ((int)$user_group == 15 && isset($this->model_user_user->getPermissionModerator($user_id)['access_slug'])) {
 			$access_slug = explode(",",$this->model_user_user->getPermissionModerator($user_id)['access_slug']);
 			if (in_array($slug,$access_slug))
 				return true;
@@ -942,11 +942,11 @@ class ControllerCommonColumnLeft extends Controller {
                                     'href'     => $this->url->link('kbmp_marketplace/sellers_list', 'user_token=' . $this->session->data['user_token'], true),
                                     'children' => array()		
                                 ),
-                                array(
-                                    'name'     => $this->language->get('text_kbmp_approval_list'),
-                                    'href'     => $this->url->link('kbmp_marketplace/sellers_account_approval_list', 'user_token=' . $this->session->data['user_token'], true),
-                                    'children' => array()		
-                                ),
+//                                array(
+//                                    'name'     => $this->language->get('text_kbmp_approval_list'),
+//                                    'href'     => $this->url->link('kbmp_marketplace/sellers_account_approval_list', 'user_token=' . $this->session->data['user_token'], true),
+//                                    'children' => array()		
+//                                ),
                                 array(
                                     'name'      => $this->language->get('text_kbmp_category_commissions'),
                                     'href'      => $this->url->link('kbmp_marketplace/seller_category', 'user_token=' . $this->session->data['user_token'], true),

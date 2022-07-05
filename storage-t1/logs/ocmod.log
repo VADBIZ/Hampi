@@ -1,4 +1,4 @@
-2022-06-26 19:14:07 - MOD: Modification Default
+2022-06-30 19:51:22 - MOD: Modification Default
 
 FILE: system/engine/action.php
 REGEX: ~(require|include)(_once)?\(([^)]+)~
@@ -241,24 +241,6 @@ CODE: return $this->load->view('common/search', $data);
 LINE: 28
 CODE: <ul class="list-inline">
 NOT FOUND - OPERATIONS ABORTED!
-
-FILE: catalog/controller/account/register.php
-CODE: $this->load->language('account/register');
-LINE: 21
-LINE: 295
-CODE: $data['action'] = $this->url->link('account/register', '', true);
-LINE: 279
-CODE: $this->document->addStyle('catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css');
-LINE: 39
-CODE: $data['header'] = $this->load->controller('common/header');
-LINE: 577
-CODE: $data['customer_groups'] = array();
-LINE: 317
-CODE: if ($this->config->get('captcha_' . $this->config->get('config_captcha') . '_status') && in_array('register', (array)$this->config->get('config_captcha_page'))) {
-LINE: 436
-LINE: 868
-CODE: $customer_id = $this->model_account_customer->addCustomer($this->request->post);
-LINE: 175
 
 FILE: catalog/view/theme/default/template/account/register.twig
 CODE: {{ footer }}
